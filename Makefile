@@ -36,8 +36,7 @@ SRCS = ft_memcpy.c \
 
 OBJS = $(SRCS:.c=.o)
 
-SRCS_BONUS = $(SRCS) \
-			 ft_lstnew_bonus.c \
+SRCS_BONUS = ft_lstnew_bonus.c \
 			 ft_lstadd_front_bonus.c \
 			 ft_lstsize_bonus.c \
 			 ft_lstlast_bonus.c \
@@ -65,7 +64,9 @@ bonus : $(OBJS_BONUS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean :
+	rm -f $(OBJS)
 	rm -f $(OBJS_BONUS)
+	rm -f bonus
 
 fclean : clean
 	rm -f $(NAME)
