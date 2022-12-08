@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:50:54 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/07 13:26:42 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/08 10:23:16 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,21 @@ int	ft_putnbr(int n)
 	return (len);
 }
 
-int	ft_putnbr_unsign(int n)
+int	ft_putnbr_unsign(unsigned int n)
 {
-	unsigned int	nbr;
 	char			nb[10];
 	int				len;
 	int				i;
 
-	nbr = (unsigned int)n;
-	if (nbr == 0)
-		len = ft_putnbr_special(nbr);
+	if (n == 0)
+		len = ft_putnbr_special(n);
 	else
 	{
 		i = 0;
-		while (nbr)
+		while (n)
 		{
-			nb[9 - i++] = nbr % 10 + '0';
-			nbr = nbr / 10;
+			nb[9 - i++] = n % 10 + '0';
+			n = n / 10;
 		}
 		len = write(1, &nb[10 - i], i);
 	}

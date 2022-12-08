@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:09:12 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/07 12:53:46 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/08 10:21:47 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_type(const char *c, va_list ap)
 	else if (*c == 'd' || *c == 'i')
 		len = ft_putnbr(va_arg(ap, int));
 	else if (*c == 'u')
-		len = ft_putnbr_unsign(va_arg(ap, int));
+		len = ft_putnbr_unsign(va_arg(ap, unsigned int));
 	else if (*c == 'p')
 		len = ft_putadr(va_arg(ap, void *));
 	else if (*c == 'x')
