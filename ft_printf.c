@@ -14,26 +14,26 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int	check_type(const char *c, va_list ap)
+int	check_type(const char c, va_list *ap)
 {
 	int	len;
 
 	len = 0;
-	if (*c == 'c')
-		len = ft_putchar(va_arg(ap, int));
-	else if (*c == 's')
-		len = ft_putstr(va_arg(ap, char *));
-	else if (*c == 'd' || *c == 'i')
-		len = ft_putnbr(va_arg(ap, int));
-	else if (*c == 'u')
-		len = ft_putnbr_unsign(va_arg(ap, unsigned int));
-	else if (*c == 'p')
-		len = ft_putadr(va_arg(ap, void *));
-	else if (*c == 'x')
-		len = ft_puthex_low(va_arg(ap, unsigned int));
-	else if (*c == 'X')
-		len = ft_puthex_up(va_arg(ap, unsigned int));
-	else if (*c == '%')
+	if (c == 'c')
+		len = ft_putchar(va_arg(*ap, int));
+	else if (c == 's')
+		len = ft_putstr(va_arg(*ap, char *));
+	else if (c == 'd' || *c == 'i')
+		len = ft_putnbr(va_arg(*ap, int));
+	else if (c == 'u')
+		len = ft_putnbr_unsign(va_arg(*ap, unsigned int));
+	else if (c == 'p')
+		len = ft_putadr(va_arg(*ap, void *));
+	else if (c == 'x')
+		len = ft_puthex_low(va_arg(*ap, unsigned int));
+	else if (c == 'X')
+		len = ft_puthex_up(va_arg(*ap, unsigned int));
+	else if (c == '%')
 		len = write(1, "%%", 1);
 	return (len);
 }
@@ -51,7 +51,7 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-			check = check_type(&format[++i], ap);
+			check = check_type(format[++i], &ap);
 		else
 			check = write(1, &format[i], 1);
 		if (check < 0)
