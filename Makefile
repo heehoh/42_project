@@ -2,19 +2,16 @@ NAME = libftprintf.a
 
 SRCS = ft_printf.c\
 	   print_type.c\
-	   utils.c\
 	   ft_itoa.c
 
 OBJS = $(SRCS:.c=.o)
-
-INC = .
 
 CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	Make -C libft/
+	make -C libft/
 	cp libft/libft.a $(NAME)
 	ar rcs $@ $^
 
@@ -22,9 +19,12 @@ $(NAME) : $(OBJS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean :
+	Make -C libft clean
 	rm -f $(OBJS)
 
-fclean : clean
+fclean :
+	Make -C libft fclean
+	rm -f $(OBJS)
 	rm -f $(NAME)
 
 re :
