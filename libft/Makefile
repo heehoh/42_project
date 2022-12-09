@@ -17,7 +17,6 @@ SRCS = ft_memcpy.c \
 	   ft_strlen.c \
 	   ft_substr.c \
 	   ft_calloc.c \
-	   ft_itoa.c \
 	   ft_putchar_fd.c \
 	   ft_strdup.c \
 	   ft_strmapi.c \
