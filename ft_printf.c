@@ -6,12 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:09:12 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/08 10:21:47 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:23:09 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include <unistd.h>
 #include "ft_printf.h"
 
 int	check_type(const char c, va_list *ap)
@@ -23,16 +22,16 @@ int	check_type(const char c, va_list *ap)
 		len = ft_putchar(va_arg(*ap, int));
 	else if (c == 's')
 		len = ft_putstr(va_arg(*ap, char *));
-	else if (c == 'd' || *c == 'i')
+	else if (c == 'd' || c == 'i')
 		len = ft_putnbr(va_arg(*ap, int));
 	else if (c == 'u')
-		len = ft_putnbr_unsign(va_arg(*ap, unsigned int));
+		len = ft_putnbr(va_arg(*ap, unsigned int));
+	else if (c == 'x')
+		len = ft_puthex(va_arg(*ap, unsigned int), LOW);
+	else if (c == 'X')
+		len = ft_puthex(va_arg(*ap, unsigned int), UP);
 	else if (c == 'p')
 		len = ft_putadr(va_arg(*ap, void *));
-	else if (c == 'x')
-		len = ft_puthex_low(va_arg(*ap, unsigned int));
-	else if (c == 'X')
-		len = ft_puthex_up(va_arg(*ap, unsigned int));
 	else if (c == '%')
 		len = write(1, "%%", 1);
 	return (len);

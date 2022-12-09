@@ -1,10 +1,13 @@
 NAME = libftprintf.a
 
 SRCS = ft_printf.c\
+	   print_type.c\
 	   utils.c\
-	   utils2.c
+	   ft_itoa.c
 
 OBJS = $(SRCS:.c=.o)
+
+INC = .
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -26,4 +29,4 @@ re :
 	make fclean
 	make all
 
-.PHONY : clean fclean re
+.PHONY : all clean fclean re
