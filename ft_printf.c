@@ -34,7 +34,7 @@ int	check_type(const char c, va_list *ap)
 	else if (c == 'p')
 		len = ft_putadr(va_arg(*ap, void *));
 	else if (c == '%')
-		len = write(1, "%%", 1);
+		len = write(1, "%", 1);
 	else
 		return (-1);
 	return (len);
