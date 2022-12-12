@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-static void	fill_nbr(char *nbr, long n, size_t len, int base_l)
+static void	fill_nbr(char *nbr, long long n, size_t len, int base_l)
 {
 	char	*base;
 
@@ -34,7 +34,7 @@ static void	fill_nbr(char *nbr, long n, size_t len, int base_l)
 	}
 }
 
-char	*ft_itoa(long n, int base_l)
+char	*ft_itoa(long long n, int base_l)
 {
 	char	*nbr;
 	long	nb;
@@ -56,7 +56,7 @@ char	*ft_itoa(long n, int base_l)
 	return (nbr);
 }
 
-static void	fill_nbr2(char *nbr, unsigned long n, size_t len, int base_l)
+static void	fill_nbr2(char *nbr, uintptr_t n, size_t len, int base_l)
 {
 	char	*base;
 
