@@ -25,7 +25,7 @@ int	ft_putstr(const char *s)
 	return (write(1, s, ft_strlen(s)));
 }
 
-int	ft_putnbr(long n)
+int	ft_putnbr(int n)
 {
 	char	*nbr;
 	int		len;
