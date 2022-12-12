@@ -6,11 +6,12 @@
 /*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:09:12 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/09 15:23:09 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/12 10:40:35 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
+#include <stddef.h>
 #include "ft_printf.h"
 
 int	check_type(const char c, va_list *ap)
@@ -40,7 +41,7 @@ int	check_type(const char c, va_list *ap)
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		i;
+	size_t	i;
 	int		len;
 	int		check;
 
