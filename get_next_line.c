@@ -6,69 +6,103 @@
 /*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:26:55 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/12 20:21:35 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/13 18:35:44 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	buff_store(t_list *line, char *buff, int fd)
-{
-	t_list	*new;
-
-	while (line->next)
-	{
-		if (line->s_fd == fd)
-			break ;
-		line = line->next;
-	}
-	if (line->s_fd != fd)
-	{
-		line->next = new;
-		new->s_fd = fd;
-		new->store = buff;
-	}
-	else
-	{
-		line->store = ft_strjoin(line->store, buff);
-		if (line->store == NULL)
-			return (-1);
-	}
-	return (0);
-}
-
-char	*get_one_line(t_list *line, char *buff, int fd)
-{
-
-}
+#include "get_next_line.h"
+#include <unistd.h>
 
 char	*get_next_line(int fd)
 {
 	static t_list	*line;
-	char			buff[BUFF_SIZE + 1];
-	char			*one_line
-	ssize_t 		read_size;
-	size_t			i;
+	char			buff[BUFFER_SIZE + 1];
+	char			*one_line;
+	ssize_t			check;
+
+	check = read_check(line, fd);
+	if (check == READ)
+		one_line = read_loop(line, fd, buff, -1);
+	else if (check == NO)
+		one_line = get_one_line(line, fd);
+	else
+		one_line = NULL;
+	ft_bzero(buff, BUFFER_SIZE);
+	return (one_line);
+}
+
+int	read_check(t_list *line, int fd)
+{
+	ssize_t	i;
+
+	while (line)
+	{
+		if (line->fd == fd)
+		{
+			if (line->store == NULL)
+				return (READ);
+			i = 0;
+			while (line->store[i])
+				if (line->store[i++] == '\n')
+					return (NO);
+			return (READ);
+		}
+		line = line->next;
+	}
+	return (READ);
+}
+
+char	*read_loop(t_list *line, int fd, char *buff, ssize_t i)
+{
+	ssize_t	read_size;
 
 	while (1)
 	{
-
-		read_size = read(fd, buff, BUFF_SIZE);
+		read_size = read(fd, buff, BUFFER_SIZE);
 		if (read_size < 0)
-			return (0);
-		i = 0;
+			return (NULL);
 		buff[read_size] = '\0';
-		while (i < read_size)
-			if (buff[i++] == '\n')
-				break ;
-		if (buff[i - 1] == '\n' || read_size != BUFF_SIZE)
+		if (line == NULL)
+			line = ft_lstnew(fd);
+		while (1)
 		{
-			one_line = get_one_line(line, buff, i);
-			if (buff[i - 1] == '\n' && read_size == BUFF_SIZE)
-				if (buff_store(line, &buff[i], fd) < 0)
-					return (0);
-			break ;
+			if (line->fd == fd)
+				break ;
+			if (line->next == NULL)
+				line->next = ft_lstnew(fd);
+			line = line->next;
 		}
-		if (buff_store(one_line, buff, fd) < 0)
-			return (0);
+		line->store = ft_strjoin(line->store, buff);
+		while (line->store[++i])
+			if (line->store[i] == '\n')
+				break ;
+		if (line->store[i] == '\n' || read_size < BUFFER_SIZE)
+			return (one_line_trim(&(line->store), 0, -1));
 	}
-	return (one_line);
 }
+
+char	*get_one_line(t_list *line, int fd)
+{
+	while (1)
+	{
+		if (line->fd == fd)
+			break ;
+		line = line->next ;
+	}
+	return (one_line_trim(&(line->store), 0, -1));
+}
+/*
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+
+int	main()
+{
+	int	fd;
+	int	i;
+
+	fd = open("hello.txt", O_RDONLY);
+	i = 0;
+	while (i++ < 10)
+		printf("%s", get_next_line(fd));
+}*/
