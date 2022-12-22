@@ -36,9 +36,9 @@ static void	fill_nbr(char *nbr, long long n, size_t len, int base_l)
 
 char	*ft_itoa(long long n, int base_l)
 {
-	char	*nbr;
-	long	nb;
-	size_t	len;
+	char		*nbr;
+	long long	nb;
+	size_t		len;
 
 	nb = n;
 	len = 0;
