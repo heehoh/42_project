@@ -61,11 +61,7 @@ char	*read_loop(char **store, ssize_t *store_size, int fd, char *buff)
 				break ;
 		if (i == read_size && read_size == BUFFER_SIZE)
 			continue ;
-		one_line = make_oneline(store, store_size);
-		if (one_line == NULL)
-			return (NULL);
-		trim_store(store, store_size, -1, -1);
-		return (one_line);
+		return (get_one_line(store, store_size));
 	}
 }
 
