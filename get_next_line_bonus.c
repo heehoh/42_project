@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:13:57 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/23 13:43:58 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,28 @@ char	*get_next_line(int fd)
 		one_line = get_one_line(head, fd);
 	else
 	{
-		ft_lstclear(head);
+		ft_lstclear(&head);
 		return (NULL);
 	}
 	if (one_line == NULL)
-		ft_lstclear(head);
+		ft_lstclear(&head);
 	return (one_line);
 }
 
 int	read_check(t_list *node, int fd)
 {
-	size_t	i;
+	ssize_t	i;
 
-	if (node == NULL)
+	if (node == NULL || node->fd == fd)
 	{
-		node = ft_lstnew(fd);
+		if (node != NULL)
+			node = ft_lstnew(fd);
 		if (node == NULL)
 			return (ERROR);
+		i = -1;
+		while (++i < node->size)
+			if (node->store[i] == '\n')
+				return (NO);
 		return (READ);
 	}
 	while (node->next)
@@ -52,7 +57,7 @@ int	read_check(t_list *node, int fd)
 		if (node->next->fd == fd)
 		{
 			i = -1;
-			while (node->next->store[++i])
+			while (++i < node->next->size)
 				if (node->next->store[i] == '\n')
 					return (NO);
 			return (READ);
@@ -69,7 +74,6 @@ char	*read_loop(t_list *node, int fd, char *buff)
 {
 	ssize_t	read_size;
 	ssize_t	i;
-	char	*one_line;
 
 	while (node->fd != fd)
 		node = node->next;
@@ -85,12 +89,7 @@ char	*read_loop(t_list *node, int fd, char *buff)
 				break ;
 		if (i == read_size && read_size == BUFFER_SIZE)
 			continue ;
-		one_line = make_oneline(node);
-		if (one_line == NULL)
-			return (NULL);
-		if (trim_store(node, -1, -1))
-			return (NULL);
-		return (one_line);
+		return (get_one_line(node, fd));
 	}
 }
 

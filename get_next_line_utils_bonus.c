@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:10:57 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/23 13:27:31 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,16 @@ t_list	*ft_lstnew(int fd)
 	return (new);
 }
 
-void	ft_lstclear(t_list *head)
+void	ft_lstclear(t_list **head)
 {
 	t_list	*tem;
 
-	while (head)
+	while (*head)
 	{
-		tem = head->next;
-		if (head->store != NULL)
-			free(head->store);
-		free(head);
-		head = tem;
+		tem = (*head)->next;
+		if ((*head)->store != NULL)
+			free((*head)->store);
+		free(*head);
+		*head = tem;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:05:49 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:10:39 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/23 13:25:52 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ char	*line_store(t_list *node, char *buf, ssize_t rd_size);
 char	*make_oneline(t_list *node);
 int		trim_store(t_list *node, ssize_t i, ssize_t j);
 t_list	*ft_lstnew(int fd);
-void	ft_lstclear(t_list *head);
+void	ft_lstclear(t_list **head);
 
 #endif
