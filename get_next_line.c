@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:13:57 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/23 13:02:51 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ char	*read_loop(char **store, ssize_t *store_size, int fd, char *buff)
 {
 	ssize_t	read_size;
 	ssize_t	i;
-	char	*one_line;
 
 	while (1)
 	{

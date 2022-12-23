@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/16 14:10:57 by hujeong          ###   ########.fr       */
+/*   Updated: 2022/12/23 13:09:47 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*make_oneline(char **store, ssize_t *st_size)
 	char	*one_line;
 
 	i = -1;
-	while ((*store)[++i])
+	while (++i < *st_size)
 		if ((*store)[i] == '\n')
 			break ;
 	if ((*store)[i] == '\n')
@@ -73,13 +73,13 @@ void	trim_store(char **store, ssize_t *st_size, ssize_t i, ssize_t j)
 {
 	char	*new_store;
 
-	while ((*store)[++i])
+	while (++i < *st_size)
 		if ((*store)[i] == '\n')
 			break ;
 	if ((*store)[i] == '\n')
 		++i;
 	new_store = (char *)malloc(*st_size - i + 1);
-	if (new_store == NULL || (*store)[i] == '\0')
+	if (new_store == NULL || i == *st_size)
 	{
 		free(*store);
 		if (new_store != NULL)
@@ -88,7 +88,7 @@ void	trim_store(char **store, ssize_t *st_size, ssize_t i, ssize_t j)
 		*st_size = 0;
 		return ;
 	}
-	while ((*store)[++j + i])
+	while (++j + i < *st_size)
 		new_store[j] = (*store)[j + i];
 	new_store[j] = '\0';
 	*st_size = j;
