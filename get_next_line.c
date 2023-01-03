@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/23 13:02:51 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/03 17:52:09 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int	main()
 	int	fd;
 	int	i;
 
-	fd = open("only_nl.txt", O_RDONLY);
+	fd = open("hi.txt", O_RDONLY);
 	i = 0;
-	while (i++ < 1)
+	while (i++ < 3)
 		printf("%s", get_next_line(fd));
 }*/
