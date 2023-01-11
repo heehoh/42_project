@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/23 13:09:47 by hujeong          ###   ########.fr       */
+/*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
+/*   Updated: 2023/01/11 17:52:52 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ char	*line_store(char **store, ssize_t *st_size, char *buff, ssize_t rd_size)
 	char	*new_store;	
 
 	new_store = (char *)malloc(*st_size + rd_size + 1);
-	if (rd_size < 0 || (*st_size == 0 && rd_size == 0) || new_store == NULL)
+	if (new_store == NULL)
 	{
 		if (*store != NULL)
 			free(*store);
-		if (new_store != NULL)
-			free(new_store);
 		*store = NULL;
 		*st_size = 0;
 		return (NULL);
