@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/03 17:52:09 by hujeong          ###   ########.fr       */
+/*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
+/*   Updated: 2023/01/11 17:52:50 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*get_next_line(int fd)
 	char			*one_line;
 	int				check;
 
+	if (fd < 0)
+		return (NULL);
 	check = read_check(store);
 	if (check == READ)
 		one_line = read_loop(&store, &store_size, fd, buff);
@@ -51,6 +53,14 @@ char	*read_loop(char **store, ssize_t *store_size, int fd, char *buff)
 	while (1)
 	{
 		read_size = read(fd, buff, BUFFER_SIZE);
+		if (read_size < 0 || (read_size == 0 && *store_size == 0))
+		{
+			if (*store != NULL)
+				free(*store);
+			*store = NULL;
+			*store_size = 0;
+			return (NULL);
+		}
 		*store = line_store(store, store_size, buff, read_size);
 		if (*store == NULL)
 			return (NULL);
@@ -74,17 +84,3 @@ char	*get_one_line(char **store, ssize_t *store_size)
 	trim_store(store, store_size, -1, -1);
 	return (one_line);
 }
-/*
-#include <fcntl.h>
-#include <stdio.h>
-
-int	main()
-{
-	int	fd;
-	int	i;
-
-	fd = open("hi.txt", O_RDONLY);
-	i = 0;
-	while (i++ < 3)
-		printf("%s", get_next_line(fd));
-}*/
