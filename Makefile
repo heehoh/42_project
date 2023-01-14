@@ -1,9 +1,10 @@
 NAME = fdf
-SRCS = fdf_main.c \
-	   fdf_get_map.c \
-	   fdf_line_draw.c \
-	   fdf_rotate.c \
-	   fdf_error_msg.c  
+SRCS = 1fdf_main.c \
+	   2fdf_get_map.c \
+	   3fdf_get_map_utils.c \
+	   4fdf_rotate.c \
+	   5fdf_map_draw.c \
+	   6fdf_error_msg.c  
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft.a
 
@@ -17,7 +18,7 @@ $(LIBFT) :
 	cp libft/$(LIBFT) $(LIBFT)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	cc -lmlx -framework OpenGL -framework Appkit $(OBJS) -o $(NAME)
+	cc $(LIBFT) -lmlx -framework OpenGL -framework Appkit $(OBJS) -o $(NAME)
 
 clean :
 	make -C libft clean

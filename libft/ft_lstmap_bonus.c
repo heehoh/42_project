@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:52:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 10:25:38 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/12 10:25:55 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*tem;
 	void	*ptr;
 
-	if (lst == 0 || f == 0 || del == 0)
-		return (0);
+	if (lst == NULL || f == NULL || del == NULL)
+		return (NULL);
 	new = 0;
 	while (lst)
 	{

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:10:39 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 10:28:04 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:34:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;
-	
+
 	len = 0;
 	if (s == NULL)
 		return (len);

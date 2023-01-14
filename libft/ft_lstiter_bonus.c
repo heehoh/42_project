@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:48:52 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 10:25:39 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/12 15:01:57 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (lst == 0 || f == 0)
+	if (lst == NULL || f == NULL)
 		return ;
 	while (lst)
 	{

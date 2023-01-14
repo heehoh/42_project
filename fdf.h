@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:43:43 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 21:07:49 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/14 13:28:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 typedef struct s_map
 {
-	int	x;
-	int	y;
-	int	z;
+	double			x;
+	double			y;
+	double			z;
+	unsigned int	color;
 }	t_map;
 
 typedef struct  s_vars
@@ -41,13 +42,27 @@ typedef struct  s_data
 
 typedef struct	s_dummy
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }	t_dummy;
 
-void    get_map(t_vars *vars, t_map *map, char *argv);
-void	line_draw(t_data *img, int x1, int y1, int x2, int y2);
+typedef	struct	s_angle
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_angle;
+
+# define PI 3.141592
+
+void    get_map(t_vars *vars, t_map **map, char *argv);
+void 	map_draw(t_vars *vars, t_data *img, t_map *map);
 void 	error_msg(int err_num);
-void    rotate(t_map *map, double alpha, double beta, double gamma);
+void    rotate(t_vars *vars, t_map *map, t_angle *a);
+void    ft_mlx(t_vars *vars, t_data *img);
+double	radian(double angle);
+void	get_xyz(t_vars *vars, t_map *map, char *store);
+void    move_xyz(t_vars *vars, t_map *map, int distance);
+int 	count_nb(char *line);
 
 # endif

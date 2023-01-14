@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:10:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 18:02:11 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/12 14:56:45 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ char	*read_loop(char **store, ssize_t *store_size, int fd, char *buff)
 	while (1)
 	{
 		read_size = read(fd, buff, BUFFER_SIZE);
-		if (rd_size < 0 || (*st_size == 0 && rd_size == 0))
+		if (read_size < 0 || (*store_size == 0 && read_size == 0))
 		{
 			if (*store != NULL)
 				free(*store);
 			*store = NULL;
-			*st_size = 0;
+			*store_size = 0;
 			return (NULL);
 		}
 		*store = line_store(store, store_size, buff, read_size);
