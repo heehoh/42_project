@@ -18,10 +18,10 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	i;
 
 	if ((count * size) / size != count)
-		return (0);
+		return (NULL);
 	s = (char *)malloc(count * size);
-	if (s == 0)
-		return (0);
+	if (s == NULL)
+		return (NULL);
 	i = 0;
 	while (i < count * size)
 		s[i++] = 0;
