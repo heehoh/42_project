@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 17:52:50 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/14 16:10:13 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ char	*get_next_line(int fd)
 	char			*one_line;
 	int				check;
 
-	if (fd < 0)
-		return (NULL);
 	check = read_check(store);
 	if (check == READ)
 		one_line = read_loop(&store, &store_size, fd, buff);

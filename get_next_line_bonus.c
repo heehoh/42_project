@@ -6,12 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/03 18:02:41 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/14 17:59:31 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <stdlib.h>
 #include <unistd.h>
 
 char	*get_next_line(int fd)
@@ -21,34 +20,26 @@ char	*get_next_line(int fd)
 	char			*one_line;
 	int				check;
 
-	check = read_check(head, fd);
-	if (check == READ)
-		one_line = read_loop(head, fd, buff);
-	else if (check == NO)
-		one_line = get_one_line(head, fd);
-	else
-	{
-		ft_lstclear(&head);
+	if (head == NULL)
+		head = ft_lstnew(NULL, fd);
+	if (head == NULL)
 		return (NULL);
-	}
-	if (one_line == NULL)
-		ft_lstclear(&head);
+	check = read_check(head, fd, 0);
+	if (check == READ)
+		one_line = read_loop(&head, head, fd, buff);
+	else if (check == NO)
+		one_line = get_one_line(&head, head, fd);
+	else
+		return (ft_lstclear(&head));
 	return (one_line);
 }
 
-int	read_check(t_list *node, int fd)
+int	read_check(t_list *node, int fd, ssize_t i)
 {
-	ssize_t	i;
-
-	if (node == NULL || node->fd == fd)
+	if (node->fd == fd)
 	{
-		if (node != NULL)
-			node = ft_lstnew(fd);
-		if (node == NULL)
-			return (ERROR);
-		i = -1;
-		while (++i < node->size)
-			if (node->store[i] == '\n')
+		while (i < node->size)
+			if (node->store[i++] == '\n')
 				return (NO);
 		return (READ);
 	}
@@ -56,21 +47,20 @@ int	read_check(t_list *node, int fd)
 	{
 		if (node->next->fd == fd)
 		{
-			i = -1;
-			while (++i < node->next->size)
-				if (node->next->store[i] == '\n')
+			while (i < node->next->size)
+				if (node->next->store[i++] == '\n')
 					return (NO);
 			return (READ);
 		}
 		node = node->next;
 	}
-	node->next = ft_lstnew(fd);
+	node->next = ft_lstnew(node, fd);
 	if (node->next == NULL)
 		return (ERROR);
 	return (READ);
 }
 
-char	*read_loop(t_list *node, int fd, char *buff)
+char	*read_loop(t_list **head, t_list *node, int fd, char *buff)
 {
 	ssize_t	read_size;
 	ssize_t	i;
@@ -80,20 +70,22 @@ char	*read_loop(t_list *node, int fd, char *buff)
 	while (1)
 	{
 		read_size = read(fd, buff, BUFFER_SIZE);
+		if (read_size < 0 || (read_size == 0 && node->size == 0))
+			return (ft_lstcut(head, node));
 		node->store = line_store(node, buff, read_size);
 		if (node->store == NULL)
-			return (NULL);
+			return (ft_lstclear(head));
 		i = -1;
 		while (++i < read_size)
 			if (buff[i] == '\n')
 				break ;
 		if (i == read_size && read_size == BUFFER_SIZE)
 			continue ;
-		return (get_one_line(node, fd));
+		return (get_one_line(head, node, fd));
 	}
 }
 
-char	*get_one_line(t_list *node, int fd)
+char	*get_one_line(t_list **head, t_list *node, int fd)
 {
 	char	*one_line;
 
@@ -101,11 +93,33 @@ char	*get_one_line(t_list *node, int fd)
 		node = node->next;
 	one_line = make_oneline(node);
 	if (one_line == NULL)
-		return (NULL);
+		return (ft_lstclear(head));
 	if (trim_store(node, -1, -1))
-		return (NULL);
+		return (ft_lstclear(head));
 	return (one_line);
 }
+
+void	*ft_lstcut(t_list **head, t_list *node)
+{
+	t_list	*tem;
+
+	if (*head == node)
+	{
+		free(node);
+/*		if (node->store != NULL)
+			free(node->store);*/
+		*head = NULL;
+		return (NULL);
+	}
+	tem = node->prev;
+	tem->next = node->next;
+/*	if (node->store != NULL)
+		free(node->store);*/
+	free(node);
+	node = tem;
+	return (NULL);
+}
+
 /*
 #include <fcntl.h>
 #include <stdio.h>

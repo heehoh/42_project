@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hujeong <hujeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
-/*   Updated: 2022/12/23 13:27:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/14 17:57:40 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <stdlib.h>
 
 char	*line_store(t_list *node, char *buff, ssize_t rd_size)
 {
@@ -19,12 +18,8 @@ char	*line_store(t_list *node, char *buff, ssize_t rd_size)
 	char	*new_store;	
 
 	new_store = (char *)malloc(node->size + rd_size + 1);
-	if (rd_size < 0 || (node->size == 0 && rd_size == 0) || new_store == NULL)
-	{
-		if (new_store != NULL)
-			free(new_store);
+	if (new_store == NULL)
 		return (NULL);
-	}
 	i = -1;
 	while (++i < node->size)
 		new_store[i] = node->store[i];
@@ -73,6 +68,7 @@ int	trim_store(t_list *node, ssize_t i, ssize_t j)
 	{
 		free(node->store);
 		node->store = NULL;
+		node->size = 0;
 		return (0);
 	}
 	new_store = (char *)malloc(node->size - i + 1);
@@ -87,24 +83,29 @@ int	trim_store(t_list *node, ssize_t i, ssize_t j)
 	return (0);
 }
 
-t_list	*ft_lstnew(int fd)
+t_list	*ft_lstnew(t_list *prev, int fd)
 {
 	t_list	*new;
 
+	if (fd < 0)
+		return (NULL);
 	new = (t_list *)malloc(sizeof(t_list));
 	if (new == NULL)
 		return (NULL);
 	new->fd = fd;
 	new->size = 0;
 	new->store = NULL;
+	new->prev = prev;
 	new->next = NULL;
 	return (new);
 }
 
-void	ft_lstclear(t_list **head)
+void	*ft_lstclear(t_list **head)
 {
 	t_list	*tem;
 
+	if (head == NULL)
+		return (NULL);
 	while (*head)
 	{
 		tem = (*head)->next;
@@ -113,4 +114,5 @@ void	ft_lstclear(t_list **head)
 		free(*head);
 		*head = tem;
 	}
+	return (NULL);
 }
