@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/14 17:57:40 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/16 11:50:11 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*make_oneline(t_list *node)
 	return (one_line);
 }
 
-int	trim_store(t_list *node, ssize_t i, ssize_t j)
+int	trim_store(t_list **head, t_list *node, ssize_t i, ssize_t j)
 {
 	char	*new_store;
 
@@ -66,9 +66,7 @@ int	trim_store(t_list *node, ssize_t i, ssize_t j)
 		++i;
 	if (node->store[i] == '\0')
 	{
-		free(node->store);
-		node->store = NULL;
-		node->size = 0;
+		ft_lstcut(head, node);
 		return (0);
 	}
 	new_store = (char *)malloc(node->size - i + 1);
@@ -111,6 +109,7 @@ void	*ft_lstclear(t_list **head)
 		tem = (*head)->next;
 		if ((*head)->store != NULL)
 			free((*head)->store);
+		(*head)->store = NULL;
 		free(*head);
 		*head = tem;
 	}

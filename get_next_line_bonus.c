@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/14 17:59:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/16 11:50:12 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*get_one_line(t_list **head, t_list *node, int fd)
 	one_line = make_oneline(node);
 	if (one_line == NULL)
 		return (ft_lstclear(head));
-	if (trim_store(node, -1, -1))
+	if (trim_store(head, node, -1, -1))
 		return (ft_lstclear(head));
 	return (one_line);
 }
@@ -105,16 +105,22 @@ void	*ft_lstcut(t_list **head, t_list *node)
 
 	if (*head == node)
 	{
+		if (node->next != NULL)
+			tem = node->next;
+		else
+			tem = NULL;
+		if (node->store != NULL)
+			free(node->store);
+		node->store = NULL;
 		free(node);
-/*		if (node->store != NULL)
-			free(node->store);*/
-		*head = NULL;
+		*head = tem;
 		return (NULL);
 	}
 	tem = node->prev;
 	tem->next = node->next;
-/*	if (node->store != NULL)
-		free(node->store);*/
+	if (node->store != NULL)
+		free(node->store);
+	node->store = NULL;
 	free(node);
 	node = tem;
 	return (NULL);
