@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 18:28:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/17 11:35:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:25:05 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "fdf.h"
 #include <mlx.h>
 
-static void	line_draw(t_data *img, t_map map1, t_map map2);
+static void	line_draw(t_img *img, t_map map1, t_map map2);
 static void	line_draw_util1(t_map *map1, t_map *map2, t_change *change);
 static void	line_draw_util2(t_map *map1, t_map *map2, t_change *change);
-static void	my_mlx_pixel_put(t_data *data, t_map map);
+static void	my_mlx_pixel_put(t_img *img, t_map map);
 
-void	map_draw(t_vars *vars, t_data *img, t_map *map)
+void	map_draw(t_vars *vars, t_img *img, t_map *map)
 {
 	int	i;
 	int	j;
@@ -42,10 +42,9 @@ void	map_draw(t_vars *vars, t_data *img, t_map *map)
 		while (++j < height - 1)
 			line_draw(img, map[width * j + i], map[width * (j + 1) + i]);
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 }
 
-static void	line_draw(t_data *img, t_map map1, t_map map2)
+static void	line_draw(t_img *img, t_map map1, t_map map2)
 {
 	t_change	change;
 
@@ -71,7 +70,6 @@ static void	line_draw(t_data *img, t_map map1, t_map map2)
 	}
 	my_mlx_pixel_put(img, map1);
 }
-
 
 static void	line_draw_util1(t_map *map1, t_map *map2, t_change *change)
 {
@@ -107,16 +105,13 @@ static void	line_draw_util2(t_map *map1, t_map *map2, t_change *change)
 	}
 }
 
-static void	my_mlx_pixel_put(t_data *img, t_map map)
+static void	my_mlx_pixel_put(t_img *img, t_map map)
 {
 	char	*dst;
-		
-/*	if ((int)map.x * (img->bits_per_pixel / 8) < 0
-		|| (int)map.x * (img->bits_per_pixel / 8) > 1920)
-		return ;*/
+
+	if (map.x < 0 || map.x > 1920 || map.y < 0 || map.y > 1080)
+		return ;
 	dst = img->addr + ((int)map.y * img->line_length
-		+ (int)map.x * (img->bits_per_pixel / 8));
-/*	if (dst < img->addr || dst > img->addr + 1920 * 1080)
-		return ;*/
+			+ (int)map.x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = map.color;
 }

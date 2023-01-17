@@ -6,16 +6,18 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:41:37 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/17 11:34:47 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:25:07 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "fdf.h"
 
-static char	*get_map_loop(t_vars *vars, char *store, int fd);
+static char		*get_map_loop(t_vars *vars, char *store, int fd);
+static int		count_nb(char *line);
+static void		move_if_color(char **line);
 
-void	get_map(t_vars *vars, t_map **map, char *argv)
+void	get_map(t_vars *vars, t_map **map, t_map **show, char *argv)
 {
 	char	*line;
 	char	*store;
@@ -37,8 +39,9 @@ void	get_map(t_vars *vars, t_map **map, char *argv)
 		error_msg(3);
 	}
 	get_xyz(vars, *map, store);
-	move_xyz(vars, *map, 50);
 	free(store);
+	*show = (t_map *)ft_memcpy(*map,
+			sizeof(t_map) * vars->width * vars->height);
 }
 
 static char	*get_map_loop(t_vars *vars, char *store, int fd)
@@ -68,7 +71,7 @@ static char	*get_map_loop(t_vars *vars, char *store, int fd)
 	return (store);
 }
 
-int	count_nb(char *line)
+static int	count_nb(char *line)
 {
 	int	count;
 
@@ -93,4 +96,16 @@ int	count_nb(char *line)
 		++count;
 	}
 	return (count);
+}
+
+static void	move_if_color(char **line)
+{
+	if (**line == '0' && (*(*line + 1) == 'x' || *(*line + 1) == 'X'))
+		*line = *line + 2;
+	else
+		error_msg(2);
+	while ((**line >= '0' && **line <= '9')
+		|| (**line >= 'a' && **line <= 'f')
+		|| (**line >= 'A' && **line <= 'F'))
+			++(*line);
 }

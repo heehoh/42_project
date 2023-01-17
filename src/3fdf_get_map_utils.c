@@ -6,13 +6,15 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 18:25:28 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/17 11:34:48 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:25:07 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static void	move_after_atoi(char **store, t_map *map, int *count);
+static void	move_map_to_origin(t_vars *vars, t_map *map);
+static void	move_if_color(char **line);
 
 void	get_xyz(t_vars *vars, t_map *map, char *store)
 {
@@ -22,6 +24,7 @@ void	get_xyz(t_vars *vars, t_map *map, char *store)
 	map[0].x = 0;
 	map[0].y = 0;
 	map[0].z = ft_atoi(store);
+	vars->max = (int)map[0].z;
 	move_after_atoi(&store, map, &count);
 	while (++count < vars->width * vars->height)
 	{
@@ -34,8 +37,24 @@ void	get_xyz(t_vars *vars, t_map *map, char *store)
 		else
 			map[count].y = map[count - 1].y;
 		map[count].z = ft_atoi(store);
+		if (vars->max < map[count].z)
+			vars->max = (int)map[count].z;
 		move_after_atoi(&store, map, &count);
 	}
+	move_map_to_origin(vars, map);
+}
+
+static void	move_map_to_origin(t_vars *vars, t_map *map)
+{
+	int		i;
+
+	i = -1;
+	while (++i < vars->height * vars->width)
+	{
+		map[i].x -= vars->width / 2;
+		map[i].y -= vars->height / 2;
+		map[i].z -= vars->max / 3;
+	}	
 }
 
 static void	move_after_atoi(char **store, t_map *map, int *count)
@@ -56,7 +75,7 @@ static void	move_after_atoi(char **store, t_map *map, int *count)
 		map[*count].color = 0x77FFFFFF;
 }
 
-void	move_if_color(char **line)
+static void	move_if_color(char **line)
 {
 	if (**line == '0' && (*(*line + 1) == 'x' || *(*line + 1) == 'X'))
 		*line = *line + 2;

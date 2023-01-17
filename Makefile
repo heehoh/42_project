@@ -1,10 +1,10 @@
 NAME = fdf
-SRCS = 1fdf_main.c \
-	   2fdf_get_map.c \
-	   3fdf_get_map_utils.c \
-	   4fdf_rotate.c \
-	   5fdf_map_draw.c \
-	   6fdf_error_msg.c  
+SRCS = ./src/1fdf_main.c \
+	   ./src/2fdf_get_map.c \
+	   ./src/3fdf_get_map_utils.c \
+	   ./src/4fdf_rotate.c \
+	   ./src/5fdf_map_draw.c \
+	   ./src/6fdf_error_msg.c  
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft.a
 

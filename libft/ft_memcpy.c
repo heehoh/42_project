@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:10:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 10:26:21 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/17 15:25:33 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	*ft_memcpy(const void *src, size_t n)
 	unsigned char	*sr;
 	size_t			i;
 
-	if (dst == NULL && src == NULL)
+	if (src == NULL)
 		return (NULL);
-    ds = (unsigned char *)malloc(n);
-    if (ds == NULL)
-        return (NULL);
+	ds = (unsigned char *)malloc(n);
+	if (ds == NULL)
+		return (NULL);
 	sr = (unsigned char *)src;
 	i = 0;
 	while (i < n)
