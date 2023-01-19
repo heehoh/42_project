@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   6fdf_error_msg.c                                   :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 18:28:53 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/19 17:18:19 by hujeong          ###   ########.fr       */
+/*   Created: 2023/01/19 16:42:19 by hujeong           #+#    #+#             */
+/*   Updated: 2023/01/19 17:08:29 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <stdio.h>
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
-void	error_msg(int err_num)
-{
-	if (err_num == 1)
-		perror("Invalid argument");
-	else if (err_num == 2)
-		perror("Invalid map");
-	else if (err_num == 3)
-		perror("malloc fail");
-	else if (err_num == 4)
-		perror("invalid file");
-	else if (err_num == 5)
-		perror("get_next_line fail");
-	else if (err_num == 6)
-		perror("too big map");
-	exit(EXIT_FAILURE);
-}
+# include "key.h"
+# include "fdf.h"
+
+void	show_top_view(t_angle *angle);
+void	show_front_view(t_angle *angle);
+void	show_side_view(t_angle *angle);
+void	clear_img(t_vars *vars);
+int		close_win(t_vars *vars);
+void	key_press2(int key, t_vars *vars);
+int		key_press1(int key, t_vars *vars);
+
+#endif

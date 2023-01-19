@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 18:20:55 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/17 18:41:30 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:18:18 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ void	rotate_xyz(t_vars *vars, t_map *show, t_angle *a, int first)
 {
 	int	i;
 
-	vars->distance = 50;
+	i = -1;
+	while (++i < vars->height * vars->width)
+		show[i] = vars->map[i];
 	rotate(vars, show, a);
 	if (first)
 		test_distance(vars, show);
 	i = -1;
 	while (++i < vars->height * vars->width)
 	{
-		show[i].x = (show[i].x * vars->distance) + 960;
-		show[i].y = (show[i].y * vars->distance) + 540;
+		show[i].x = (show[i].x * vars->distance) + vars->locate.x;
+		show[i].y = (show[i].y * vars->distance) + vars->locate.y;
 	}
 }
 
@@ -61,11 +63,16 @@ double	radian(double angle)
 	return (angle * PI / 180);
 }
 
-void	set_angle(t_angle *a)
+void	set_default(t_vars *vars)
 {
-	a->x = radian(45);
-	a->y = radian(-30);
-	a->z = radian(30);
+	vars->angle.x = radian(45);
+	vars->angle.y = radian(30);
+	vars->angle.z = radian(-30);
+	vars->locate.x = 960;
+	vars->locate.y = 540;
+	vars->rotate = 0.1;
+	vars->distance = 60;
+	rotate_xyz(vars, vars->show, &(vars->angle), 1);
 }
 
 static void	test_distance(t_vars *vars, t_map *show)

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:41:37 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/17 18:25:07 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:18:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ void	get_map(t_vars *vars, t_map **map, t_map **show, char *argv)
 		free(store);
 		error_msg(3);
 	}
-	get_xyz(vars, *map, store);
+	set_map(vars, *map, store);
 	free(store);
-	*show = (t_map *)ft_memcpy(*map,
-			sizeof(t_map) * vars->width * vars->height);
+	*show = (t_map *)malloc(sizeof(t_map) * (vars->width * vars->height));
 }
 
 static char	*get_map_loop(t_vars *vars, char *store, int fd)

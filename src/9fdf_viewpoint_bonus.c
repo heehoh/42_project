@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   6fdf_error_msg.c                                   :+:      :+:    :+:   */
+/*   9fdf_viewpoint_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 18:28:53 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/19 17:18:19 by hujeong          ###   ########.fr       */
+/*   Created: 2023/01/19 16:32:22 by hujeong           #+#    #+#             */
+/*   Updated: 2023/01/19 17:18:22 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
-void	error_msg(int err_num)
+void	show_top_view(t_angle *angle)
 {
-	if (err_num == 1)
-		perror("Invalid argument");
-	else if (err_num == 2)
-		perror("Invalid map");
-	else if (err_num == 3)
-		perror("malloc fail");
-	else if (err_num == 4)
-		perror("invalid file");
-	else if (err_num == 5)
-		perror("get_next_line fail");
-	else if (err_num == 6)
-		perror("too big map");
-	exit(EXIT_FAILURE);
+	angle->x = 0;
+	angle->y = 0;
+	angle->z = 0;
+}
+
+void	show_front_view(t_angle *angle)
+{
+	angle->x = radian(90);
+	angle->y = 0;
+	angle->z = 0;
+}
+
+void	show_side_view(t_angle *angle)
+{
+	angle->x = radian(90);
+	angle->y = radian(90);
+	angle->z = 0;
 }

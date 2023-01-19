@@ -6,18 +6,16 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 18:28:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/17 18:25:05 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:18:19 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "fdf.h"
-#include <mlx.h>
 
 static void	line_draw(t_img *img, t_map map1, t_map map2);
 static void	line_draw_util1(t_map *map1, t_map *map2, t_change *change);
 static void	line_draw_util2(t_map *map1, t_map *map2, t_change *change);
-static void	my_mlx_pixel_put(t_img *img, t_map map);
 
 void	map_draw(t_vars *vars, t_img *img, t_map *map)
 {
@@ -55,7 +53,7 @@ static void	line_draw(t_img *img, t_map map1, t_map map2)
 		change.flag = change.dx;
 		while ((int)map1.x != (int)map2.x)
 		{
-			my_mlx_pixel_put(img, map1);
+			my_mlx_pixel_put(img, map1.x, map1.y, map1.color);
 			line_draw_util1(&map1, &map2, &change);
 		}
 	}
@@ -64,11 +62,11 @@ static void	line_draw(t_img *img, t_map map1, t_map map2)
 		change.flag = change.dy;
 		while ((int)map1.y != (int)map2.y)
 		{
-			my_mlx_pixel_put(img, map1);
+			my_mlx_pixel_put(img, map1.x, map1.y, map1.color);
 			line_draw_util2(&map1, &map2, &change);
 		}
 	}
-	my_mlx_pixel_put(img, map1);
+	my_mlx_pixel_put(img, map1.x, map1.y, map1.color);
 }
 
 static void	line_draw_util1(t_map *map1, t_map *map2, t_change *change)
@@ -86,6 +84,8 @@ static void	line_draw_util1(t_map *map1, t_map *map2, t_change *change)
 		else if (map1->y > map2->y)
 			--(map1->y);
 	}
+	if ((map1->color > map2->color))
+		map1->color = map2->color;
 }
 
 static void	line_draw_util2(t_map *map1, t_map *map2, t_change *change)
@@ -103,15 +103,17 @@ static void	line_draw_util2(t_map *map1, t_map *map2, t_change *change)
 		else if (map1->x > map2->x)
 			--(map1->x);
 	}
+	if ((map1->color > map2->color))
+		map1->color = map2->color;
 }
 
-static void	my_mlx_pixel_put(t_img *img, t_map map)
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (map.x < 0 || map.x > 1920 || map.y < 0 || map.y > 1080)
+	if (x < 0 || x > 1920 || y < 0 || y > 1080)
 		return ;
-	dst = img->addr + ((int)map.y * img->line_length
-			+ (int)map.x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = map.color;
+	dst = img->addr + (y * img->line_length
+			+ x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

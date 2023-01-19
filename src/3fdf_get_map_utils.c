@@ -6,17 +6,18 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 18:25:28 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/17 18:25:07 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:18:18 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	move_after_atoi(char **store, t_map *map, int *count);
-static void	move_map_to_origin(t_vars *vars, t_map *map);
-static void	move_if_color(char **line);
+static void			move_after_atoi(char **store, t_map *map, int *count);
+static void			set_map_utils(t_vars *vars, t_map *map);
+static void			move_if_color(char **line);
+static unsigned int	set_color(int z);
 
-void	get_xyz(t_vars *vars, t_map *map, char *store)
+void	set_map(t_vars *vars, t_map *map, char *store)
 {
 	int	count;
 
@@ -41,10 +42,10 @@ void	get_xyz(t_vars *vars, t_map *map, char *store)
 			vars->max = (int)map[count].z;
 		move_after_atoi(&store, map, &count);
 	}
-	move_map_to_origin(vars, map);
+	set_map_utils(vars, map);
 }
 
-static void	move_map_to_origin(t_vars *vars, t_map *map)
+static void	set_map_utils(t_vars *vars, t_map *map)
 {
 	int		i;
 
@@ -72,7 +73,7 @@ static void	move_after_atoi(char **store, t_map *map, int *count)
 		move_if_color(store);
 	}
 	else
-		map[*count].color = 0x77FFFFFF;
+		map[*count].color = set_color(map[*count].z);
 }
 
 static void	move_if_color(char **line)
@@ -85,4 +86,16 @@ static void	move_if_color(char **line)
 		|| (**line >= 'a' && **line <= 'f')
 		|| (**line >= 'A' && **line <= 'F'))
 			++(*line);
+}
+
+static unsigned int	set_color(int z)
+{
+	int	red;
+	int	green;
+	int	blue;
+
+	red = 0xff - 14 * z;
+	green = 0xff;
+	blue = 0xff - 14 * z;
+	return ((0xaa << 24) | (red << 16) | (green << 8) | blue);
 }
