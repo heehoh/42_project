@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:31:38 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/19 17:18:22 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/19 18:15:50 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	key_press2(int key, t_vars *vars)
 		show_side_view(&vars->angle);
 	else if (key == F_KEY)
 		show_front_view(&vars->angle);
+	else if (key == TAB_KEY)
+		vars->color *= -1;
 }
 
 int	key_press1(int key, t_vars *vars)
