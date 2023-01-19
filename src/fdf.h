@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:43:43 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/19 17:02:30 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:23:31 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include "../libft/libft.h"
+
 # define KEY_PRESS 2
 # define ESC 53
 # define WIN_CLOSE 17

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:30:36 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/19 17:18:20 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:24:29 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int argc, char **argv)
 	get_map(&vars, &(vars.map), &(vars.show), argv[1]);
 	ft_mlx(&vars, &(vars.img));
 	set_default(&vars);
-	mlx_hook(vars->win, KEY_PRESS, 0, key_press1, vars);
-	mlx_hook(vars->win, WIN_CLOSE, 0, close_win, vars);
+	mlx_hook(vars.win, KEY_PRESS, 0, key_press1, &vars);
+	mlx_hook(vars.win, WIN_CLOSE, 0, close_win, &vars);
 	mlx_loop_hook(vars.mlx, main_loop, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
