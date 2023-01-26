@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:25:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 17:56:24 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/26 19:04:27 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ char	*line_store(char **store, ssize_t *st_size, char *buff, ssize_t rd_size)
 	new_store = (char *)malloc(*st_size + rd_size + 1);
 	if (new_store == NULL)
 	{
-		if (*store != NULL)
-			free(*store);
+		free(*store);
 		*store = NULL;
 		*st_size = 0;
 		return (NULL);
@@ -35,8 +34,7 @@ char	*line_store(char **store, ssize_t *st_size, char *buff, ssize_t rd_size)
 		new_store[i] = buff[i - *st_size];
 	*st_size += rd_size;
 	new_store[*st_size] = '\0';
-	if (*store != NULL)
-		free(*store);
+	free(*store);
 	return (new_store);
 }
 
@@ -80,8 +78,7 @@ void	trim_store(char **store, ssize_t *st_size, ssize_t i, ssize_t j)
 	if (new_store == NULL || i == *st_size)
 	{
 		free(*store);
-		if (new_store != NULL)
-			free(new_store);
+		free(new_store);
 		*store = NULL;
 		*st_size = 0;
 		return ;

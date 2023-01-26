@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:57:48 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/16 11:50:11 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/26 19:05:59 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ char	*line_store(t_list *node, char *buff, ssize_t rd_size)
 		new_store[i] = buff[i - node->size];
 	node->size += rd_size;
 	new_store[node->size] = '\0';
-	if (node->store != NULL)
-		free(node->store);
+	free(node->store);
 	return (new_store);
 }
 
@@ -107,8 +106,7 @@ void	*ft_lstclear(t_list **head)
 	while (*head)
 	{
 		tem = (*head)->next;
-		if ((*head)->store != NULL)
-			free((*head)->store);
+		free((*head)->store);
 		(*head)->store = NULL;
 		free(*head);
 		*head = tem;
