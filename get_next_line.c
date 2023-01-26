@@ -53,8 +53,7 @@ char	*read_loop(char **store, ssize_t *store_size, int fd, char *buff)
 		read_size = read(fd, buff, BUFFER_SIZE);
 		if (read_size < 0 || (read_size == 0 && *store_size == 0))
 		{
-			if (*store != NULL)
-				free(*store);
+			free(*store);
 			*store = NULL;
 			*store_size = 0;
 			return (NULL);
