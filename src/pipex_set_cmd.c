@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/27 20:22:21 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:59:03 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,23 @@ void	set_cmd(t_cmd *cmd, char *cmd_options, char **path)
 	}
 	cmd->path[i] = NULL;
 	free(cmd_without_path);
+}
+
+void	cmd_check(t_cmd *cmd)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < 2)
+	{
+		j = -1;
+		while (cmd[i].path[++j])
+			if (access(cmd[i].path[j], F_OK) == 0)
+				break ;
+		if (access(cmd[i].path[j], F_OK == -1))
+			perror(cmd[i].option[0]);
+		else
+			cmd[i].cmd = cmd[i].path[j];
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:57:47 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/27 20:24:06 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:57:53 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	free_cmd(t_cmd *cmd)
 		}
 		free(cmd[i].option);
 		cmd[i].option = NULL;
+		cmd[i].cmd = NULL;
 	}
 }

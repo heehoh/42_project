@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:39:21 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/27 20:37:14 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/27 21:07:51 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <stdio.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_cmd
 {
+	char	*cmd;
 	char	**path;
 	char	**option;
 }	t_cmd;
