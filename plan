@@ -1,8 +1,0 @@
-//파일 연결하기
-//argv[1] argv[2] argv[3] argv[4]
-//argv[2] argv[3] 을 split -> split 써준 것은 나중에 free 해주어야 함.
-//cmd1 cmd2
-//env에서 PATH를 찾아서 그 메모리 주소 뽑아오기
-//그 후 split해서 path 만들기 
-//cmd1[0], cmd2[0] split 한것을 while을 돌면서 strjoin을 써주면 새로운 cmd가 생김! -> free (cmd)
-hi

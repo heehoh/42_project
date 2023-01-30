@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/27 20:59:03 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/30 16:31:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,8 @@ char	**get_path(char **env)
 	int		i;
 
 	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp("PATH", env[i], 4) == 0)
-			break ;
+	while (ft_strncmp("PATH", env[i], 4))
 		++i;
-	}
 	path = ft_split(env[i] + 5, ':');
 	return (path);
 }
@@ -34,40 +30,28 @@ void	set_cmd(t_cmd *cmd, char *cmd_options, char **path)
 	int		i;
 
 	cmd->option = ft_split(cmd_options, ' ');
-	if (cmd->option == NULL)
-		perror("ft_split fail");
 	cmd_without_path = ft_strjoin("/", cmd->option[0]);
 	i = 0;
 	while (path[i])
 		++i;
 	cmd->path = (char **)malloc(sizeof(char *) * (i + 1));
-	if (cmd->path == NULL)
-		perror("malloc fail");
-	i = 0;
-	while (path[i])
-	{
-		cmd->path[i] = ft_strjoin(cmd_without_path, path[i]);
-		++i;
-	}
+	i = -1;
+	while (path[++i])
+		cmd->path[i] = ft_strjoin(path[i], cmd_without_path);
 	cmd->path[i] = NULL;
 	free(cmd_without_path);
 }
 
-void	cmd_check(t_cmd *cmd)
+void	check_cmd(t_cmd *cmd)
 {
 	int	i;
-	int	j;
 
 	i = -1;
-	while (++i < 2)
-	{
-		j = -1;
-		while (cmd[i].path[++j])
-			if (access(cmd[i].path[j], F_OK) == 0)
-				break ;
-		if (access(cmd[i].path[j], F_OK == -1))
-			perror(cmd[i].option[0]);
-		else
-			cmd[i].cmd = cmd[i].path[j];
-	}
+	while (cmd->path[++i])
+		if (access(cmd->path[i], F_OK) == 0)
+			break ;
+	if (cmd->path[i] == NULL)
+		err_cmd(cmd->option[0]);
+	else
+		cmd->cmd = cmd->path[i];
 }

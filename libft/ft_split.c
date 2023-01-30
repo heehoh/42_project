@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:05:38 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/26 18:17:45 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/28 17:10:55 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	count_word(char const *s, char c, int word)
 {
-	int	i;
+	int		i;
+	char	tem;
 
 	i = 0;
 	while (s[i])
@@ -23,12 +24,12 @@ static int	count_word(char const *s, char c, int word)
 			++i;
 		else if (s[i] == '\'' || s[i] == '\"')
 		{
-			++i;
-			while (s[i] != '\'' && s[i] != '\"' && s[i] != '\0')
-				++i;
-			if (s[i])
+			tem = s[++i - 1];
+			while (s[i] != tem && s[i])
 				++i;
 			++word;
+			if (s[i] == tem)
+				++i;
 		}
 		else
 		{
@@ -40,80 +41,54 @@ static int	count_word(char const *s, char c, int word)
 	return (word);
 }
 
-static char	*save_str_utils(char *s)
+static char	*save_str(char *str, char c, int i)
 {
-	char	*str;
-	int		letter;
-	int		i;
+	char	*strs;
+	char	tem;
 
-	++s;
-	i = 0;
-	letter = 0;
-	while (s[i] != '\'' && s[i] != '\"' && s[i] != '\0')
+	while (*str == c)
+		++str;
+	if (str[i] == '\'' || str[i] == '\"')
 	{
-		++i;
-		++letter;
+		tem = str[0];
+		++str;
+		while (str[i] != tem && str[i])
+			++i;
 	}
-	str = (char *)malloc(sizeof(char) * letter + 1);
-	if (str == NULL)
-		return (NULL);
-	str[letter] = '\0';
-	while (letter >= 1)
-		str[--letter] = s[--i];
-	return (str);
-}
-
-static char	*save_str(char *s, char c, int letter, int i)
-{
-	char	*str;
-
-	while (s[i])
+	else
 	{
-		if (s[i] == c)
+		while (str[i] != c && str[i])
 			++i;
-		else if (s[i] == '\'' || s[i] == '\"')
-			return (save_str_utils(&(s[i])));
-		else
-		{
-			++letter;
-			++i;
-			if (s[i] == c)
-				break ;
-		}
 	}
-	str = (char *)malloc(sizeof(char) * letter + 1);
-	if (str == NULL)
+	strs = (char *)malloc(sizeof(char) * i + 1);
+	if (strs == NULL)
 		return (NULL);
-	str[letter] = '\0';
-	while (letter >= 1)
-		str[--letter] = s[--i];
-	return (str);
+	strs[i] = '\0';
+	while (--i >= 0)
+		strs[i] = str[i];
+	return (strs);
 }
 
 static char	*move_str(char *str, char c)
 {
-	int	i;
+	int		i;
+	char	tem;
 
 	i = 0;
-	while (str[i])
+	while (str[i] == c)
+		++i;
+	if (str[i] == '\'' || str[i] == '\"')
 	{
-		if (str[i] == c)
+		tem = str[++i - 1];
+		while (str[i] != tem && str[i])
 			++i;
-		else if (str[i] == '\'' || str[i] == '\"')
-		{
+		if (str[i] == tem)
 			++i;
-			while (str[i] != '\'' && str[i] != '\"' && str[i] != '\0')
-				++i;
-			if (str[i])
-				++i;
-			break ;
-		}
-		else
-		{
+	}
+	else
+	{
+		while (str[i] != c)
 			++i;
-			if (str[i] == c)
-				break ;
-		}	
 	}
 	return (&str[i]);
 }
@@ -128,12 +103,12 @@ char	**ft_split(char const *s, char c)
 	str = (char *)s;
 	word = count_word(str, c, 0);
 	strs = (char **)malloc(sizeof(char *) * (word + 1));
-	if (strs == NULL)
-		return (NULL);
+	if (strs == 0)
+		return (0);
 	i = -1;
 	while (++i < word)
 	{		
-		strs[i] = save_str(str, c, 0, 0);
+		strs[i] = save_str(str, c, 0);
 		if (strs[i] == NULL)
 		{
 			while (--i >= 0)

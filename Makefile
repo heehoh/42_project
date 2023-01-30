@@ -2,8 +2,9 @@ NAME = pipex
 
 SRCS = ./src/pipex_main.c \
 	   ./src/pipex_set_cmd.c \
-	   ./src/pipex_proccess.c \
-	   ./src/pipex_free.c 
+	   ./src/pipex_process.c \
+	   ./src/pipex_free.c \
+	   ./src/pipex_error_msg.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -19,7 +20,7 @@ $(LIBFT) :
 	cp libft/$(LIBFT) $(LIBFT)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	cc $(LIBFT) $(OBJS) -o $(NAME)
+	$(CC) $(LIBFT) $(OBJS) -o $(NAME)
 
 clean :
 	make -C libft clean
