@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:06:27 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/30 16:54:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/31 14:20:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int	main(int argc, char **argv, char **env)
 	set_cmd(&cmd[0], argv[2], path);
 	set_cmd(&cmd[1], argv[3], path);
 	free_path(path);
+	check_cmd(&cmd[0]);
+	check_cmd(&cmd[1]);
 	creat_process(cmd, argv, env);
+	free_cmd(cmd);
 	return (0);
 }

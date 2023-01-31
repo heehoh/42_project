@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:04:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/30 16:35:47 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/31 14:33:05 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	err_cmd(char *s)
 
 void	err_open(char *s)
 {
-	perror(s);
+	ft_printf("%s: %s", strerror(errno), s);
 	exit(EXIT_FAILURE);
 }
 

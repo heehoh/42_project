@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/30 16:31:17 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/01/31 14:25:51 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void	set_cmd(t_cmd *cmd, char *cmd_options, char **path)
 	int		i;
 
 	cmd->option = ft_split(cmd_options, ' ');
+	if (cmd->option[0][0] == '/')
+	{
+		cmd->path = (char **)malloc(sizeof(char *) * 2);
+		cmd->path[0] = ft_strdup(cmd->option[0]);
+		cmd->path[1] = NULL;
+		return ;
+	}
 	cmd_without_path = ft_strjoin("/", cmd->option[0]);
 	i = 0;
 	while (path[i])
