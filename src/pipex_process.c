@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:20:08 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/31 14:20:38 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/01 11:39:41 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	creat_process(t_cmd *cmd, char **argv, char **env)
 
 void	process_before_pipe(t_cmd *cmd, int *fd, int infile_fd, char **env)
 {
+	check_cmd(cmd);
 	dup2(infile_fd, 0);
 	dup2(fd[1], 1);
 	close(infile_fd);
@@ -51,6 +52,7 @@ void	process_before_pipe(t_cmd *cmd, int *fd, int infile_fd, char **env)
 
 void	process_after_pipe(t_cmd *cmd, int *fd, int outfile_fd, char **env)
 {
+	check_cmd(cmd);
 	dup2(fd[0], 0);
 	dup2(outfile_fd, 1);
 	close(fd[0]);
