@@ -6,12 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:04:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/01 11:39:59 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/01 18:58:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
 #include <errno.h>
 #include <string.h>
 
@@ -33,7 +32,7 @@ void	err_cmd(char *s)
 	write(2, "command not found: ", 19);
 	write(2, s, ft_strlen(s));
 	write(2, "\n", 1);
-	exit(EXIT_FAILURE);
+	exit(127);
 }
 
 void	err_open(char *s)
