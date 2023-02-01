@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:04:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/01 18:58:17 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/01 19:48:27 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	err_cmd(char *s)
 	write(2, "command not found: ", 19);
 	write(2, s, ft_strlen(s));
 	write(2, "\n", 1);
-	exit(127);
+	exit(EXIT_FAILURE);
 }
 
 void	err_open(char *s)
