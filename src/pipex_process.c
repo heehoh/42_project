@@ -6,13 +6,13 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:20:08 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/01 18:49:56 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/01 19:32:24 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	creat_process(t_cmd *cmd, char **argv, char **env, int *status)
+void	creat_process(t_cmd *cmd, char **argv, char **env)
 {
 	pid_t	pid[2];
 	int		fd[2];
@@ -31,8 +31,8 @@ void	creat_process(t_cmd *cmd, char **argv, char **env, int *status)
 		process_after_pipe(&cmd[1], fd, argv[4], env);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(pid[1], &status[1], 0);
-	wait(&status[0]);
+	waitpid(pid[1], NULL, 0);
+	wait(NULL);
 }
 
 void	process_before_pipe(t_cmd *cmd, int *fd, char *infile, char **env)
