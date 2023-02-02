@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:04:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/01 19:48:27 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 12:00:30 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ void	err_pipe(void)
 	exit(EXIT_FAILURE);
 }
 
-void	err_cmd(char *s)
+void	err_fork(void)
 {
-	write(2, "command not found: ", 19);
-	write(2, s, ft_strlen(s));
-	write(2, "\n", 1);
+	ft_printf("%s\n", strerror(errno));
 	exit(EXIT_FAILURE);
 }
 
@@ -41,8 +39,10 @@ void	err_open(char *s)
 	exit(EXIT_FAILURE);
 }
 
-void	err_fork(void)
+void	err_cmd(char *s)
 {
-	ft_printf("%s\n", strerror(errno));
+	write(2, "command not found: ", 19);
+	write(2, s, ft_strlen(s));
+	write(2, "\n", 1);
 	exit(EXIT_FAILURE);
 }

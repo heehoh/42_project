@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:39:21 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/01 19:32:43 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 12:01:24 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	free_path(char **path);
 void	free_cmd(t_cmd *cmd);
 void	err_arg(char *s);
 void	err_pipe(void);
+void	err_fork(void);
 void	err_cmd(char *s);
 void	err_open(char *s);
-void	err_fork(void);
 
 #endif

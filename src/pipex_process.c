@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:20:08 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/01 19:32:24 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 12:04:03 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ void	creat_process(t_cmd *cmd, char **argv, char **env)
 		process_before_pipe(&cmd[0], fd, argv[1], env);
 	pid[1] = fork();
 	if (pid[1] < 0)
-		err_pipe();
+	{
+		close(fd[0]);
+		close(fd[1]);
+		wait(NULL);
+		err_fork();
+	}
 	else if (pid[1] == 0)
 		process_after_pipe(&cmd[1], fd, argv[4], env);
 	close(fd[0]);
