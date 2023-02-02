@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:57:47 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/31 12:29:51 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 15:49:25 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_path(char **path)
 {
 	int	i;
 
+	if (path == NULL)
+		return ;
 	i = 0;
 	while (path[i])
 	{

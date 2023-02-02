@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/02 15:30:20 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 15:43:22 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	**get_path(char **env)
 	char	**path;
 	int		i;
 
+	if (env == NULL)
+		return (NULL);
 	i = 0;
 	while (env[i])
 	{
