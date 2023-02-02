@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/02 14:30:43 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 14:36:54 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**get_path(char **env)
 		++i;
 	}
 	if (env[i] == NULL)
-		exit(1);
+		exit(EXIT_FAILURE);
 	path = ft_split(env[i] + 5, ':');
 	return (path);
 }
