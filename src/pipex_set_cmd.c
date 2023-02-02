@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/02 14:36:54 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 15:06:26 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**get_path(char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strncmp("PATH", env[i], 4) == 0)
+		if (ft_strncmp("PATH=", env[i], 5) == 0)
 			break ;
 		++i;
 	}
