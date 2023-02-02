@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/31 14:25:51 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 14:30:43 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@ char	**get_path(char **env)
 	int		i;
 
 	i = 0;
-	while (ft_strncmp("PATH", env[i], 4))
+	while (env[i])
+	{
+		if (ft_strncmp("PATH", env[i], 4) == 0)
+			break ;
 		++i;
+	}
+	if (env[i] == NULL)
+		exit(1);
 	path = ft_split(env[i] + 5, ':');
 	return (path);
 }
