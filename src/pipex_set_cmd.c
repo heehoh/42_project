@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:19:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/02 15:06:26 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/02 15:30:20 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**get_path(char **env)
 		++i;
 	}
 	if (env[i] == NULL)
-		exit(EXIT_FAILURE);
+		return (NULL);
 	path = ft_split(env[i] + 5, ':');
 	return (path);
 }
@@ -36,7 +36,7 @@ void	set_cmd(t_cmd *cmd, char *cmd_options, char **path)
 	int		i;
 
 	cmd->option = ft_split(cmd_options, ' ');
-	if (cmd->option[0][0] == '/')
+	if (cmd->option[0][0] == '/' || path == NULL)
 	{
 		cmd->path = (char **)malloc(sizeof(char *) * 2);
 		cmd->path[0] = ft_strdup(cmd->option[0]);
