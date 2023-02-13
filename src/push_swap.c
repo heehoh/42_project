@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:53:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/12 17:36:20 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/13 17:39:16 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int	main(int argc, char **argv)
 	count = 0;
 	stack_init(&a, &b);
 	nums = get_nums(argc, argv, &count);
-	make_stack(&a, nums, count);
+	if (count == 1)
+		return (0);
+	set_stack(&a, nums, count);
 	sort_nums(nums, count);
-	//스택을 3 파트로 구분
-	//그리디로 명령어 수 최적화
+	sort_stack(&a, &b, nums, count);
+	return (0);
 }
 
 int	*get_nums(int argc, char **argv, int *count)
@@ -76,9 +78,13 @@ char	**get_new_argv(int argc, char **argv)
 	return (new_argv);
 }
 
-void	make_stack(t_stack *stack, int *nums, int count)
+void	set_stack(t_stack *stack, int *nums, int count)
 {
 	int	i;
+
+	i = -1;
+	while (++i < count)
+		push(stack, new_node(nums[i]));
 }
 
 void	sort_nums(int *nums, int count)
