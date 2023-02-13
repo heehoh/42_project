@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:15:16 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/12 17:37:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:49:52 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,50 @@ void	stack_init(t_stack *a, t_stack *b)
 	b->bottom = NULL;
 }
 
-int	stack_empty_check(t_stack *stack)
+void	push(t_stack *stack, t_node *new)
 {
 	if (stack->top == NULL)
-		return (1);
-	return (0);
+		stack->bottom = new;
+	new->next = stack->top;
+	stack->top->prev = new;
+	stack->top = new;
 }
 
-void	new_node(t_node *prev, int num)
+t_node	*pop(t_stack *stack)
+{
+	t_node	*node;
+
+	if (stack->top == stack->bottom)
+		stack->bottom = NULL;
+	node = stack->top;
+	stack->top = stack->top->next;
+	stack->top->prev = NULL;
+	node->next = NULL;
+	return (node);
+}
+
+t_node	*new_node(int num)
 {
 	t_node	*new;
 
 	new = (t_node *)malloc(sizeof(t_node));
 	new->num = num;
 	new->next = NULL;
-	new->prev = prev;
+	new->prev = NULL;
+	return (new);
+}
+
+void	swap(t_stack *stack)
+{
+	t_node	*node1;
+	t_node	*node2;
+
+	if (stack->top == NULL || stack->top->next == NULL)
+		return ;
+	node1 = pop(stack);
+	node2 = pop(stack);
+	node1->prev = node2;
+	node1->next = stack->top;
+	node2->next = node1;
+	stack->top = node2;
 }
