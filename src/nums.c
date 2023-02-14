@@ -1,59 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   nums.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 12:53:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/13 17:39:16 by hujeong          ###   ########.fr       */
+/*   Created: 2023/02/14 14:49:28 by hujeong           #+#    #+#             */
+/*   Updated: 2023/02/14 15:07:42 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	int		*nums;
-	int		count;
-	t_stack	a;
-	t_stack	b;
-
-	if (argc == 1)
-		return (0);
-	count = 0;
-	stack_init(&a, &b);
-	nums = get_nums(argc, argv, &count);
-	if (count == 1)
-		return (0);
-	set_stack(&a, nums, count);
-	sort_nums(nums, count);
-	sort_stack(&a, &b, nums, count);
-	return (0);
-}
-
-int	*get_nums(int argc, char **argv, int *count)
-{
-	int		*nums;
-	int		i;
-	char	**new_argv;
-
-	new_argv = get_new_argv(argc, argv);
-	while (new_argv[(*count)])
-		++(*count);
-	nums = (int *)malloc(sizeof(int) * (*count));
-	i = -1;
-	while (new_argv[++i])
-		nums[i] = ft_atoi(new_argv[i]);
-	i = -1;
-	while (new_argv[++i])
-		free(new_argv[i]);
-	free(new_argv);
-	return (nums);
-}
-
-char	**get_new_argv(int argc, char **argv)
+char	**get_new_argv(int argc, char *argv[])
 {
 	size_t	i;
 	char	*tem;
@@ -78,13 +37,24 @@ char	**get_new_argv(int argc, char **argv)
 	return (new_argv);
 }
 
-void	set_stack(t_stack *stack, int *nums, int count)
+int	*get_nums(int argc, char *argv[], int *count)
 {
-	int	i;
+	int		*nums;
+	int		i;
+	char	**new_argv;
 
+	new_argv = get_new_argv(argc, argv);
+	while (new_argv[(*count)])
+		++(*count);
+	nums = (int *)malloc(sizeof(int) * (*count));
 	i = -1;
-	while (++i < count)
-		push(stack, new_node(nums[i]));
+	while (new_argv[++i])
+		nums[i] = ft_atoi(new_argv[i]);
+	i = -1;
+	while (new_argv[++i])
+		free(new_argv[i]);
+	free(new_argv);
+	return (nums);
 }
 
 void	sort_nums(int *nums, int count)
@@ -93,11 +63,11 @@ void	sort_nums(int *nums, int count)
 	int	j;
 	int	tem;
 
-	i = 0;
-	while (i < count - 1)
+	i = -1;
+	while (++i < count - 1)
 	{
-		j = 0;
-		while (j < (count - i - 1))
+		j = -1;
+		while (++j < (count - i - 1))
 		{
 			if (nums[j] > nums[j + 1])
 			{
@@ -105,8 +75,10 @@ void	sort_nums(int *nums, int count)
 				nums[j] = nums[j + 1];
 				nums[j + 1] = tem;
 			}
-			++j;
 		}
-		++i;
 	}
+	i = -1;
+	while (++i < count - 1)
+		if (nums[i] == nums[i + 1])
+			print_error();
 }
