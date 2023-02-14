@@ -1,30 +1,39 @@
-NAME = pipex
-
-SRCS = ./src/pipex_main.c \
-	   ./src/pipex_set_cmd.c \
-	   ./src/pipex_process.c \
-	   ./src/pipex_free.c \
-	   ./src/pipex_error_msg.c
-
+NAME = push_swap
+SRCS = ./src/main.c \
+	   ./src/nums.c \
+	   ./src/o_stack_function.c \
+	   ./src/o_stack_function2.c \
+	   ./src/operation.c \
+	   ./src/operation2.c \
+	   ./src/operation3.c \
+	   ./src/sort_stack.c
 OBJS = $(SRCS:.c=.o)
+OBJ_DIR = obj
+OBJS_FILES = $(addprefix $(OBJ_DIR/, $(OBJS)))
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft.a
 
 all : $(NAME)
 
-%.o: %.c
-	$(CC) -Wall -Wextra -Werror -c $< -o $@
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT) :
 	make -C libft
 	cp libft/$(LIBFT) $(LIBFT)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(LIBFT) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 
 clean :
 	make -C libft clean
-	rm -rf $(OBJS)
+	rm -rf $(OBJS_DIR)
 .PHONY : clean
 
 fclean : clean
