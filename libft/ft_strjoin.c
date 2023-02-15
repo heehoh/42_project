@@ -6,22 +6,29 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:14:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/07 13:22:30 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/15 12:16:10 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	strjoin_utils(char *s1, char *s2, size_t *len1, size_t *len2)
+{
+	if (s1 == NULL)
+		return (NULL);
+	*len1 = ft_strlen(s1);
+	*len2 = ft_strlen(s2);
+	return ((char *)malloc(*len1 + *len2 + 1));
+}
+
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	int		len1;
-	int		len2;
-	int		i;
+	size_t	len1;
+	size_t	len2;
+	size_t	i;
 	char	*str;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	str = (char *)malloc(len1 + len2 + 1);
+	str = strjoin_utils(s1, s2, &len1, &len2);
 	if (str == NULL)
 		return (NULL);
 	i = 0;

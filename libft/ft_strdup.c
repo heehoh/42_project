@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:01:48 by hujeong           #+#    #+#             */
-/*   Updated: 2023/01/11 10:27:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:24:41 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	while (s1[i])
 		++i;
-	str = (char *)malloc(i + 1);
+	str = (char *)malloc(sizeof(char) *(i + 1));
 	if (str == 0)
 		return (0);
 	i = 0;

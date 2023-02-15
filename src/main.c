@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:53:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/14 14:53:15 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:39:08 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	int		count;
 	t_stack	a;
 	t_stack	b;
+	t_pivot	pivot;
 
 	if (argc == 1)
 		return (0);
@@ -27,7 +28,19 @@ int	main(int argc, char *argv[])
 	if (count == 1)
 		return (0);
 	set_stack(&a, &b, nums, count);
-	sort_nums(nums, count);
-	sort_stack(&a, &b, nums, count);
+	get_pivot(nums, count, &pivot);
+	sort_stack(&a, &b, &pivot);
 	return (0);
+}
+
+void	print_malloc_error(void)
+{
+	write(STDERR_FILENO, "malloc fail\n", 12);
+	exit(EXIT_FAILURE);
+}
+
+void	print_error(void)
+{
+	write(STDERR_FILENO, "error\n", 6);
+	exit(EXIT_FAILURE);
 }

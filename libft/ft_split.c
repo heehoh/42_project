@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:05:38 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/12 13:46:43 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/15 12:11:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	count_word(char const *s, char c)
 {
-	int	i;
-	int	word;
+	size_t	i;
+	int		word;
 
 	i = 0;
 	word = 0;
@@ -33,7 +33,7 @@ static int	count_word(char const *s, char c)
 	return (word);
 }
 
-static char	*save_str(char *str, char c, int letter, int i)
+static char	*save_str(char *str, char c, size_t letter, size_t i)
 {
 	char	*strs;
 
@@ -60,7 +60,7 @@ static char	*save_str(char *str, char c, int letter, int i)
 
 static char	*move_str(char *str, char c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:44:15 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/12 17:37:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:41:53 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 # define LIBFT_H
 
 # include <stddef.h>
-# include <stdint.h>
 # include <unistd.h>
 # include <stdlib.h>
 
 size_t		ft_strlen(const char *s);
-long long	ft_atoi(const char *str);
+long long	ft_atoll(const char *str);
 char		*ft_strdup(const char *s1);
 char		*ft_strjoin(char *s1, char const *s2);
 char		**ft_split(char const *s, char c);
-void		print_error(void);
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
