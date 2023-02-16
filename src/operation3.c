@@ -6,11 +6,10 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:28:35 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/14 18:39:22 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:10:35 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <unistd.h>
 #include "push_swap.h"
 

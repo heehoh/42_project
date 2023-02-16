@@ -6,11 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:01:48 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/15 14:24:41 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:03:53 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strdup(const char *s1)
 {

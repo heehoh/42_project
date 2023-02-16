@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:59:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/15 17:36:23 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 16:28:46 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,12 @@ typedef struct s_count
 	int	rrr;
 }	t_count;
 
-typedef struct s_least
-{
-	t_count	operation;
-	t_node	*node;
-}	t_least;
-
-int		*get_nums(int argc, char *argv[], int *count);
+int		*get_nums(char *argv[], int *count);
 void	set_stack(t_stack *a, t_stack *b, int nums[], int count);
 void	get_pivot(int *nums, int count, t_pivot *pivot);
+void	sort_stack(t_stack *a, t_stack *b, t_pivot *pivot);
 void	push(t_stack *stack, t_node *new);
 t_node	*pop(t_stack *stack);
-t_node	*new_node(int num);
 void	swap(t_stack *stack);
 void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
@@ -71,6 +65,7 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 void	greedy(t_stack *a, t_stack *b, int pivot);
+void	free_stack(t_stack *stack);
 void	print_malloc_error(void);
 void	print_error(void);
 

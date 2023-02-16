@@ -6,11 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:05:38 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/15 12:11:28 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:03:40 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 static int	count_word(char const *s, char c)
 {

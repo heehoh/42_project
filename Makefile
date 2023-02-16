@@ -1,15 +1,18 @@
 NAME = push_swap
-SRCS = ./src/main.c \
-	   ./src/nums.c \
-	   ./src/o_stack_function.c \
-	   ./src/o_stack_function2.c \
-	   ./src/operation.c \
-	   ./src/operation2.c \
-	   ./src/operation3.c \
-	   ./src/sort_stack.c
+SRCS = main.c \
+	   nums.c \
+	   operation.c \
+	   operation2.c \
+	   operation3.c \
+	   print_error.c \
+	   set_stack.c \
+	   sort_stack.c \
+	   stack_function.c \
+	   stack_greedy.c
 OBJS = $(SRCS:.c=.o)
 OBJ_DIR = obj
-OBJS_FILES = $(addprefix $(OBJ_DIR/, $(OBJS)))
+SRC_DIR = src
+OBJS_FILES = $(addprefix $(OBJ_DIR)/, $(OBJS))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -21,19 +24,19 @@ all : $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT) :
 	make -C libft
 	cp libft/$(LIBFT) $(LIBFT)
 
-$(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o $(NAME)
+$(NAME) : $(OBJS_FILES) $(LIBFT)
+	$(CC) $(CFLAGS) $(LIBFT) $(OBJS_FILES) -o $(NAME)
 
 clean :
 	make -C libft clean
-	rm -rf $(OBJS_DIR)
+	rm -rf $(OBJ_DIR)
 .PHONY : clean
 
 fclean : clean

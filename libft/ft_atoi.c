@@ -6,13 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:21:55 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/15 14:41:47 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 18:13:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	pass_white_space_sign(char	**str, int *sign)
+void	pass_white_space_sign(const char **str, int *sign)
 {
 	while (**str == ' ' || (**str >= 9 && **str <= 13))
 		++(*str);
@@ -39,7 +37,7 @@ long long	ft_atoll(const char *str)
 	pass_white_space_sign(&str, &sign);
 	while (str[i] >= '0' && str[i] <= '9')
 		value = value * 10 + str[i++] - '0';
-	if (i > 11)
-		return ((long long)INT32_MAX + (long long)1);
+	if (str[i] != '\0' || i > 11)
+		return ((long long)2147483647 + (long long)1);
 	return (sign * value);
 }

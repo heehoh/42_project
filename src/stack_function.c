@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_stack_function2.c                                :+:      :+:    :+:   */
+/*   stack_function.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:53:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/15 12:25:44 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:08:04 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ t_node	*pop(t_stack *stack)
 		stack->bottom = NULL;
 	node = stack->top;
 	stack->top = stack->top->next;
-	stack->top->prev = NULL;
+	if (stack->top != NULL)
+		stack->top->prev = NULL;
 	node->next = NULL;
 	--(stack->size);
 	return (node);
@@ -51,10 +52,8 @@ void	swap(t_stack *stack)
 		return ;
 	node1 = pop(stack);
 	node2 = pop(stack);
-	node1->prev = node2;
-	node1->next = stack->top;
-	node2->next = node1;
-	stack->top = node2;
+	push(stack, node1);
+	push(stack, node2);
 }
 
 void	rotate(t_stack *stack)

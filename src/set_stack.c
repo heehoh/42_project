@@ -6,11 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:15:16 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/15 15:48:03 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 16:27:24 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include <stdlib.h>
 #include "push_swap.h"
 
 static t_node	*new_node(int num)
@@ -40,6 +40,18 @@ static int	check_dup_num(t_stack *a, int num)
 	return (0);
 }
 
+void	free_stack(t_stack *stack)
+{
+	t_node	*tem;
+
+	while (stack->top)
+	{
+		tem = stack->top->next;
+		free(stack->top);
+		stack->top = tem;
+	}
+}
+
 void	set_stack(t_stack *a, t_stack *b, int nums[], int count)
 {
 	a->top = NULL;
@@ -50,8 +62,12 @@ void	set_stack(t_stack *a, t_stack *b, int nums[], int count)
 	b->size = 0;
 	while (--count >= 0)
 	{
-		if (check_dup_num)
+		if (check_dup_num(a, nums[count]))
+		{
+			free(nums);
+			free_stack(a);
 			print_error();
+		}
 		push(a, new_node(nums[count]));
 	}
 }
@@ -81,4 +97,3 @@ void	get_pivot(int *nums, int count, t_pivot *pivot)
 	pivot->third = nums[count / 3 * 2];
 	free(nums);
 }
-

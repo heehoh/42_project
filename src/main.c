@@ -6,12 +6,26 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:53:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/15 14:39:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:11:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "push_swap.h"
+#include <stdlib.h>
+
+int	is_sorted(t_stack *stack)
+{
+	t_node	*node;
+
+	node = stack->top;
+	while (node->next)
+	{
+		if (node->num > node->next->num)
+			return (0);
+		node = node->next;
+	}
+	return (1);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -24,23 +38,18 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 		return (0);
 	count = 0;
-	nums = get_nums(argc, argv, &count);
+	nums = get_nums(argv, &count);
 	if (count == 1)
 		return (0);
 	set_stack(&a, &b, nums, count);
+	if (is_sorted(&a))
+	{
+		free_stack(&a);
+		free(nums);
+		return (0);
+	}
 	get_pivot(nums, count, &pivot);
 	sort_stack(&a, &b, &pivot);
+	free_stack(&a);
 	return (0);
-}
-
-void	print_malloc_error(void)
-{
-	write(STDERR_FILENO, "malloc fail\n", 12);
-	exit(EXIT_FAILURE);
-}
-
-void	print_error(void)
-{
-	write(STDERR_FILENO, "error\n", 6);
-	exit(EXIT_FAILURE);
 }
