@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:59:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 16:28:46 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 19:13:45 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		*get_nums(char *argv[], int *count);
 void	set_stack(t_stack *a, t_stack *b, int nums[], int count);
 void	get_pivot(int *nums, int count, t_pivot *pivot);
 void	sort_stack(t_stack *a, t_stack *b, t_pivot *pivot);
+int		is_sorted(t_stack *stack);
 void	push(t_stack *stack, t_node *new);
 t_node	*pop(t_stack *stack);
 void	swap(t_stack *stack);

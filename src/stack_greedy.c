@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:26:03 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 16:21:02 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/16 20:16:10 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,17 @@ static void	count_op(t_stack *a, t_node *node, t_count *count, t_count *least)
 
 static void	operate(t_stack *a, t_stack *b, t_count *least)
 {
-	while ((least->rrr)--)
+	while ((least->rrr)-- > 0)
 		rrr(a, b);
-	while ((least->rra)--)
+	while ((least->rra)-- > 0)
 		rra(a);
-	while ((least->rrb)--)
+	while ((least->rrb)-- > 0)
 		rrb(b);
-	while ((least->rr)--)
+	while ((least->rr)-- > 0)
 		rr(a, b);
-	while ((least->ra)--)
+	while ((least->ra)-- > 0)
 		ra(a);
-	while ((least->rb)--)
+	while ((least->rb)-- > 0)
 		rb(b);
 	pa(a, b);
 }
@@ -112,6 +112,6 @@ void	greedy(t_stack *a, t_stack *b, int pivot)
 		}
 		operate(a, b, &least);
 	}
-	while (a->top->num != pivot)
+	while (!(is_sorted(a)))
 		rra(a);
 }
