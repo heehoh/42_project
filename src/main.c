@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:53:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 17:11:28 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/17 16:57:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	main(int argc, char *argv[])
 	set_stack(&a, &b, nums, count);
 	if (is_sorted(&a))
 	{
-		free_stack(&a);
 		free(nums);
+		free_stack(&a);
 		return (0);
 	}
 	get_pivot(nums, count, &pivot);

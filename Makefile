@@ -8,7 +8,8 @@ SRCS = main.c \
 	   set_stack.c \
 	   sort_stack.c \
 	   stack_function.c \
-	   stack_greedy.c
+	   stack_greedy.c \
+	   stack_greedy_utils.c
 OBJS = $(SRCS:.c=.o)
 OBJ_DIR = obj
 SRC_DIR = src

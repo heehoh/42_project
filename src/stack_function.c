@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:53:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 17:08:04 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/17 11:43:37 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	rotate(t_stack *stack)
 	if (stack->top == stack->bottom)
 		return ;
 	node = pop(stack);
+	++(stack->size);
 	stack->bottom->next = node;
 	node->prev = stack->bottom;
 	stack->bottom = node;
@@ -72,6 +73,8 @@ void	reverse_rotate(t_stack *stack)
 {
 	t_node	*node;
 
+	if (stack->top == stack->bottom)
+		return ;
 	node = stack->bottom;
 	stack->bottom = stack->bottom->prev;
 	stack->bottom->next = NULL;

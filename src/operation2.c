@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:38:18 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 14:11:04 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/17 11:40:33 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 
 void	ra(t_stack *a)
 {
+	if (a->top == a->bottom)
+		return ;
 	rotate(a);
 	write(STDOUT_FILENO, "ra\n", 3);
 }
 
 void	rb(t_stack *b)
 {
+	if (b->top == b->bottom)
+		return ;
 	rotate(b);
 	write(STDOUT_FILENO, "rb\n", 3);
 }
