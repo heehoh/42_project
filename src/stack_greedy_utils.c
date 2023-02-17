@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:27:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/17 18:07:17 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 01:13:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	count_op(t_stack *a, t_node *node, t_count *count, t_count *least)
 		while (top && top->num < node->num)
 		{
 			++(count->ra);
+			if (top->next && top->num > top->next->num)
+				break ;
 			top = top->next;
 		}
 		if (top == (t_node *)0)
@@ -67,6 +69,8 @@ void	count_op(t_stack *a, t_node *node, t_count *count, t_count *least)
 		while (bottom && bottom->num > node->num)
 		{
 			++(count->rra);
+			if (bottom->prev && bottom->prev->num > bottom->num)
+				break ;
 			bottom = bottom->prev;
 		}
 		if (bottom == (t_node *)0)
