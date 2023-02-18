@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:59:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/17 17:01:24 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 14:44:06 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	rrr(t_stack *a, t_stack *b);
 void	greedy(t_stack *a, t_stack *b, int pivot);
 void	init_count(t_count *count, int rb, int rrb);
 void	count_op(t_stack *a, t_node *node, t_count *count, t_count *least);
-void	operate(t_stack *a, t_stack *b, t_count *least);
 void	free_stack(t_stack *stack);
 void	print_malloc_error(void);
 void	print_error(void);

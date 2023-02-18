@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:28:35 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 14:10:35 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 14:34:39 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ void	rrr(t_stack *a, t_stack *b)
 	reverse_rotate(b);
 	write(STDOUT_FILENO, "rrr\n", 4);
 }
-// checker 에서는 스택의 크기에 따라 명령이 수행될지 판단하는 if문이 필요하다 하지만 push-swap은 프로그램에서 알아서 그런 경우는 pa를 하지 않게 할 수 있음으로 방지 가능하다.

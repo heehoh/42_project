@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:49:28 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 18:22:49 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 14:19:42 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,14 @@ static char	**get_new_argv(char *argv[])
 {
 	char	*tem;
 	char	**new_argv;
+	int		i;
 
+	i = 0;
+	while (argv[++i])
+	{
+		if (argv[i][0] == '\0')
+			print_error();
+	}
 	tem = get_whole_arg(argv);
 	if (tem == NULL)
 		print_error();
