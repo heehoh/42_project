@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:41:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 17:40:41 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 17:55:09 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ static int	check_dup_num(t_stack *a, int num)
 	return (0);
 }
 
+static void	default_stack(t_stack *a, t_stack *b)
+{
+	a->top = NULL;
+	a->bottom = NULL;
+	a->size = 0;
+	b->top = NULL;
+	b->bottom = NULL;
+	b->size = 0;
+}
+
 void	free_stack(t_stack *stack)
 {
 	t_node	*tem;
@@ -59,14 +69,11 @@ void	set_stack(t_stack *a, t_stack *b, char *argv[])
 	char		**new_argv;
 
 	new_argv = get_new_argv(argv);
+	default_stack(a, b);
 	i = -1;
-	a->top = NULL;
-	a->bottom = NULL;
-	a->size = 0;
-	b->top = NULL;
-	b->bottom = NULL;
-	b->size = 0;
 	while (new_argv[++i])
+		;
+	while (--i >= 0)
 	{
 		num = ft_atoll(new_argv[i]);
 		if (check_dup_num(a, num) || num > 2147483647LL || num < -2147483648LL)

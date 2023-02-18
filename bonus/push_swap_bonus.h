@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:59:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 17:46:03 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:00:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_stack
 	t_node	*bottom;
 	int		size;
 }	t_stack;
-
 
 typedef struct s_count
 {
