@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:59:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 18:00:28 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 22:20:11 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ typedef struct s_stack
 	t_node	*bottom;
 	int		size;
 }	t_stack;
-
-typedef struct s_count
-{
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
-}	t_count;
 
 void	set_stack(t_stack *a, t_stack *b, char *argv[]);
 void	sort_stack(t_stack *a, t_stack *b, char *op);

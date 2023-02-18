@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:53:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/17 16:57:01 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 22:46:11 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	main(int argc, char *argv[])
 		return (0);
 	count = 0;
 	nums = get_nums(argv, &count);
-	if (count == 1)
-		return (0);
 	set_stack(&a, &b, nums, count);
 	if (is_sorted(&a))
 	{
