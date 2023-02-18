@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nums.c                                             :+:      :+:    :+:   */
+/*   new_argv_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:49:28 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 15:22:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 17:38:19 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static char	*get_whole_arg(char *argv[])
 {
@@ -42,7 +42,7 @@ static char	*get_whole_arg(char *argv[])
 	return (tem);
 }
 
-static char	**get_new_argv(char *argv[])
+char	**get_new_argv(char *argv[])
 {
 	char	*tem;
 	char	**new_argv;
@@ -64,7 +64,7 @@ static char	**get_new_argv(char *argv[])
 	return (new_argv);
 }
 
-static void	free_new_argv(char **new_argv)
+void	free_new_argv(char **new_argv)
 {
 	int	i;
 
@@ -72,33 +72,4 @@ static void	free_new_argv(char **new_argv)
 	while (new_argv[++i])
 		free(new_argv[i]);
 	free(new_argv);
-}
-
-int	*get_nums(char *argv[], int *count)
-{
-	int			*nums;
-	long long	num;
-	int			i;
-	char		**new_argv;
-
-	new_argv = get_new_argv(argv);
-	while (new_argv[(*count)])
-		++(*count);
-	nums = (int *)malloc(sizeof(int) * (*count));
-	if (nums == NULL)
-		print_malloc_error();
-	i = -1;
-	while (new_argv[++i])
-	{
-		num = ft_atoll(new_argv[i]);
-		if (num > 2147483647LL || num < -2147483648LL)
-		{
-			free(nums);
-			free_new_argv(new_argv);
-			print_error();
-		}
-		nums[i] = num;
-	}
-	free_new_argv(new_argv);
-	return (nums);
 }

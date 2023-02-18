@@ -6,12 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:14:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/16 16:23:46 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 16:55:09 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static char	*strjoin_utils(char *s1, char const *s2, size_t *len1, size_t *len2)
 {

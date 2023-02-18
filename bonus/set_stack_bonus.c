@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_stack.c                                        :+:      :+:    :+:   */
+/*   set_stack_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/12 16:15:16 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 15:32:39 by hujeong          ###   ########.fr       */
+/*   Created: 2023/02/18 16:41:06 by hujeong           #+#    #+#             */
+/*   Updated: 2023/02/18 17:40:41 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "push_swap.h"
+#include "push_swap_bonus.h"
+#include "../libft/libft.h"
 
 static t_node	*new_node(int num)
 {
@@ -52,48 +52,30 @@ void	free_stack(t_stack *stack)
 	}
 }
 
-void	set_stack(t_stack *a, t_stack *b, int nums[], int count)
+void	set_stack(t_stack *a, t_stack *b, char *argv[])
 {
+	long long	num;
+	int			i;
+	char		**new_argv;
+
+	new_argv = get_new_argv(argv);
+	i = -1;
 	a->top = NULL;
 	a->bottom = NULL;
 	a->size = 0;
 	b->top = NULL;
 	b->bottom = NULL;
 	b->size = 0;
-	while (--count >= 0)
+	while (new_argv[++i])
 	{
-		if (check_dup_num(a, nums[count]))
+		num = ft_atoll(new_argv[i]);
+		if (check_dup_num(a, num) || num > 2147483647LL || num < -2147483648LL)
 		{
-			free(nums);
+			free_new_argv(new_argv);
 			free_stack(a);
 			print_error();
 		}
-		push(a, new_node(nums[count]));
+		push(a, new_node(num));
 	}
-}
-
-void	get_pivot(int *nums, int count, t_pivot *pivot)
-{
-	int	i;
-	int	j;
-	int	tem;
-
-	i = -1;
-	while (++i < count - 1)
-	{
-		j = -1;
-		while (++j < (count - i - 1))
-		{
-			if (nums[j] > nums[j + 1])
-			{
-				tem = nums[j];
-				nums[j] = nums[j + 1];
-				nums[j + 1] = tem;
-			}
-		}
-	}
-	pivot->first = nums[0];
-	pivot->second = nums[count / 3];
-	pivot->third = nums[count / 3 * 2];
-	free(nums);
+	free_new_argv(new_argv);
 }

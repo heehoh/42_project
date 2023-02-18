@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   operation2_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 13:25:32 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 16:59:56 by hujeong          ###   ########.fr       */
+/*   Created: 2023/02/12 16:38:18 by hujeong           #+#    #+#             */
+/*   Updated: 2023/02/18 17:28:03 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "push_swap_bonus.h"
 
-void	print_malloc_error(void)
+void	ra(t_stack *a)
 {
-	write(STDERR_FILENO, "malloc fail\n", 12);
-	exit(EXIT_FAILURE);
+	if (a->size >= 2)
+		rotate(a);
 }
 
-void	print_error(void)
+void	rb(t_stack *b)
 {
-	write(STDERR_FILENO, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	if (b->size >= 2)
+		rotate(b);
+}
+
+void	rr(t_stack *a, t_stack *b)
+{
+	ra(a);
+	rb(b);
 }

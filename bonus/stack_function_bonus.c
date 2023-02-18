@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_function.c                                   :+:      :+:    :+:   */
+/*   stack_function_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:53:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 16:34:52 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 17:41:06 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	push(t_stack *stack, t_node *new)
 {

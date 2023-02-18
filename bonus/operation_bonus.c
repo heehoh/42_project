@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   operation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 13:25:32 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 16:59:56 by hujeong          ###   ########.fr       */
+/*   Created: 2023/02/12 16:22:03 by hujeong           #+#    #+#             */
+/*   Updated: 2023/02/18 17:27:00 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "push_swap_bonus.h"
 
-void	print_malloc_error(void)
+void	pa(t_stack *a, t_stack *b)
 {
-	write(STDERR_FILENO, "malloc fail\n", 12);
-	exit(EXIT_FAILURE);
+	if (b->size > 0)
+		push(a, pop(b));
 }
 
-void	print_error(void)
+void	pb(t_stack *a, t_stack *b)
 {
-	write(STDERR_FILENO, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	if (a->size > 0)
+		push(b, pop(a));
+}
+
+void	sa(t_stack *a)
+{
+	if (a->size >= 2)
+		swap(a);
+}
+
+void	sb(t_stack *b)
+{
+	if (b->size >= 2)
+		swap(b);
+}
+
+void	ss(t_stack *a, t_stack *b)
+{
+	sa(a);
+	sb(b);
 }

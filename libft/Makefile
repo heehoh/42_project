@@ -4,6 +4,7 @@ SRCS = ft_atoi.c \
 	   ft_strdup.c \
 	   ft_strjoin.c \
 	   ft_strlen.c \
+	   ft_strncmp.c \
 	   get_next_line.c \
 	   get_next_line_utils.c
 
