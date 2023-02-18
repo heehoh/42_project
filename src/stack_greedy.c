@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:26:03 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 14:43:54 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 23:33:11 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ void	greedy(t_stack *a, t_stack *b, int pivot)
 		get_least_op(&least, a, b, pivot);
 		operate(a, b, &least);
 	}
+	if (is_sorted(a))
+		return ;
 	rotation_a(a, pivot);
 }
