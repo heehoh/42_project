@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 15:23:37 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 20:42:37 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 22:08:57 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_sorted(t_stack *a, t_stack *b)
 {
 	t_node	*node;
 
-	if (b->top != (t_node *)0)
+	if (b->size != 0)
 		return (0);
 	node = a->top;
 	while (node->next)
