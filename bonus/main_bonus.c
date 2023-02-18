@@ -6,13 +6,12 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 15:23:37 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 17:50:42 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/18 20:42:37 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 #include "../libft/libft.h"
-#include <unistd.h>
 
 static int	is_sorted(t_stack *a, t_stack *b)
 {
