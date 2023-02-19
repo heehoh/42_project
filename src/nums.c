@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:49:28 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/18 15:22:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/19 15:37:13 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ static char	**get_new_argv(char *argv[])
 	free(tem);
 	if (new_argv == NULL)
 		print_malloc_error();
+	if (new_argv[0] == NULL)
+	{
+		free(new_argv);
+		print_error();
+	}
 	return (new_argv);
 }
 
