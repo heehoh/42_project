@@ -72,11 +72,6 @@ static char	**get_new_argv(char *argv[])
 	free(tem);
 	if (new_argv == NULL)
 		print_malloc_error();
-	if (new_argv[0] == NULL)
-	{
-		free(new_argv);
-		print_error();
-	}
 	return (new_argv);
 }
 
