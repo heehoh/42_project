@@ -17,17 +17,22 @@ static void	check_argv(char *argv[])
 {
 	int		i;
 	int		j;
+	int		number_flag;
 
 	i = 1;
 	while (argv[i])
 	{
 		j = -1;
+		number_flag = 0;
 		while(argv[i][++j])
 		{
-			if (!(argv[i][j] == ' ' || (argv[i][j] >= '0' && argv[i][j] <= '9')
-				|| (argv[i][j] == '-') || argv[i][j] == '+'))
+			if  (argv[i][j] >= '0' && argv[i][j] <= '9')
+				number_flag = 1;
+			else if (!(argv[i][j] == ' ' || (argv[i][j] == '-') || argv[i][j] == '+'))
 				print_error();
 		}
+		if (number_flag == 0)
+			print_error();
 		++i;
 	}
 }
