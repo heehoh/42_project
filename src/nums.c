@@ -13,6 +13,25 @@
 #include "../libft/libft.h"
 #include "push_swap.h"
 
+static void	check_argv(char *argv[])
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = -1;
+		while(argv[i][++j])
+		{
+			if (!(argv[i][j] == ' ' || (argv[i][j] >= '0' && argv[i][j] <= '9')
+				|| (argv[i][j] == '-') || argv[i][j] == '+'))
+				print_error();
+		}
+		++i;
+	}
+}
+
 static char	*get_whole_arg(char *argv[])
 {
 	size_t	i;
@@ -25,19 +44,6 @@ static char	*get_whole_arg(char *argv[])
 		tem = ft_strjoin(ft_strjoin(tem, " "), argv[i]);
 		if (tem == NULL)
 			print_malloc_error();
-	}
-	i = 0;
-	while (tem[i])
-	{
-		if (tem[i] >= 9 && tem[i] <= 13)
-			tem[i] = ' ';
-		else if (!(tem[i] == ' ' || (tem[i] >= '0' && tem[i] <= '9')
-				|| (tem[i] == '-') || tem[i] == '+'))
-		{
-			free(tem);
-			return (NULL);
-		}
-		++i;
 	}
 	return (tem);
 }
@@ -86,6 +92,7 @@ int	*get_nums(char *argv[], int *count)
 	int			i;
 	char		**new_argv;
 
+	check_argv(argv);
 	new_argv = get_new_argv(argv);
 	while (new_argv[(*count)])
 		++(*count);
