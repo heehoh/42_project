@@ -36,8 +36,9 @@ BNS_OBJS_FILES = $(addprefix $(BNS_OBJ_DIR)/, $(BNS_OBJS))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+LFLAGS = -lft -Llibft
 
-LIBFT = libft.a
+LIBFT = libft/libft.a
 
 all : $(NAME)
 
@@ -45,7 +46,6 @@ bonus : $(BONUS_NAME)
 
 $(LIBFT) :
 	make -C libft
-	cp libft/$(LIBFT) $(LIBFT)
 
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
@@ -58,10 +58,10 @@ $(BNS_OBJ_DIR)/%.o : $(BNS_SRC_DIR)/%.c | $(BNS_OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS_FILES) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJS_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS_FILES) -o $(NAME)
 
 $(BONUS_NAME) : $(BNS_OBJS_FILES) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT) $(BNS_OBJS_FILES) -o $(BONUS_NAME)
+	$(CC) $(CFLAGS) $(LFLAGS) $(BNS_OBJS_FILES) -o $(BONUS_NAME)
 
 clean :
 	make -C libft clean
@@ -70,7 +70,6 @@ clean :
 .PHONY : clean
 
 fclean : clean
-	rm -rf libft/$(LIBFT)
 	rm -rf $(LIBFT)
 	rm -rf $(NAME)
 	rm -rf $(BONUS_NAME)
