@@ -6,12 +6,37 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:49:28 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/19 15:48:07 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:20:14 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "push_swap_bonus.h"
+
+static void	check_argv(char *argv[])
+{
+	int		i;
+	int		j;
+	int		number_flag;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = -1;
+		number_flag = 0;
+		while (argv[i][++j])
+		{
+			if (argv[i][j] >= '0' && argv[i][j] <= '9')
+				number_flag = 1;
+			else if (!(argv[i][j] == ' '
+				|| (argv[i][j] == '-') || argv[i][j] == '+'))
+				print_error();
+		}
+		if (number_flag == 0)
+			print_error();
+		++i;
+	}
+}
 
 static char	*get_whole_arg(char *argv[])
 {
@@ -26,19 +51,6 @@ static char	*get_whole_arg(char *argv[])
 		if (tem == NULL)
 			print_malloc_error();
 	}
-	i = 0;
-	while (tem[i])
-	{
-		if (tem[i] >= 9 && tem[i] <= 13)
-			tem[i] = ' ';
-		else if (!(tem[i] == ' ' || (tem[i] >= '0' && tem[i] <= '9')
-				|| (tem[i] == '-') || tem[i] == '+'))
-		{
-			free(tem);
-			return (NULL);
-		}
-		++i;
-	}
 	return (tem);
 }
 
@@ -46,14 +58,8 @@ char	**get_new_argv(char *argv[])
 {
 	char	*tem;
 	char	**new_argv;
-	int		i;
 
-	i = 0;
-	while (argv[++i])
-	{
-		if (argv[i][0] == '\0')
-			print_error();
-	}
+	check_argv(argv);
 	tem = get_whole_arg(argv);
 	if (tem == NULL)
 		print_error();

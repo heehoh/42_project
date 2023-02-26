@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:49:28 by hujeong           #+#    #+#             */
-/*   Updated: 2023/02/19 15:37:13 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:15:43 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ static void	check_argv(char *argv[])
 	{
 		j = -1;
 		number_flag = 0;
-		while(argv[i][++j])
+		while (argv[i][++j])
 		{
-			if  (argv[i][j] >= '0' && argv[i][j] <= '9')
+			if (argv[i][j] >= '0' && argv[i][j] <= '9')
 				number_flag = 1;
-			else if (!(argv[i][j] == ' ' || (argv[i][j] == '-') || argv[i][j] == '+'))
+			else if (!(argv[i][j] == ' '
+				|| (argv[i][j] == '-') || argv[i][j] == '+'))
 				print_error();
 		}
 		if (number_flag == 0)
@@ -57,14 +58,8 @@ static char	**get_new_argv(char *argv[])
 {
 	char	*tem;
 	char	**new_argv;
-	int		i;
 
-	i = 0;
-	while (argv[++i])
-	{
-		if (argv[i][0] == '\0')
-			print_error();
-	}
+	check_argv(argv);
 	tem = get_whole_arg(argv);
 	if (tem == NULL)
 		print_error();
@@ -92,7 +87,6 @@ int	*get_nums(char *argv[], int *count)
 	int			i;
 	char		**new_argv;
 
-	check_argv(argv);
 	new_argv = get_new_argv(argv);
 	while (new_argv[(*count)])
 		++(*count);
