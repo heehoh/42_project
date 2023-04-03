@@ -6,61 +6,48 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:06:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/02 15:04:01 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/03 20:13:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
-#include <pthread.h>
+#include "philo.h"
 
-void	*test1(void	*data)
+void	set_fork(t_fork *fork, int num)
 {
 	int	i;
-	int	a;
 
-	a = *((int *)data);
-	i = 0;
-	while (++i < 10)
-	{
-		printf("%d\n", -i * a);
-	}
-	return (data);
+	i = -1;
+	while (++i < num)
+		pthread_mutex_init(fork[0].mutex, NULL);
 }
 
-void	*test(void	*data)
+void	set_philo(t_philo *philo, t_fork *fork)
 {
-	int	i;
-	int	*a;
+	philo[0].left = fork[0];
+	philo[0].right = fork[1];
+	philo[1].left = fork[1];
+	philo[1].right = fork[0];
+}
 
-	a = ((int *)data);
-	i = 0;
-	while (++i < 10)
-	{
-		*a = *a * i;
-		printf("%d\n", *a);
-		usleep(2);
-	}
-	return (data);
+void	set_monitor(t_monitoring *monitor)
+{
+	monitor->total_number = 2;
+	monitor->time_to_die = 500;
+	monitor->time_to_eat = 100;
+	monitor->time_to_sleep = 100;
 }
 
 int	main(void)
 {
-	int			a;
-	pthread_t	pthread;
-	pthread_t	pthread1;
-	int			status;
-	int			status1;
+	t_fork			fork[2];
+	t_philo			philo[2];
+	t_monitoring	monitor;
 
-	a = 100;
-	if (pthread_create(&pthread, NULL, test, (void *)&a) < 0)
-	{
-		write(2, "error\n", 6);
-		return (1);
-	}
-	pthread_create(&pthread1, NULL, test, (void *)&a);
-	pthread_join(pthread, (void **)&status);
-	pthread_join(pthread1, (void **)&status1);
-	printf("Thread end: %d  '%d'\n", status, status1);
+	set_monitor(&monitor);
+	set_fork(fork, 2);
+	set_philo(philo, fork);
+	pthread_create();
 	return (0);
 }
