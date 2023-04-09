@@ -1,5 +1,9 @@
 NAME = philo
-SRCS = main.c 
+SRCS = main.c \
+	   philo_do.c \
+	   philo_set.c \
+	   philo_thread.c \
+	   philo_util.c
 
 OBJS = $(SRCS:.c=.o)
 

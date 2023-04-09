@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:58 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/07 21:08:35 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/09 15:45:04 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ size_t	get_current_ms_time(void)
 size_t	get_time(size_t start_time)
 {
 	return (get_current_ms_time() - start_time);
+}
+
+void	philo_doing(size_t time, size_t start_time, size_t time_to_do)
+{
+	while (get_time(time) - start_time < time_to_do)
+		usleep(100);
 }
 
 int	ft_atoi(const char *str)
