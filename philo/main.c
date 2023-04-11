@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:06:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/08 11:58:19 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/10 17:42:36 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	if ((argc != 5 && argc != 6) || set_common(&com, argc, argv)
 		|| set_fork(&com, &fork) || set_philo(&com, &philo, fork)
-		|| main_thread(philo, fork, NULL))
+		|| main_thread(philo, fork, NULL, -1))
 		return (1);
 	return (0);
 }

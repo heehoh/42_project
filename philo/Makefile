@@ -1,6 +1,8 @@
 NAME = philo
 SRCS = main.c \
 	   philo_do.c \
+	   philo_mutex.c \
+	   philo_mutex2.c \
 	   philo_set.c \
 	   philo_thread.c \
 	   philo_util.c
@@ -13,7 +15,7 @@ OBJS_FILES = $(addprefix $(OBJ_DIR)/, $(OBJS))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror 
-#-g -fsanitize=address
+#-g -fsanitize=thread
 LFLAGS =
 
 INCLUDE = 

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:58 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/09 15:45:04 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/11 10:58:40 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ void	philo_doing(size_t time, size_t start_time, size_t time_to_do)
 {
 	while (get_time(time) - start_time < time_to_do)
 		usleep(100);
+}
+
+t_bool	is_full(t_philo *philo)
+{
+	if (philo->com->eat_set && philo->eat_num == philo->com->min_eat)
+	{
+		mutex_count_plus(&philo->com->count, &philo->com->full_philo_num);
+		while (!(mutex_read(&philo->com->finish, &philo->com->is_finish)))
+			usleep(1000);
+		return (true);
+	}
+	return (false);
 }
 
 int	ft_atoi(const char *str)
