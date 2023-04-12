@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 18:25:08 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/11 17:04:32 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/12 09:27:06 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	monitoring(t_philo *philo)
 		return (mutex_write(&philo->com->finish, &philo->com->is_finish));
 	if (mutex_dead_print(philo))
 		return (1);
-	usleep(600);
+	usleep(100);
 	return (0);
 }
 

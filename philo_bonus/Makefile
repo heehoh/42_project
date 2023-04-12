@@ -14,8 +14,7 @@ OBJ_DIR = obj
 OBJS_FILES = $(addprefix $(OBJ_DIR)/, $(OBJS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
-#-g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 LFLAGS =
 
 INCLUDE = 
