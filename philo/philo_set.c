@@ -6,20 +6,22 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:06:27 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/11 17:05:45 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/13 11:29:57 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "philo.h"
 
-void	set_mutex(t_common *com)
+int	set_mutex(t_common *com)
 {
-	pthread_mutex_init(&com->print, NULL);
-	pthread_mutex_init(&com->count, NULL);
-	pthread_mutex_init(&com->start, NULL);
-	pthread_mutex_init(&com->order, NULL);
-	pthread_mutex_init(&com->finish, NULL);
+	if (pthread_mutex_init(&com->print, NULL) != 0
+		|| pthread_mutex_init(&com->count, NULL) != 0
+		|| pthread_mutex_init(&com->start, NULL) != 0
+		|| pthread_mutex_init(&com->order, NULL) != 0
+		|| pthread_mutex_init(&com->finish, NULL) != 0)
+		return (clean_philo(com, NULL, NULL));
+	return (0);
 }
 
 int	set_common(t_common *com, int argc, char **argv)
@@ -42,7 +44,8 @@ int	set_common(t_common *com, int argc, char **argv)
 		|| com->time_to_eat < 0 || com->time_to_sleep < 0
 		|| (com->eat_set == true && com->min_eat < 0))
 		return (1);
-	set_mutex(com);
+	if (set_mutex(com))
+		return (1);
 	com->is_finish = false;
 	com->full_philo_num = 0;
 	com->odd_num = com->total_num / 2 + (com->total_num % 2 != 0);
@@ -59,7 +62,8 @@ int	set_fork(t_common *com, t_fork **fork)
 		return (clean_philo(com, NULL, NULL));
 	i = -1;
 	while (++i < com->total_num)
-		pthread_mutex_init(&((*fork + i)->mutex), NULL);
+		if (pthread_mutex_init(&((*fork + i)->mutex), NULL) != 0)
+			return (clean_philo(com, NULL, *fork));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 18:25:08 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/12 09:27:06 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/13 11:08:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*philo_thread(void *thread)
 	if (philo->num % 2 == 0)
 		while (mutex_count_read(&philo->com->order, &philo->com->odd_num_start)
 			!= philo->com->odd_num)
-			usleep(1);
+			usleep(100);
 	else
 		mutex_count_plus(&philo->com->order, &philo->com->odd_num_start);
 	while (1)
