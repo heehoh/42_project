@@ -6,13 +6,12 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:58 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/11 10:58:40 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/16 15:57:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include <unistd.h>
-#include <stdio.h>
 #include "philo.h"
 
 size_t	get_current_ms_time(void)

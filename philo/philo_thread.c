@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 18:25:08 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/13 11:08:01 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/17 10:06:27 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	*philo_thread(void *thread)
 
 	philo = (t_philo *)thread;
 	mutex_read(&philo->com->start, &philo->com->is_start);
+	if (mutex_read(&philo->com->finish, &philo->com->is_finish))
+		return (NULL);
 	if (is_full(philo))
 		return (NULL);
 	if (philo->num % 2 == 0)
@@ -42,11 +44,8 @@ void	*philo_thread(void *thread)
 		mutex_count_plus(&philo->com->order, &philo->com->odd_num_start);
 	while (1)
 	{
-		if (eating(philo))
-			break ;
-		if (is_full(philo))
-			break ;
-		if (sleeping(philo) || thinking(philo))
+		if (eating(philo) || is_full(philo)
+			|| sleeping(philo) || thinking(philo))
 			break ;
 	}
 	return (NULL);
@@ -95,7 +94,7 @@ int	main_thread(t_philo *philo, t_fork *fork, pthread_t *thread, int i)
 		return (clean_philo(philo->com, philo, fork));
 	pthread_mutex_lock(&(philo->com->start));
 	while (++i < philo->com->total_num)
-		if (pthread_create(thread + i, NULL, philo_thread, philo + i) != 0)
+		if (pthread_create(thread + i, NULL, philo_thread, philo + i))
 			return (clean_thread(thread, philo, fork, i));
 	philo->com->start_time = get_current_ms_time();
 	monitoring(philo);
