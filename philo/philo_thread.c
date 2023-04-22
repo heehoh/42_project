@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 18:25:08 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/17 10:06:27 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/22 11:05:49 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ void	*philo_thread(void *thread)
 	if (is_full(philo))
 		return (NULL);
 	if (philo->num % 2 == 0)
-		while (mutex_count_read(&philo->com->order, &philo->com->odd_num_start)
-			!= philo->com->odd_num)
-			usleep(100);
-	else
-		mutex_count_plus(&philo->com->order, &philo->com->odd_num_start);
+		usleep(philo->com->time_to_eat * 500);
 	while (1)
 	{
 		if (eating(philo) || is_full(philo)
@@ -64,7 +60,6 @@ int	clean_philo(t_common *com, t_philo *philo, t_fork *fork)
 	pthread_mutex_destroy(&com->start);
 	pthread_mutex_destroy(&com->count);
 	pthread_mutex_destroy(&com->print);
-	pthread_mutex_destroy(&com->order);
 	pthread_mutex_destroy(&com->finish);
 	free(philo);
 	free(fork);

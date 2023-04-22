@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:06:27 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/13 11:29:57 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:37:12 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	set_mutex(t_common *com)
 	if (pthread_mutex_init(&com->print, NULL) != 0
 		|| pthread_mutex_init(&com->count, NULL) != 0
 		|| pthread_mutex_init(&com->start, NULL) != 0
-		|| pthread_mutex_init(&com->order, NULL) != 0
 		|| pthread_mutex_init(&com->finish, NULL) != 0)
 		return (clean_philo(com, NULL, NULL));
 	return (0);
@@ -48,8 +47,6 @@ int	set_common(t_common *com, int argc, char **argv)
 		return (1);
 	com->is_finish = false;
 	com->full_philo_num = 0;
-	com->odd_num = com->total_num / 2 + (com->total_num % 2 != 0);
-	com->odd_num_start = 0;
 	return (0);
 }
 
@@ -75,24 +72,11 @@ void	set_philo_util(t_common *com, t_philo **philo, t_fork *fork)
 	while (++i < com->total_num)
 	{
 		(*philo)[i].num = i + 1;
-		(*philo)[i].left = fork + i;
 		(*philo)[i].eat_num = 0;
 		(*philo)[i].last_eat_time = 0;
-		if ((*philo)[i].num != com->total_num)
-			(*philo)[i].right = fork + i + 1;
-		else
-			(*philo)[i].right = fork;
+		(*philo)[i].main = fork + i;
+		(*philo)[i].secondary = fork + ((i + 1) % com->total_num);
 		(*philo)[i].com = com;
-		if ((*philo)[i].num % 2 == 1)
-		{
-			(*philo)[i].main = (*philo)[i].right;
-			(*philo)[i].secondary = (*philo)[i].left;
-		}
-		else
-		{
-			(*philo)[i].main = (*philo)[i].left;
-			(*philo)[i].secondary = (*philo)[i].right;
-		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:08:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/15 18:01:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/22 11:02:30 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	eating(t_philo *philo)
 {
 	pick(philo->main);
 	if (mutex_print(philo, &(philo->msg_time), PICK)
-		|| philo->left == philo->right)
+		|| philo->main == philo->secondary)
 		return (put(philo->main) + 1);
 	pick(philo->secondary);
 	if (mutex_print(philo, &(philo->last_eat_time), EAT))
@@ -58,6 +58,5 @@ int	thinking(t_philo *philo)
 {
 	if (mutex_print(philo, &(philo->msg_time), THINK))
 		return (1);
-	usleep(100);
 	return (0);
 }

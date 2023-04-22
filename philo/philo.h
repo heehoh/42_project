@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:45:26 by hujeong           #+#    #+#             */
-/*   Updated: 2023/04/12 18:41:02 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:30:00 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct s_fork
 typedef struct s_common
 {
 	int				total_num;
-	int				odd_num;
-	int				odd_num_start;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -50,7 +48,6 @@ typedef struct s_common
 	pthread_mutex_t	start;
 	pthread_mutex_t	count;
 	pthread_mutex_t	print;
-	pthread_mutex_t	order;
 	pthread_mutex_t	finish;
 }	t_common;
 
@@ -60,8 +57,6 @@ typedef struct s_philo
 	int			eat_num;
 	size_t		last_eat_time;
 	size_t		msg_time;
-	t_fork		*left;
-	t_fork		*right;
 	t_fork		*main;
 	t_fork		*secondary;
 	t_common	*com;
