@@ -6,20 +6,22 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 00:32:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/07/15 00:41:27 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/07/15 01:14:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int main(void) {
-  Zombie zombie0("zombie0");
-  Zombie* zombie1;
+Zombie* newZombie(std::string name);
+void randomChump(std::string name);
 
-  zombie0.anounce();
-  zombie1 = newZombie("zombie1");
-  zombie1->anounce();
-  delete zombie1;
-  randomChump("zombie2");
-  return (0);
+int main(void) {
+  Zombie zombie1("zombie1");
+  Zombie* zombie2;
+
+  zombie1.anounce();
+  zombie2 = newZombie("zombie2");
+  zombie2->anounce();
+  delete zombie2;
+  randomChump("zombie3");
 }
