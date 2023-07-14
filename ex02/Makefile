@@ -1,8 +1,5 @@
 NAME = a.out
-SRCS = main.cpp \
-			 Zombie.cpp \
-			 newZombie.cpp \
-			 randomChump.cpp
+SRCS = main.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
 
