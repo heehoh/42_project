@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 08:45:16 by hujeong           #+#    #+#             */
-/*   Updated: 2023/07/15 08:52:57 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/07/15 08:57:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,4 @@ class HumanB {
  private:
   std::string _name;
   Weapon* _weapon;
-}
+};
