@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:56:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/08/08 06:49:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/08/12 21:48:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,102 @@ Fixed& Fixed::operator=(const Fixed& src) {
   std::cout << "복사 대입 연산자 호출" << std::endl;
   _value = src.getRawBits();
   return *this;
+}
+
+bool Fixed::operator<(const Fixed& src) {
+  if (_value < src.getRawBits()) return true;
+  return false;
+}
+
+bool Fixed::operator<=(const Fixed& src) {
+  if (_value <= src.getRawBits()) return true;
+  return false;
+}
+
+bool Fixed::operator>(const Fixed& src) {
+  if (_value > src.getRawBits()) return true;
+  return false;
+}
+
+bool Fixed::operator>=(const Fixed& src) {
+  if (_value >= src.getRawBits()) return true;
+  return false;
+}
+
+bool Fixed::operator==(const Fixed& src) {
+  if (_value == src.getRawBits()) return true;
+  return false;
+}
+
+bool Fixed::operator!=(const Fixed& src) {
+  if (_value != src.getRawBits()) return true;
+  return false;
+}
+
+Fixed Fixed::operator+(const Fixed& src) {
+  Fixed temp;
+  temp.setRawBits(_value + src.getRawBits());
+  return temp;
+}
+
+Fixed Fixed::operator-(const Fixed& src) {
+  Fixed temp;
+  temp.setRawBits(_value - src.getRawBits());
+  return temp;
+}
+
+Fixed Fixed::operator*(const Fixed& src) {
+  Fixed temp;
+  temp.setRawBits((_value * src.getRawBits()) >> _bits);
+  return temp;
+}
+
+Fixed Fixed::operator/(const Fixed& src) {
+  Fixed temp;
+  temp.setRawBits((_value << _bits) / src.getRawBits());
+  return temp;
+}
+
+Fixed& Fixed::operator++(void) {
+  ++_value;
+  return *this;
+}
+
+Fixed& Fixed::operator++(int) {
+  Fixed temp(*this);
+  _value++;
+  return temp;
+}
+
+Fixed& Fixed::operator--(void) {
+  --_value;
+  return *this;
+}
+
+Fixed& Fixed::operator--(int) {
+  Fixed temp(*this);
+  _value--;
+  return temp;
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b) {
+  if (a < b) return a;
+  return b;
+}
+
+Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
+  if (a < b) return a;
+  return b;
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b) {
+  if (a > b) return a;
+  return b;
+}
+
+Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
+  if (a > b) return a;
+  return b;
 }
 
 int Fixed::getRawBits(void) const {
