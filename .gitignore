@@ -1,3 +1,5 @@
 *.o
 a.out
 obj
+.DS_Store
+.vscode
