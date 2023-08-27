@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 06:42:18 by hujeong           #+#    #+#             */
-/*   Updated: 2023/07/18 19:17:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/07/21 15:11:21 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 #include <iostream>
 
 enum {
-  DEBUG,
+  DEBUG = 1,
   INFO,
   WARNING,
   ERROR,
 };
 
 Harl::Harl() {
-  _level[0] = "DEBUG";
-  _level[1] = "INFO";
-  _level[2] = "WARNING";
-  _level[3] = "ERROR";
   _func[0] = &Harl::debug;
   _func[1] = &Harl::info;
   _func[2] = &Harl::warning;
@@ -33,12 +29,8 @@ Harl::Harl() {
 }
 
 void Harl::complain(std::string level) {
-  int i;
-  for (i = 0; i < 4; i++) {
-    if (_level[i] == level) {
-      break;
-    }
-  }
+  int i = 1 * (level == "DEBUG") + 2 * (level == "INFO") +
+          3 * (level == "WARNING") + 4 * (level == "ERROR");
   switch (i) {
     case DEBUG:
       (this->*_func[0])();
@@ -55,7 +47,7 @@ void Harl::complain(std::string level) {
   }
 }
 
-void Harl::debug(void) { std::cout << "DEBUG" << std::endl; }
-void Harl::info(void) { std::cout << "INFO" << std::endl; }
-void Harl::warning(void) { std::cout << "WARNING" << std::endl; }
-void Harl::error(void) { std::cout << "ERROR" << std::endl; }
+void Harl::debug(void) { std::cout << "DEBUG MESSAGE" << std::endl; }
+void Harl::info(void) { std::cout << "INFO MESSAGE" << std::endl; }
+void Harl::warning(void) { std::cout << "WARNING MESSAGE" << std::endl; }
+void Harl::error(void) { std::cout << "ERROR MESSAGE" << std::endl; }
