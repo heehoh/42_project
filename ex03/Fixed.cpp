@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:56:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/01 15:11:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/01 15:12:10 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Fixed::Fixed(const Fixed& src) {
   _value = src.getRawBits();
 }
 
-Fixed::~Fixed(void) { std::cout << "Fixed 소멸자 호출" << std::endl; }
+Fixed::~Fixed(void) { std::cout << "Fixed  소멸자 호출" << std::endl; }
 
 Fixed& Fixed::operator=(const Fixed& src) {
   std::cout << "Fixed 복사 대입 연산자 호출" << std::endl;
@@ -96,7 +96,7 @@ Fixed& Fixed::operator++(void) {
   return *this;
 }
 
-Fixed& Fixed::operator++(int) {
+Fixed Fixed::operator++(int) {
   Fixed temp(*this);
   _value++;
   return temp;
@@ -107,7 +107,7 @@ Fixed& Fixed::operator--(void) {
   return *this;
 }
 
-Fixed& Fixed::operator--(int) {
+Fixed Fixed::operator--(int) {
   Fixed temp(*this);
   _value--;
   return temp;
