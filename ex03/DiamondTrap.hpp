@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 11:33:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 13:30:31 by hujeong          ###   ########.fr       */
+/*   Created: 2023/09/02 12:12:05 by hujeong           #+#    #+#             */
+/*   Updated: 2023/09/02 12:27:07 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+#define DIAMONDTRAP_HPP
 
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
-namespace fragtrap {
-enum status {
-  HP = 100,
-  EP = 100,
-  AD = 30,
-};
-}
-
-class FragTrap : public ClapTrap {
+class DiamondTrap : public FragTrap, public ScavTrap {
  public:
-  FragTrap(void);
-  FragTrap(std::string name);
-  FragTrap(const FragTrap& src);
-  ~FragTrap(void);
-  FragTrap& operator=(const FragTrap& src);
+  DiamondTrap(void);
+  DiamondTrap(std::string name);
+  DiamondTrap(const DiamondTrap& src);
+  DiamondTrap& operator=(const DiamondTrap& src);
+  ~DiamondTrap(void);
 
-  void highFivesGuys(void);
+  void whoAmI(void);
+
+ private:
+  std::string name;
 };
 
 #endif

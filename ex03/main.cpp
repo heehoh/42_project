@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 11:33:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 13:30:31 by hujeong          ###   ########.fr       */
+/*   Created: 2023/08/26 13:24:49 by hujeong           #+#    #+#             */
+/*   Updated: 2023/09/02 14:16:38 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#include <iostream>
 
-#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 
-namespace fragtrap {
-enum status {
-  HP = 100,
-  EP = 100,
-  AD = 30,
-};
+int main() {
+  DiamondTrap diamondTrap("diamondTrap");
+
+  diamondTrap.whoAmI();
+  return 0;
 }
-
-class FragTrap : public ClapTrap {
- public:
-  FragTrap(void);
-  FragTrap(std::string name);
-  FragTrap(const FragTrap& src);
-  ~FragTrap(void);
-  FragTrap& operator=(const FragTrap& src);
-
-  void highFivesGuys(void);
-};
-
-#endif

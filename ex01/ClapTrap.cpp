@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:24:46 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 12:03:05 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 13:26:22 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ ClapTrap::ClapTrap(void)
     : name("무명"),
       hitPoints(claptrap::HP),
       energyPoints(claptrap::EP),
-      attackDamage(claptrap::AD) {
+      attackDamage(claptrap::AD),
+      maxHitPoints(claptrap::HP) {
   std::cout << "ClapTrap 기본 생성자 호출" << std::endl;
 }
 
@@ -25,7 +26,8 @@ ClapTrap::ClapTrap(std::string name)
     : name(name),
       hitPoints(claptrap::HP),
       energyPoints(claptrap::EP),
-      attackDamage(claptrap::AD) {
+      attackDamage(claptrap::AD),
+      maxHitPoints(claptrap::HP) {
   std::cout << "ClapTrap 생성자 호출" << std::endl;
 }
 
@@ -33,7 +35,8 @@ ClapTrap::ClapTrap(const ClapTrap& src)
     : name(src.getName()),
       hitPoints(src.getHitPoints()),
       energyPoints(src.getEnergyPoints()),
-      attackDamage(src.getAttackDamage()) {
+      attackDamage(src.getAttackDamage()),
+      maxHitPoints(src.getMaxHitPoints()) {
   std::cout << "ClapTrap 복사 생성자 호출" << std::endl;
 }
 
@@ -71,7 +74,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
             << "의 데미지를 입었습니다!" << std::endl;
   if (hitPoints <= amount) {
     hitPoints = 0;
-    std::cout << "ClapTrap" << name << "이(가) 파괴되었습니다!" << std::endl;
+    std::cout << "ClapTrap " << name << "이(가) 파괴되었습니다!" << std::endl;
   } else
     hitPoints -= amount;
 }
@@ -86,8 +89,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
               << std::endl;
     return;
   }
-  if (hitPoints + amount > claptrap::HP)
-    hitPoints = claptrap::HP;
+  if (hitPoints + amount > maxHitPoints)
+    hitPoints = maxHitPoints;
   else
     hitPoints += amount;
   --energyPoints;
@@ -101,6 +104,7 @@ std::string ClapTrap::getName(void) const { return name; }
 unsigned int ClapTrap::getHitPoints(void) const { return hitPoints; }
 unsigned int ClapTrap::getAttackDamage(void) const { return attackDamage; }
 unsigned int ClapTrap::getEnergyPoints(void) const { return energyPoints; }
+unsigned int ClapTrap::getMaxHitPoints(void) const { return maxHitPoints; }
 
 void ClapTrap::setName(std::string name) { this->name = name; }
 void ClapTrap::setHitPoints(unsigned int hitPoints) {
@@ -111,6 +115,9 @@ void ClapTrap::setEnergyPoints(unsigned int energyPoints) {
 }
 void ClapTrap::setAttackDamage(unsigned int attackDamage) {
   this->attackDamage = attackDamage;
+}
+void ClapTrap::setMaxHitPoints(unsigned int maxHitPoints) {
+  this->maxHitPoints = maxHitPoints;
 }
 
 void ClapTrap::printStatus(void) const {

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:31:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 12:04:10 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 13:24:15 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ ScavTrap::ScavTrap(void) : ClapTrap() {
   hitPoints = scavtrap::HP;
   energyPoints = scavtrap::EP;
   attackDamage = scavtrap::AD;
+  maxHitPoints = scavtrap::HP;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
@@ -54,40 +55,6 @@ void ScavTrap::attack(std::string& target) {
   --energyPoints;
   std::cout << "ScavTrap " << name << "이(가) " << target << "을(를) "
             << attackDamage << "의 데미지로 공격합니다!" << std::endl;
-}
-
-void ScavTrap::takeDamage(unsigned int amount) {
-  if (hitPoints == 0) {
-    std::cout << "ScavTrap " << name << "이(가) 이미 파괴되었습니다!"
-              << std::endl;
-    return;
-  }
-  std::cout << "ScavTrap " << name << "이(가) " << amount
-            << "의 데미지를 입었습니다!" << std::endl;
-  if (hitPoints <= amount) {
-    hitPoints = 0;
-    std::cout << "ScavTrap " << name << "이(가) 파괴되었습니다!" << std::endl;
-  } else
-    hitPoints -= amount;
-}
-
-void ScavTrap::beRepaired(unsigned int amount) {
-  if (hitPoints == 0) {
-    std::cout << "ScavTrap " << name << "이(가) 이미 파괴되었습니다!"
-              << std::endl;
-    return;
-  } else if (energyPoints == 0) {
-    std::cout << "ScavTrap " << name << "이(가) 수리할 수 없습니다!"
-              << std::endl;
-    return;
-  }
-  if (hitPoints + amount > scavtrap::HP)
-    hitPoints = scavtrap::HP;
-  else
-    hitPoints += amount;
-  --energyPoints;
-  std::cout << "ScavTrap " << name << "이(가) " << amount
-            << "의 체력을 회복합니다!" << std::endl;
 }
 
 void ScavTrap::guardGate(void) {

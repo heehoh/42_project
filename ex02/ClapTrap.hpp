@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:25:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 11:31:01 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 13:28:31 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ class ClapTrap {
   unsigned int getHitPoints(void) const;
   unsigned int getAttackDamage(void) const;
   unsigned int getEnergyPoints(void) const;
+  unsigned int getMaxHitPoints(void) const;
 
   void setName(std::string name);
   void setHitPoints(unsigned int hitPoints);
   void setEnergyPoints(unsigned int energyPoints);
   void setAttackDamage(unsigned int attackDamage);
+  void setMaxHitPoints(unsigned int maxHitPoints);
 
   void printStatus(void) const;
 
@@ -53,6 +55,7 @@ class ClapTrap {
   unsigned int hitPoints;
   unsigned int energyPoints;
   unsigned int attackDamage;
+  unsigned int maxHitPoints;
 };
 
 #endif

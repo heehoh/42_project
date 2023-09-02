@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:31:34 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 11:57:14 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 13:19:30 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ class ScavTrap : public ClapTrap {
   ScavTrap& operator=(const ScavTrap& src);
 
   void attack(std::string& target);
-  void takeDamage(unsigned int amount);
-  void beRepaired(unsigned int amount);
   void guardGate(void);
 };
 
