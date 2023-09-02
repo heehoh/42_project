@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:24:46 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 12:03:05 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 11:31:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ ClapTrap::ClapTrap(std::string name)
   std::cout << "ClapTrap 생성자 호출" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& src)
-    : name(src.getName()),
-      hitPoints(src.getHitPoints()),
-      energyPoints(src.getEnergyPoints()),
-      attackDamage(src.getAttackDamage()) {
+ClapTrap::ClapTrap(const ClapTrap& src) {
   std::cout << "ClapTrap 복사 생성자 호출" << std::endl;
+  name = src.getName();
+  hitPoints = src.getHitPoints();
+  energyPoints = src.getEnergyPoints();
+  attackDamage = src.getAttackDamage();
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
@@ -69,10 +69,9 @@ void ClapTrap::takeDamage(unsigned int amount) {
   }
   std::cout << "ClapTrap " << name << "이(가) " << amount
             << "의 데미지를 입었습니다!" << std::endl;
-  if (hitPoints <= amount) {
+  if (hitPoints < amount)
     hitPoints = 0;
-    std::cout << "ClapTrap" << name << "이(가) 파괴되었습니다!" << std::endl;
-  } else
+  else
     hitPoints -= amount;
 }
 
