@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 18:06:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 20:11:52 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 22:02:55 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ class ICharacter;
 
 class AMateria {
  protected:
-  public:
-  AMateria();
-  AMateria(std::string const& type);
-  AMateria(const AMateria& other);
-  virtual ~AMateria();
+  const std::string type;
 
+ public:
+  AMateria(std::string const& type);
+
+  AMateria(void);
+  AMateria(const AMateria& other);
+  virtual ~AMateria(void);
   AMateria& operator=(const AMateria& other);
 
-  std::string const& getType() const;
-  virtual AMateria* clone() const = 0;
+  std::string const& getType(void) const;  // Returns the materia type
+
+  virtual AMateria* clone(void) const = 0;
   virtual void use(ICharacter& target);
 };
 
