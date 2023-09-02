@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 16:42:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 16:42:48 by hujeong          ###   ########.fr       */
+/*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
+/*   Updated: 2023/09/02 19:39:13 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
+#include "Cat.hpp"
+#include "Dog.hpp"
 
-#include "WrongAnimal.hpp"
+int main() {
+  Animal* animals[3];
 
-class WrongCat : public WrongAnimal {
- public:
-  WrongCat(void);
-  WrongCat(const WrongCat& copy);
-  virtual ~WrongCat(void);
+  animals[0] = new Animal();
+  animals[1] = new Cat();
+  animals[2] = new Dog();
 
-  virtual WrongCat& operator=(const WrongCat& src);
-  void makeSound(void) const;
-};
+  std::cout << std::endl;
+  for (int i = 0; i < 3; i++) {
+    animals[i]->makeSound();
+  }
 
-#endif
+  std::cout << std::endl;
+  for (int i = 0; i < 3; i++) {
+    delete animals[i];
+  }
+
+  std::cout << std::endl;
+
+  return 0;
+}

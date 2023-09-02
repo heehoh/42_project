@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 14:30:53 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 17:55:05 by hujeong          ###   ########.fr       */
+/*   Created: 2023/09/02 14:31:01 by hujeong           #+#    #+#             */
+/*   Updated: 2023/09/02 19:49:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Cat.hpp"
 
-Dog::Dog(void) : Animal() {
-  std::cout << "Dog 기본 생성자 호출" << std::endl;
-  type = "Dog";
+Cat::Cat(void) : Animal() {
+  std::cout << "Cat 기본 생성자 호출" << std::endl;
+  type = "Cat";
   brain = new Brain();
 }
 
-Dog::Dog(const Dog& copy) : Animal(copy) {
-  std::cout << "Dog 복사 생성자 호출" << std::endl;
-  brain = new Brain(*copy.getBrain());
+Cat::Cat(const Cat& copy) : Animal(copy) {
+  std::cout << "Cat 복사 생성자 호출" << std::endl;
+  brain = new Brain(*copy.brain);
 }
 
-Dog::~Dog(void) {
-  std::cout << "Dog 소멸자 호출" << std::endl;
+Cat::~Cat(void) {
+  std::cout << "Cat 소멸자 호출" << std::endl;
   delete brain;
 }
 
-Dog& Dog::operator=(const Dog& src) {
-  std::cout << "Dog 대입 연산자 호출" << std::endl;
+Cat& Cat::operator=(const Cat& src) {
+  std::cout << "Cat 대입 연산자 호출" << std::endl;
   if (this == &src) return *this;
   type = src.getType();
   delete brain;
@@ -37,6 +37,6 @@ Dog& Dog::operator=(const Dog& src) {
   return *this;
 }
 
-void Dog::makeSound(void) const { std::cout << "멍멍" << std::endl; }
+void Cat::makeSound(void) const { std::cout << "냥냥" << std::endl; }
 
-Brain& Dog::getBrain(void) const { return *brain; }
+Brain& Cat::getBrain(void) const { return *brain; }

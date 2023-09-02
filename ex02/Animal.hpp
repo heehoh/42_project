@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 19:39:13 by hujeong          ###   ########.fr       */
+/*   Created: 2023/09/02 14:35:33 by hujeong           #+#    #+#             */
+/*   Updated: 2023/09/02 18:00:52 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
-#include "Dog.hpp"
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
-int main() {
-  Animal* animals[3];
+#include <iostream>
 
-  animals[0] = new Animal();
-  animals[1] = new Cat();
-  animals[2] = new Dog();
+class Animal {
+ public:
+  Animal(void);
+  Animal(const Animal& copy);
+  virtual ~Animal(void);
 
-  std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
-    animals[i]->makeSound();
-  }
+  virtual Animal& operator=(const Animal& src) = 0;
+  std::string getType(void) const;
+  virtual void makeSound(void) const = 0;
 
-  std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
-    delete animals[i];
-  }
+ protected:
+  std::string type;
+};
 
-  std::cout << std::endl;
-
-  return 0;
-}
+#endif

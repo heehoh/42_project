@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 17:44:06 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 19:44:59 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ Cat& Cat::operator=(const Cat& src) {
   if (this == &src) return *this;
   type = src.getType();
   delete brain;
-  brain = new Brain(*src.brain);
+  brain = new Brain(src.getBrain());
   return *this;
 }
 
-void Cat::makeSound(void) const { std::cout << "야옹" << std::endl; }
+void Cat::makeSound(void) const { std::cout << "냥냥" << std::endl; }
 
-Brain* Cat::getBrain(void) const { return brain; }
+Brain& Cat::getBrain(void) const { return *brain; }

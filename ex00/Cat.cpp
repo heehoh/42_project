@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 15:07:19 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 19:44:35 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,4 @@ Cat& Cat::operator=(const Cat& src) {
   return *this;
 }
 
-void Cat::makeSound(void) const { std::cout << "야옹" << std::endl; }
+void Cat::makeSound(void) const { std::cout << "냥냥" << std::endl; }

@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 19:39:13 by hujeong          ###   ########.fr       */
+/*   Created: 2023/09/02 19:49:15 by hujeong           #+#    #+#             */
+/*   Updated: 2023/09/02 20:01:36 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
-#include "Dog.hpp"
+#ifndef ICHARACTER_HPP
+#define ICHARACTER_HPP
 
-int main() {
-  Animal* animals[3];
+#include <iostream>
 
-  animals[0] = new Animal();
-  animals[1] = new Cat();
-  animals[2] = new Dog();
+class AMateria;
 
-  std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
-    animals[i]->makeSound();
-  }
+class ICharacter {
+ public:
+  virtual ~ICharacter() {}
+  virtual std::string const& getName() const = 0;
+  virtual void equip(AMateria* m) = 0;
+  virtual void unequip(int idx) = 0;
+  virtual void use(int idx, ICharacter& target) = 0;
+};
 
-  std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
-    delete animals[i];
-  }
-
-  std::cout << std::endl;
-
-  return 0;
-}
+#endif

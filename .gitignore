@@ -2,3 +2,4 @@
 a.out
 obj
 *.o
+.DS_Store
