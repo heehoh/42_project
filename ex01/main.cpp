@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 19:39:13 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:14:08 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,44 @@
 #include "Dog.hpp"
 
 int main() {
-  Animal* animals[3];
+  Animal* animals[4];
 
-  animals[0] = new Animal();
-  animals[1] = new Cat();
-  animals[2] = new Dog();
-
+  for (int i = 0; i < 2; i++) {
+    animals[i] = new Dog();
+  }
   std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
+  for (int i = 2; i < 4; i++) {
+    animals[i] = new Cat();
+  }
+  std::cout << std::endl;
+  for (int i = 0; i < 4; i++) {
     animals[i]->makeSound();
   }
-
   std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
+  std::cout << "----------------------------------------" << std::endl;
+  animals[0]->setIdea(0, "Dog idea 0");
+  animals[2]->setIdea(0, "Cat idea 0");
+  *animals[1] = *animals[0];
+  *animals[3] = *animals[2];
+  std::cout << "----------------------------------------" << std::endl;
+  std::cout << std::endl;
+  for (int i = 0; i < 4; i++) {
+    animals[i]->makeSound();
+  }
+  std::cout << std::endl;
+  for (int i = 0; i < 4; i++) {
+    animals[i]->printIdeas();
+  }
+  std::cout << std::endl;
+  animals[0]->setIdea(0, "Dog idea 0 changed");
+  animals[2]->setIdea(0, "Cat idea 0 changed");
+  std::cout << std::endl;
+  for (int i = 0; i < 4; i++) {
+    animals[i]->printIdeas();
+  }
+  std::cout << std::endl;
+  for (int i = 0; i < 4; i++) {
     delete animals[i];
   }
-
-  std::cout << std::endl;
-
   return 0;
 }

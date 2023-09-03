@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 17:01:03 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 17:50:32 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 12:31:36 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Brain {
   virtual ~Brain(void);
 
   virtual Brain& operator=(const Brain& src);
-  std::string getIdea(int index) const;
+  void printIdeas(void) const;
   void setIdea(int index, std::string idea);
 
  private:

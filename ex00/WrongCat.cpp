@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:41:49 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 16:44:26 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 12:20:46 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ WrongCat::WrongCat(const WrongCat& copy) : WrongAnimal(copy) {
 WrongCat::~WrongCat(void) { std::cout << "WrongCat 소멸자 호출" << std::endl; }
 
 WrongCat& WrongCat::operator=(const WrongCat& src) {
+  WrongAnimal::operator=(src);
   std::cout << "WrongCat 대입 연산자 호출" << std::endl;
-  type = src.getType();
   return *this;
 }
 

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:35:50 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 16:43:44 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 11:49:16 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ WrongAnimal::~WrongAnimal(void) {
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& src) {
   std::cout << "WrongAnimal 대입 연산자 호출" << std::endl;
-  type = src.getType();
+  this->type = src.type;
   return *this;
 }
 

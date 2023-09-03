@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 19:49:17 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:10:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,33 @@
 Cat::Cat(void) : Animal() {
   std::cout << "Cat 기본 생성자 호출" << std::endl;
   type = "Cat";
-  brain = new Brain();
+  this->brain = new Brain();
 }
 
 Cat::Cat(const Cat& copy) : Animal(copy) {
   std::cout << "Cat 복사 생성자 호출" << std::endl;
-  brain = new Brain(*copy.brain);
+  this->brain = new Brain(*copy.brain);
 }
 
 Cat::~Cat(void) {
   std::cout << "Cat 소멸자 호출" << std::endl;
-  delete brain;
+  delete this->brain;
+}
+
+Cat& Cat::operator=(const Animal& src) {
+  operator=(static_cast<const Cat&>(src));
+  return *this;
 }
 
 Cat& Cat::operator=(const Cat& src) {
+  Animal::operator=(src);
   std::cout << "Cat 대입 연산자 호출" << std::endl;
-  if (this == &src) return *this;
-  type = src.getType();
-  delete brain;
-  brain = new Brain(src.getBrain());
+  *this->brain = *src.brain;
   return *this;
 }
 
 void Cat::makeSound(void) const { std::cout << "냥냥" << std::endl; }
-
-Brain& Cat::getBrain(void) const { return *brain; }
+void Cat::printIdeas(void) const { this->brain->printIdeas(); }
+void Cat::setIdea(int index, std::string idea) {
+  this->brain->setIdea(index, idea);
+}

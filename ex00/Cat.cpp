@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 19:44:35 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 12:21:04 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ Cat::Cat(const Cat& copy) : Animal(copy) {
 Cat::~Cat(void) { std::cout << "Cat 소멸자 호출" << std::endl; }
 
 Cat& Cat::operator=(const Cat& src) {
+  Animal::operator=(src);
   std::cout << "Cat 대입 연산자 호출" << std::endl;
-  type = src.getType();
   return *this;
 }
 
