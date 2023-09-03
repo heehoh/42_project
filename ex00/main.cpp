@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/03 11:58:36 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:54:43 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,23 @@
 #include "WrongCat.hpp"
 
 int main() {
-  Animal* animals[3];
+  const Animal* meta = new Animal();
+  const Animal* j = new Dog();
+  const Animal* i = new Cat();
+  std::cout << "-------------------------------" << std::endl;
+  std::cout << j->getType() << " " << std::endl;
+  std::cout << i->getType() << " " << std::endl;
+  i->makeSound();
+  j->makeSound();
+  meta->makeSound();
+  std::cout << "-------------------------------" << std::endl;
+
+  delete meta;
+  delete j;
+  delete i;
+  std::cout << "-------------------------------" << std::endl;
+
   WrongAnimal* wrongAnimals[2];
-
-  animals[0] = new Animal();
-  animals[1] = new Cat();
-  animals[2] = new Dog();
-
-  std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
-    animals[i]->makeSound();
-  }
-
-  std::cout << std::endl;
-  for (int i = 0; i < 3; i++) {
-    delete animals[i];
-  }
 
   std::cout << std::endl;
   wrongAnimals[0] = new WrongAnimal();

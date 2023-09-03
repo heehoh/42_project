@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/03 15:14:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:48:50 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "Dog.hpp"
 
 int main() {
+  const Animal* j = new Dog();
+  const Animal* i = new Cat();
+  delete j;  // should not create a leak
+  delete i;
+
+  std::cout << "\n\n\n" << std::endl;
   Animal* animals[4];
 
   for (int i = 0; i < 2; i++) {
