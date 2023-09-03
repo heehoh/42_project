@@ -6,15 +6,19 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/03 15:14:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:30:13 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <cstdlib>
 
 #include "Cat.hpp"
 #include "Dog.hpp"
 
 int main() {
   Animal* animals[4];
+  // Animal* dummy = new Animal();
+  // delete dummy;
 
   for (int i = 0; i < 2; i++) {
     animals[i] = new Dog();
