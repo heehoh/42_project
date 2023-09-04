@@ -6,11 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:56:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/01 15:09:50 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/04 23:15:39 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp";
+#include "Fixed.hpp"
 
 Fixed::Fixed(void) : _value(0) {
   std::cout << "Fixed 기본 생성자 호출" << std::endl;
@@ -26,14 +26,14 @@ Fixed::Fixed(const float value) {
 
 Fixed::Fixed(const Fixed& src) {
   std::cout << "Fixed 복사 생성자 호출" << std::endl;
-  _value = src.getRawBits();
+  _value = src._value;
 }
 
 Fixed::~Fixed(void) { std::cout << "Fixed 소멸자 호출" << std::endl; }
 
 Fixed& Fixed::operator=(const Fixed& src) {
   std::cout << "Fixed 복사 대입 연산자 호출" << std::endl;
-  _value = src.getRawBits();
+  _value = src._value;
   return *this;
 }
 

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:56:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/01 15:11:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/04 23:23:38 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,68 +26,68 @@ Fixed::Fixed(const float value) {
 
 Fixed::Fixed(const Fixed& src) {
   std::cout << "Fixed 복사 생성자 호출" << std::endl;
-  _value = src.getRawBits();
+  _value = src._value;
 }
 
 Fixed::~Fixed(void) { std::cout << "Fixed 소멸자 호출" << std::endl; }
 
 Fixed& Fixed::operator=(const Fixed& src) {
   std::cout << "Fixed 복사 대입 연산자 호출" << std::endl;
-  _value = src.getRawBits();
+  _value = src._value;
   return *this;
 }
 
 bool Fixed::operator<(const Fixed& src) const {
-  if (_value < src.getRawBits()) return true;
+  if (_value < src._value) return true;
   return false;
 }
 
 bool Fixed::operator<=(const Fixed& src) const {
-  if (_value <= src.getRawBits()) return true;
+  if (_value <= src._value) return true;
   return false;
 }
 
 bool Fixed::operator>(const Fixed& src) const {
-  if (_value > src.getRawBits()) return true;
+  if (_value > src._value) return true;
   return false;
 }
 
 bool Fixed::operator>=(const Fixed& src) const {
-  if (_value >= src.getRawBits()) return true;
+  if (_value >= src._value) return true;
   return false;
 }
 
 bool Fixed::operator==(const Fixed& src) const {
-  if (_value == src.getRawBits()) return true;
+  if (_value == src._value) return true;
   return false;
 }
 
 bool Fixed::operator!=(const Fixed& src) const {
-  if (_value != src.getRawBits()) return true;
+  if (_value != src._value) return true;
   return false;
 }
 
 Fixed Fixed::operator+(const Fixed& src) {
   Fixed temp;
-  temp.setRawBits(_value + src.getRawBits());
+  temp.setRawBits(_value + src._value);
   return temp;
 }
 
 Fixed Fixed::operator-(const Fixed& src) {
   Fixed temp;
-  temp.setRawBits(_value - src.getRawBits());
+  temp.setRawBits(_value - src._value);
   return temp;
 }
 
 Fixed Fixed::operator*(const Fixed& src) {
   Fixed temp;
-  temp.setRawBits((_value * src.getRawBits()) >> _bits);
+  temp.setRawBits((_value * src._value) >> _bits);
   return temp;
 }
 
 Fixed Fixed::operator/(const Fixed& src) {
   Fixed temp;
-  temp.setRawBits((_value << _bits) / src.getRawBits());
+  temp.setRawBits((_value << _bits) / src._value);
   return temp;
 }
 
@@ -96,7 +96,7 @@ Fixed& Fixed::operator++(void) {
   return *this;
 }
 
-Fixed& Fixed::operator++(int) {
+Fixed Fixed::operator++(int) {
   Fixed temp(*this);
   _value++;
   return temp;
@@ -107,7 +107,7 @@ Fixed& Fixed::operator--(void) {
   return *this;
 }
 
-Fixed& Fixed::operator--(int) {
+Fixed Fixed::operator--(int) {
   Fixed temp(*this);
   _value--;
   return temp;
