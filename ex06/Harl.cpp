@@ -34,10 +34,19 @@ void Harl::complain(std::string level) {
   switch (i) {
     case DEBUG:
       (this->*_func[0])();
+      (this->*_func[1])();
+      (this->*_func[2])();
+      (this->*_func[3])();
+      return ;
     case INFO:
       (this->*_func[1])();
+      (this->*_func[2])();
+      (this->*_func[3])();
+      return ;
     case WARNING:
       (this->*_func[2])();
+      (this->*_func[3])();
+      return ;
     case ERROR:
       (this->*_func[3])();
       return;
