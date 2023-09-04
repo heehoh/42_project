@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:04:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/04 15:13:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/04 19:11:07 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int main(int ac, char **av) {
     while ((pos = line.find(s1, pos)) != std::string::npos) {
       line.erase(pos, s1.size());
       line.insert(pos, s2);
+      pos += s2.size();
     }
     ofs << line << std::endl;
   }
