@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:04:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/08/22 00:29:26 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/04 15:05:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ int main(int ac, char **av) {
     return 1;
   }
   std::ifstream ifs;
-  ifs.open(av[1]);
+  ifs.open(av[1], std::ifstream::in);
   if (!ifs.is_open()) {
     std::cout << "파일 열기 실패" << std::endl;
     return 1;
   }
   std::ofstream ofs;
-  ofs.open(std::string(av[1]) + ".replace");
+  std::string newFileName(av[1]);
+  newFileName += ".replace";
+  ofs.open(newFileName, std::ifstream::out);
   if (!ofs.is_open()) {
     std::cout << "파일 생성 실패" << std::endl;
     return 1;
