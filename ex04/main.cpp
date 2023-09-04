@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:04:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/04 15:05:48 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/04 15:13:08 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int ac, char **av) {
   std::ofstream ofs;
   std::string newFileName(av[1]);
   newFileName += ".replace";
-  ofs.open(newFileName, std::ifstream::out);
+  ofs.open(newFileName.c_str(), std::ifstream::out);
   if (!ofs.is_open()) {
     std::cout << "파일 생성 실패" << std::endl;
     return 1;
