@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:30:53 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/03 15:10:10 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/04 13:38:26 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Dog::~Dog(void) {
 }
 
 Dog& Dog::operator=(const Animal& src) {
-  operator=(static_cast<const Dog&>(src));
+  operator=(dynamic_cast<const Dog&>(src));
   return *this;
 }
 

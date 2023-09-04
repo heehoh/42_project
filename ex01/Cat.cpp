@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/03 15:10:48 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/04 13:37:22 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Cat::~Cat(void) {
 }
 
 Cat& Cat::operator=(const Animal& src) {
-  operator=(static_cast<const Cat&>(src));
+  operator=(dynamic_cast<const Cat&>(src));
   return *this;
 }
 
