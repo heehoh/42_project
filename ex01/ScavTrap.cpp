@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:31:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 13:24:15 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:15:32 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ ScavTrap::~ScavTrap(void) { std::cout << "ScavTrap 소멸자 호출" << std::end
 
 // Member functions
 
-void ScavTrap::attack(std::string& target) {
+void ScavTrap::attack(const std::string& target) {
   if (getHitPoints() == 0 || getEnergyPoints() == 0) {
     std::cout << "ScavTrap " << name << "이(가) 공격할 수 없습니다!"
               << std::endl;

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:24:49 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 11:10:40 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/24 17:58:50 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int main() {
   enemy.printStatus();
 
   std::cout << "\n------ 공격 ------" << std::endl;
-  clapTrap.attack("적");
+  clapTrap.attack(enemy.getName());
   enemy.takeDamage(clapTrap.getAttackDamage());
-  enemy.attack("클랩트랩");
+  enemy.attack(clapTrap.getName());
   clapTrap.takeDamage(enemy.getAttackDamage());
   clapTrap.printStatus();
   enemy.printStatus();
@@ -40,9 +40,9 @@ int main() {
   enemy.printStatus();
 
   std::cout << "\n------ 공격 ------" << std::endl;
-  clapTrap.attack("적");
+  clapTrap.attack(enemy.getName());
   enemy.takeDamage(clapTrap.getAttackDamage());
-  enemy.attack("적");
+  enemy.attack(clapTrap.getName());
   clapTrap.printStatus();
   enemy.printStatus();
 

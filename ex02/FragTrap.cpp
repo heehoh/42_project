@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 11:34:05 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 13:30:25 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:27:41 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
   hitPoints = fragtrap::HP;
   energyPoints = fragtrap::EP;
   attackDamage = fragtrap::AD;
+  maxHitPoints = fragtrap::HP;
 }
 
 FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src) {
@@ -33,6 +34,7 @@ FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src) {
   hitPoints = src.getHitPoints();
   energyPoints = src.getEnergyPoints();
   attackDamage = src.getAttackDamage();
+  maxHitPoints = src.getMaxHitPoints();
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& src) {
@@ -41,6 +43,7 @@ FragTrap& FragTrap::operator=(const FragTrap& src) {
   hitPoints = src.getHitPoints();
   energyPoints = src.getEnergyPoints();
   attackDamage = src.getAttackDamage();
+  maxHitPoints = src.getMaxHitPoints();
   return *this;
 }
 
