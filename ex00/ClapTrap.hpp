@@ -50,7 +50,7 @@ class ClapTrap {
 
   void printStatus(void) const;
 
- protected:
+ private:
   std::string _name;
   unsigned int _hitPoints;
   unsigned int _energyPoints;

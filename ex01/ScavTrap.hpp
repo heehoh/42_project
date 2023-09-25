@@ -23,7 +23,7 @@ enum status {
 };
 }
 
-class ScavTrap : virtual public ClapTrap {
+class ScavTrap : public ClapTrap {
  public:
   ScavTrap(void);
   ScavTrap(std::string name);
