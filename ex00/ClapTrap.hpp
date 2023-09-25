@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:25:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/24 18:43:40 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/25 12:53:53 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ class ClapTrap {
 
   void printStatus(void) const;
 
- private:
-  std::string name;
-  unsigned int hitPoints;
-  unsigned int energyPoints;
-  unsigned int attackDamage;
-  unsigned int maxHitPoints;
+ protected:
+  std::string _name;
+  unsigned int _hitPoints;
+  unsigned int _energyPoints;
+  unsigned int _attackDamage;
+  unsigned int _maxHitPoints;
 };
 
 #endif

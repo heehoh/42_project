@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 11:33:22 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 13:30:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/02 14:10:39 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ enum status {
 };
 }
 
-class FragTrap : public ClapTrap {
+class FragTrap : virtual public ClapTrap {
  public:
   FragTrap(void);
   FragTrap(std::string name);

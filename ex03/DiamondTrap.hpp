@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 12:12:05 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/02 12:27:07 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/09/25 13:04:23 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class DiamondTrap : public FragTrap, public ScavTrap {
   void whoAmI(void);
 
  private:
-  std::string name;
+  std::string _name;
 };
 
 #endif
