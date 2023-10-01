@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:31:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/03 15:48:50 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:10:24 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ int main() {
   delete j;  // should not create a leak
   delete i;
 
-  std::cout << "\n\n\n" << std::endl;
+  std::cout << "\n------- Dog와 Cat 생성 ------" << std::endl;
   Animal* animals[4];
-
   for (int i = 0; i < 2; i++) {
     animals[i] = new Dog();
   }
-  std::cout << std::endl;
   for (int i = 2; i < 4; i++) {
     animals[i] = new Cat();
   }
@@ -33,29 +31,28 @@ int main() {
   for (int i = 0; i < 4; i++) {
     animals[i]->makeSound();
   }
-  std::cout << std::endl;
-  std::cout << "----------------------------------------" << std::endl;
-  animals[0]->setIdea(0, "Dog idea 0");
-  animals[2]->setIdea(0, "Cat idea 0");
+
+  std::cout << "\n--------- Dog와 Cat 생각 설정 -------------" << std::endl;
+  animals[0]->setIdea(0, "산책 가자!");
+  animals[2]->setIdea(0, "졸려 -_-");
   *animals[1] = *animals[0];
   *animals[3] = *animals[2];
-  std::cout << "----------------------------------------" << std::endl;
-  std::cout << std::endl;
+
+  std::cout << "\n---------- Dog와 Cat의 생각 ------------" << std::endl;
   for (int i = 0; i < 4; i++) {
     animals[i]->makeSound();
-  }
-  std::cout << std::endl;
-  for (int i = 0; i < 4; i++) {
+    std::cout << "--> ";
     animals[i]->printIdeas();
   }
-  std::cout << std::endl;
-  animals[0]->setIdea(0, "Dog idea 0 changed");
-  animals[2]->setIdea(0, "Cat idea 0 changed");
-  std::cout << std::endl;
+  std::cout << "\n------ 배고픈 Dog와 Cat의 생각 -------- " << std::endl;
+  animals[1]->setIdea(0, "밥줘 ~~!");
+  animals[3]->setIdea(0, "밥줘 ~~!");
   for (int i = 0; i < 4; i++) {
+    animals[i]->makeSound();
+    std::cout << "--> ";
     animals[i]->printIdeas();
   }
-  std::cout << std::endl;
+  std::cout << "\n------- Dog와 Cat 퇴장 ---------" << std::endl;
   for (int i = 0; i < 4; i++) {
     delete animals[i];
   }

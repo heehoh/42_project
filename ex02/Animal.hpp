@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:35:33 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/01 14:11:17 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/01 15:12:30 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class Animal {
   virtual Animal& operator=(const Animal& src);
   std::string getType(void) const;
   virtual void makeSound(void) const = 0;
+  virtual void printIdeas(void) const = 0;
+  virtual void setIdea(int index, std::string idea) = 0;
 
  protected:
   std::string type;

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:30:53 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/04 14:22:15 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:14:44 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ Dog& Dog::operator=(const Animal& src) {
 }
 
 Dog& Dog::operator=(const Dog& src) {
-  Animal::operator=(src);
   std::cout << "Dog 대입 연산자 호출" << std::endl;
+  Animal::operator=(src);
   *this->brain = *src.brain;
   return *this;
 }
