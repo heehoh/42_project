@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:35:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/09/03 15:25:11 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/01 14:11:23 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,3 @@ Animal& Animal::operator=(const Animal& src) {
 }
 
 std::string Animal::getType(void) const { return this->type; }
-void Animal::makeSound(void) const {
-  std::cout << "Animal 울음소리" << std::endl;
-}
