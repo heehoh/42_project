@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:11:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/04 20:25:39 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/05 11:34:56 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Bureaucrat {
   Bureaucrat& operator=(const Bureaucrat& other);
 
  public:
-  Bureaucrat(const std::string& name, int grade);
+  Bureaucrat(const std::string& name, int& grade);
   ~Bureaucrat();
 
   const std::string& getName() const;
