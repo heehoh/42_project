@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:11:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/04 20:25:39 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/08 15:14:06 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Bureaucrat {
    public:
     virtual const char* what() const throw();
   };
+  Bureaucrat();
   Bureaucrat(const Bureaucrat& other);
   Bureaucrat& operator=(const Bureaucrat& other);
 

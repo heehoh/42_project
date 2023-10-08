@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:57:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/05 11:22:54 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/08 16:10:37 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define FORM_HPP
 
 #include <string>
+
+class Bureaucrat;
 
 class Form {
  private:
@@ -34,12 +36,13 @@ class Form {
   Form& operator=(const Form& other);
 
  public:
-  Form(const std::string& name, int& gradeToSign, int& gradeToExec);
+  Form(const std::string& name, int gradeToSign, int gradeToExec);
   ~Form();
   const std::string& getName() const;
   const bool& getSigned() const;
   const int& getGradeToSign() const;
   const int& getGradeToExec() const;
+  void beSigned(const Bureaucrat& bureaucrat);
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& form);
