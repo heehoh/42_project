@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:12:00 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/08 16:57:28 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/08 21:53:15 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <iostream>
 
 #include "Form.hpp"
+
+Bureaucrat::Bureaucrat() : name_(""), grade_(1) {}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
+    : name_(other.name_), grade_(other.grade_) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
     : name_(name), grade_(grade) {
