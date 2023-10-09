@@ -6,8 +6,34 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:29:16 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 00:46:50 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/09 19:19:49 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
+
+#include <iostream>
+
+PresidentialPardonForm::PresidentialPardonForm()
+    : AForm("PresidentialPardonForm", 25, 5), target_("") {}
+
+PresidentialPardonForm::PresidentialPardonForm(
+    const PresidentialPardonForm& other)
+    : AForm("PresidentialPardonForm", 25, 5), target_(other.target_) {}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(
+    const PresidentialPardonForm& other) {
+  return *this;
+}
+
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
+    : AForm("PresidentialPardonForm", 25, 5), target_(target) {}
+
+PresidentialPardonForm::~PresidentialPardonForm() {}
+
+const std::string& PresidentialPardonForm::getTarget() const { return target_; }
+
+void PresidentialPardonForm::execute(Bureaucrat const& executor) const {
+  std::cout << target_ << "은(는) 자포드 비블브락스에 의해 사면되었습니다."
+            << std::endl;
+}
