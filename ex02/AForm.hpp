@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:57:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/08 21:38:48 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/09 09:29:31 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Bureaucrat;
 
 class AForm {
- private:
+ protected:
   const std::string name_;
   bool signed_;
   const int gradeToSign_;
@@ -31,12 +31,13 @@ class AForm {
    public:
     virtual const char* what() const throw();
   };
+  AForm();
   AForm(const AForm& other);
   AForm& operator=(const AForm& other);
 
  public:
-  AForm();
-  virtual ~AForm() = 0;
+  AForm(const std::string& name, int gradeToSign, int gradeToExec);
+  virtual ~AForm();
   const std::string& getName() const;
   const bool& getSigned() const;
   const int& getGradeToSign() const;

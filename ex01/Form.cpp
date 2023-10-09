@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:57:24 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/08 17:20:36 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/09 00:45:56 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
+
+Form::Form() : name_(""), signed_(false), gradeToSign_(1), gradeToExec_(1) {}
+
+Form::Form(const Form& other)
+    : name_(other.name_),
+      signed_(other.signed_),
+      gradeToSign_(other.gradeToSign_),
+      gradeToExec_(other.gradeToExec_) {}
+
+Form& Form::operator=(const Form& other) {
+  signed_ = other.signed_;
+  return *this;
+}
 
 Form::Form(const std::string& name, int gradeToSign, int gradeToExec)
     : name_(name),

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:12:00 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/08 21:56:23 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/09 00:44:04 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ Bureaucrat::Bureaucrat() : name_(""), grade_(1) {}
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : name_(other.name_), grade_(other.grade_) {}
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) { return *this; }
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+  grade_ = other.grade_;
+  return *this;
+}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
     : name_(name), grade_(grade) {

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:57:24 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/08 21:32:49 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/09 00:53:22 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,31 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
+
+AForm::AForm() : name_(""), signed_(false), gradeToSign_(0), gradeToExec_(0) {}
+
+AForm::AForm(const AForm& other)
+    : name_(other.name_),
+      signed_(other.signed_),
+      gradeToSign_(other.gradeToSign_),
+      gradeToExec_(other.gradeToExec_) {}
+
+AForm& AForm::operator=(const AForm& other) {
+  signed_ = other.signed_;
+  return *this;
+}
+AForm::~AForm() {}
+
+AForm::AForm(const std::string& name, int gradeToSign, int gradeToExec)
+    : name_(name),
+      signed_(false),
+      gradeToSign_(gradeToSign),
+      gradeToExec_(gradeToExec) {
+  if (gradeToSign_ < 1 || gradeToExec_ < 1)
+    throw GradeTooHighException();
+  else if (gradeToSign_ > 150 || gradeToExec_ > 150)
+    throw GradeTooLowException();
+}
 
 const std::string& AForm::getName() const { return name_; }
 const bool& AForm::getSigned() const { return signed_; }
