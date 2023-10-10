@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:19:15 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/10 13:39:25 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:48:30 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const {
     std::cout << target_ << "이(가) 성공적으로 완성되었습니다! 🤖🤖"
               << std::endl;
   else
-    std::cout << target_ << "이(가) 생성이 실패했습니다! 💥💥" << std::endl;
+    std::cout << target_ << "이(가) 만들어지지 못했습니다! 💥💥" << std::endl;
 }
