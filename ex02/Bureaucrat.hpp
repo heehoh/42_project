@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:11:45 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 20:11:17 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:08:59 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
  private:
@@ -42,8 +42,8 @@ class Bureaucrat {
 
   void incrementGrade();
   void decrementGrade();
-  void signForm(Form& form);
-  
+  void signForm(AForm& form);
+  void executeForm(AForm const& form) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);

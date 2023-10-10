@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:57:10 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 09:29:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:07:41 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,11 @@
 class Bureaucrat;
 
 class AForm {
- protected:
+ private:
   const std::string name_;
   bool signed_;
   const int gradeToSign_;
   const int gradeToExec_;
-  class GradeTooHighException : public std::exception {
-   public:
-    virtual const char* what() const throw();
-  };
-  class GradeTooLowException : public std::exception {
-   public:
-    virtual const char* what() const throw();
-  };
   AForm();
   AForm(const AForm& other);
   AForm& operator=(const AForm& other);
@@ -42,8 +34,21 @@ class AForm {
   const bool& getSigned() const;
   const int& getGradeToSign() const;
   const int& getGradeToExec() const;
+  virtual const std::string& getTarget() const = 0;
   void beSigned(const Bureaucrat& bureaucrat);
-  virtual void execute(Bureaucrat const& executor) const = 0;
+  virtual void execute(Bureaucrat const& executor) const;
+  class GradeTooHighException : public std::exception {
+   public:
+    virtual const char* what() const throw();
+  };
+  class GradeTooLowException : public std::exception {
+   public:
+    virtual const char* what() const throw();
+  };
+  class NotSignedException : public std::exception {
+   public:
+    virtual const char* what() const throw();
+  };
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& form);

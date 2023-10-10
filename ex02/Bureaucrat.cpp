@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:12:00 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 00:44:15 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:11:10 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <iostream>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : name_(""), grade_(1) {}
 
@@ -49,7 +49,7 @@ void Bureaucrat::decrementGrade() {
   ++grade_;
 }
 
-void Bureaucrat::signForm(Form& form) {
+void Bureaucrat::signForm(AForm& form) {
   try {
     std::cout << name_ << "이(가) " << form.getName() << "에 서명하려고 합니다"
               << std::endl;
@@ -57,6 +57,17 @@ void Bureaucrat::signForm(Form& form) {
   } catch (std::exception& e) {
     std::cout << name_ << "이(가) " << form.getName()
               << "에 서명하지 못했습니다. 관료 " << e.what() << std::endl;
+  }
+}
+
+void Bureaucrat::executeForm(AForm const& form) const {
+  try {
+    std::cout << name_ << "이(가) " << form.getName()
+              << "을(를) 실행하려고 합니다" << std::endl;
+    form.execute(*this);
+  } catch (std::exception& e) {
+    std::cout << name_ << "이(가) " << form.getName()
+              << "을(를) 실행하지 못했습니다. 관료의 " << e.what() << std::endl;
   }
 }
 

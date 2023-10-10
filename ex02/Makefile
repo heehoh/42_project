@@ -1,7 +1,10 @@
 NAME = a.out
 SRCS = main.cpp \
 			 Bureaucrat.cpp \
-			 Form.cpp
+			 AForm.cpp \
+			 PresidentialPardonForm.cpp \
+			 RobotomyRequestForm.cpp \
+			 ShrubberyCreationForm.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -26,6 +29,7 @@ $(NAME) : $(OBJS_FILES)
 
 clean :
 	@rm -rf $(OBJ_DIR)
+	@rm -rf *_shrubbery
 	@echo "\033[33mremove obj\033[0m"
 .PHONY : clean
 

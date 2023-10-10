@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:29:16 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 19:19:49 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:12:06 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ PresidentialPardonForm::PresidentialPardonForm(
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(
     const PresidentialPardonForm& other) {
+  if (this == &other) return *this;
   return *this;
 }
 
@@ -34,6 +35,7 @@ PresidentialPardonForm::~PresidentialPardonForm() {}
 const std::string& PresidentialPardonForm::getTarget() const { return target_; }
 
 void PresidentialPardonForm::execute(Bureaucrat const& executor) const {
+  AForm::execute(executor);
   std::cout << target_ << "은(는) 자포드 비블브락스에 의해 사면되었습니다."
             << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:08:55 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 09:26:32 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:06:38 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(
     const ShrubberyCreationForm& other) {
+  if (this == &other) return *this;
   return *this;
 }
 
@@ -55,6 +56,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 const std::string& ShrubberyCreationForm::getTarget() const { return target_; }
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
+  AForm::execute(executor);
   std::ofstream ofs(target_ + "_shrubbery");
   if (!ofs.is_open()) {
     std::cout << "파일 오픈 에러: " << target_ << "_shrubbery" << std::endl;

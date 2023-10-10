@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:57:24 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 00:53:22 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:19:27 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,23 @@ void AForm::beSigned(const Bureaucrat& bureaucrat) {
   std::cout << name_ << "이(가) 서명되었습니다" << std::endl;
 }
 
+void AForm::execute(const Bureaucrat& bureaucrat) const {
+  if (!signed_) throw AForm::NotSignedException();
+  if (bureaucrat.getGrade() > gradeToExec_) throw AForm::GradeTooLowException();
+  std::cout << bureaucrat.getName() << "이(가) " << name_ << "을(를) 실행합니다"
+            << std::endl;
+}
+
 const char* AForm::GradeTooLowException::what() const throw() {
   return "등급이 낮습니다";
 }
 
 const char* AForm::GradeTooHighException::what() const throw() {
   return "등급이 높습니다";
+}
+
+const char* AForm::NotSignedException::what() const throw() {
+  return "서명이 없습니다";
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& form) {

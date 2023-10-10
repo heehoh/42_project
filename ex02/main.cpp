@@ -6,44 +6,71 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:11:31 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/08 17:21:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:44:18 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+
+void delay() {
+  for (int i = 0; i < 3; i++) {
+    usleep(400000);
+  }
+  std::cout << std::endl;
+}
 
 int main() {
-  std::cout << "-------서류 생성--------" << std::endl;
-  try {
-    Form file1("1등급 서류", 1, 1);
-    std::cout << file1;
-    Form errFile("에러 서류", 151, 1);
-  } catch (std::exception& e) {
-    std::cout << "서류 " << e.what() << std::endl;
-  }
-  try {
-    Form errFile("에러 서류", 0, 1);
-  } catch (std::exception& e) {
-    std::cout << "서류 " << e.what() << std::endl;
-  }
-  std::cout << "\n-------서류 생성 및 서명--------" << std::endl;
-  Bureaucrat highB("1등급 관료", 1);
-  Bureaucrat lowB("150등급 관료", 150);
-  Form highFile("1등급 서류", 1, 1);
-  Form lowFile("150등급 서류", 150, 150);
+  Bureaucrat b1("1등급 관료", 1);
+  Bureaucrat b2("150등급 관료", 150);
 
-  highB.signForm(lowFile);
-  std::cout << std::endl;
-  lowB.signForm(lowFile);
-  std::cout << std::endl;
+  PresidentialPardonForm f1("수감자1");
+  RobotomyRequestForm f2("로봇1");
+  ShrubberyCreationForm f3("마당");
 
-  std::cout << lowFile << std::endl;
-  lowB.signForm(highFile);
-  std::cout << "\n" << highFile << std::endl;
-  highB.signForm(highFile);
-  std::cout << "\n" << highFile << std::endl;
-  return 0;
+  std::cout << "---------150 등급 관료가 서명합니다-------" << std::endl;
+  delay();
+  b2.signForm(f1);
+  delay();
+  b2.signForm(f2);
+  delay();
+  b2.signForm(f3);
+  delay();
+  std::cout << "\n---------150 등급 관료가 실행합니다-------" << std::endl;
+  delay();
+  b2.executeForm(f1);
+  delay();
+  b2.executeForm(f2);
+  delay();
+  b2.executeForm(f3);
+  delay();
+  std::cout << "\n---------1 등급 관료가 서명합니다-------" << std::endl;
+  delay();
+  b1.signForm(f1);
+  delay();
+  b1.signForm(f2);
+  delay();
+  b1.signForm(f3);
+  delay();
+  std::cout << "\n---------150 등급 관료가 실행합니다-------" << std::endl;
+  delay();
+  b2.executeForm(f1);
+  delay();
+  b2.executeForm(f2);
+  delay();
+  b2.executeForm(f3);
+  delay();
+  std::cout << "\n---------1 등급 관료가 실행합니다-------" << std::endl;
+  delay();
+  b1.executeForm(f1);
+  delay();
+  b1.executeForm(f2);
+  delay();
+  b1.executeForm(f3);
 }

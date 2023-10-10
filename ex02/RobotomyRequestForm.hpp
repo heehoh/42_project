@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:10:30 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/09 00:48:56 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:15:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 
 #include "AForm.hpp"
 
-class RobotomyRequest : public AForm {
+class RobotomyRequestForm : public AForm {
  private:
   const std::string target_;
-  RobotomyRequest();
-  RobotomyRequest(const RobotomyRequest& other);
-  RobotomyRequest& operator=(const RobotomyRequest& other);
+  RobotomyRequestForm();
+  RobotomyRequestForm(const RobotomyRequestForm& other);
+  RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 
  public:
-  RobotomyRequest(const std::string& target);
-  virtual ~RobotomyRequest();
+  RobotomyRequestForm(const std::string& target);
+  virtual ~RobotomyRequestForm();
   const std::string& getTarget() const;
   virtual void execute(Bureaucrat const& executor) const;
 };
