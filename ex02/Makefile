@@ -38,4 +38,4 @@ fclean : clean
 
 re : fclean
 	@make all
-.PHONY : re%
+.PHONY : re
