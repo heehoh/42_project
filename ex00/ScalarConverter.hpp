@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/13 22:06:04 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/14 16:12:00 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@
 
 class ScalarConverter {
  private:
-  static std::stringstream ss;
-  ScalarConverter(const ScalarConverter& other);
-  ScalarConverter& operator=(const ScalarConverter& other);
-
- public:
+  static char c_;
+  static int i_;
+  static float f_;
+  static double d_;
+  ScalarConverter(const ScalarConverter&);
+  ScalarConverter& operator=(const ScalarConverter&);
   ScalarConverter();
   ~ScalarConverter();
-  void convert(std::string literal);
+
+ public:
+  static void convert(std::string literal);
 };
 
 #endif
