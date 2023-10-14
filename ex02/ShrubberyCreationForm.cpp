@@ -57,7 +57,8 @@ const std::string& ShrubberyCreationForm::getTarget() const { return target_; }
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
   AForm::execute(executor);
-  std::ofstream ofs(target_ + "_shrubbery");
+  std::string file_name = target_ + "_shrubbery";
+  std::ofstream ofs(file_name.c_str());
   if (!ofs.is_open()) {
     std::cout << "파일 오픈 에러: " << target_ << "_shrubbery" << std::endl;
     return;
