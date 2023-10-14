@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 21:12:50 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/12 12:36:24 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/14 15:56:47 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,12 @@
 #include "ShrubberyCreationForm.hpp"
 
 Intern::Intern() {}
-Intern::Intern(const Intern& other) { *this = other; }
-Intern& Intern::operator=(const Intern& other) {
-  if (this != &other) return *this;
-  return *this;
-}
+Intern::Intern(const Intern&) {}
+Intern& Intern::operator=(const Intern&) { return *this; }
 Intern::~Intern() {}
-
-const char* Intern::MakeFormException::what() const throw() {
-  return "인턴은 그런 서류는 만들 수 없습니다";
-}
 
 AForm* Intern::makeForm(const std::string& name, const std::string& target) {
   AForm* form;
-  std::cout << "인턴은 " << name << "을(를) 만드려고 합니다" << std::endl;
   int i = 1 * (name == "shrubbery creation") +
           2 * (name == "robotomy request") +
           3 * (name == "presidential pardon");
@@ -47,7 +39,7 @@ AForm* Intern::makeForm(const std::string& name, const std::string& target) {
       form = new PresidentialPardonForm(target);
       break;
     default:
-      throw MakeFormException();
+      throw "인턴은 " + name + "을(를) 만들지 못합니다";
   }
   std::cout << "인턴은 " << form->getName() << "을(를) 만들었습니다"
             << std::endl;

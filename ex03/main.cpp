@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:11:31 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/12 12:37:13 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/14 16:01:37 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 #include <iostream>
 
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "Intern.hpp"
 
 void delay() {
-  for (int i = 0; i < 3; i++) {
-    usleep(400000);
-  }
+  usleep(1000000);
   std::cout << std::endl;
 }
 
@@ -38,8 +37,8 @@ int main() {
     f3 = intern.makeForm("presidential pardon", "수감자 1");
     delay();
     intern.makeForm("없는 서류", "없는 대상");
-  } catch (std::exception &e) {
-    std::cout << e.what() << std::endl;
+  } catch (std::string e) {
+    std::cout << e << std::endl;
   }
   std::cout << "\n---------150 등급 관료가 서명합니다-------" << std::endl;
   delay();
@@ -80,4 +79,8 @@ int main() {
   b1.executeForm(*f2);
   delay();
   b1.executeForm(*f3);
+  delete f1;
+  delete f2;
+  delete f3;
+  return 0;
 }

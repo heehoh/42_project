@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:11:31 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/10 13:50:33 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/14 16:01:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 #include "ShrubberyCreationForm.hpp"
 
 void delay() {
-  for (int i = 0; i < 3; i++) {
-    usleep(400000);
-  }
+  usleep(1000000);
   std::cout << std::endl;
 }
 

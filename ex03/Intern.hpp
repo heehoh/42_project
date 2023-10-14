@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 21:12:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/12 12:07:31 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/14 15:41:23 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ class AForm;
 
 class Intern {
  private:
-  Intern(const Intern& other);
-  Intern& operator=(const Intern& other);
-  class MakeFormException : public std::exception {
-   public:
-    virtual const char* what() const throw();
-  };
+  Intern(const Intern&);
+  Intern& operator=(const Intern&);
 
  public:
   Intern();
