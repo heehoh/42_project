@@ -1,6 +1,5 @@
-NAME = convert
-SRCS = main.cpp \
-			 ScalarConverter.cpp
+NAME = a.out
+SRCS = main.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 19:19:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/15 14:31:44 by hujeong          ###   ########.fr       */
+/*   Created: 2023/10/15 15:19:33 by hujeong           #+#    #+#             */
+/*   Updated: 2023/10/15 15:19:58 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-#define SCALARCONVERTER_HPP
+#ifndef B_HPP
+#define B_HPP
 
-#include <string>
+#include "Base.hpp"
 
-class ScalarConverter {
- private:
-  ScalarConverter(const ScalarConverter&);
-  ScalarConverter& operator=(const ScalarConverter&);
-  ScalarConverter();
-  ~ScalarConverter();
-
- public:
-  static void convert(std::string input);
-};
+class B : public Base {};
 
 #endif

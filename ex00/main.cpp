@@ -6,28 +6,13 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:52:49 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/14 15:08:32 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/15 14:30:38 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <sstream>
-#include <string>
+#include "ScalarConverter.hpp"
 
 int main(int argc, char **argv) {
-  std::stringstream ss;
-
-  std::string str = "7.1.1";
-
-  int num = 0;
-  double ll;
-
-  ss << str;
-  // ss >> num;
-  ss >> ll;
-  // ss >> ll;
-  // ss >> ll;
-  std::cout << num << std::endl;
-  std::cout << ll << std::endl;
+  if (argc == 2) ScalarConverter::convert(argv[1]);
   return 0;
 }

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 19:19:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/15 14:31:44 by hujeong          ###   ########.fr       */
+/*   Created: 2023/10/15 15:12:42 by hujeong           #+#    #+#             */
+/*   Updated: 2023/10/15 15:41:08 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-#define SCALARCONVERTER_HPP
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-#include <string>
+// dynamic_cast 사용해보기
 
-class ScalarConverter {
- private:
-  ScalarConverter(const ScalarConverter&);
-  ScalarConverter& operator=(const ScalarConverter&);
-  ScalarConverter();
-  ~ScalarConverter();
+Base* generate() {}
+void identify(Base* p) {}
+void identify(Base& p) {}
 
- public:
-  static void convert(std::string input);
-};
-
-#endif
+int main() {}
