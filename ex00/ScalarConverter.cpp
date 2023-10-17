@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/18 00:18:33 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/18 00:34:43 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ void ScalarConverter::convertChar(int i) {
 }
 
 void ScalarConverter::convertChar(double d) {
-  if (d == static_cast<int>(d)) {
-    cImpossible_ = false;
-    convertChar(static_cast<int>(d));
-  } else
-    cImpossible_ = true;
+  if (d != static_cast<int>(d)) cImpossible_ = true;
+  convertChar(static_cast<int>(d));
 }
 
 void ScalarConverter::convertInt(double d) {
@@ -87,6 +84,10 @@ bool ScalarConverter::isInt(std::string &input) {
 
   ss2 << num;
   if (input == ss2.str()) return true;
+  if (num == INT_MAX || num == INT_MIN) {
+    cImpossible_ = true;
+    iImpossible_ = true;
+  }
   return false;
 }
 
@@ -161,8 +162,13 @@ void ScalarConverter::printDouble() {
 }
 
 void ScalarConverter::convert(std::string &input) {
+  cNonDisplayable_ = false;
+  cImpossible_ = false;
+  iImpossible_ = false;
   dot_ = 0;
   precision_ = 1;
+  ss_.clear();
+  ss_.str("");
   ss_ << input;
   checkInput(input);
   switch (t_) {
