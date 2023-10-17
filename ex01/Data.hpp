@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 15:05:05 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/15 15:06:58 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/18 03:13:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #define DATA_HPP
 
 struct Data {
-  char *str;
+  char c;
+  int i;
+  float f;
 };
 
 #endif

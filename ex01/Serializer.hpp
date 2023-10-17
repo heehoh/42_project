@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:52:40 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/15 15:04:15 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/18 03:14:32 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <cstdint>
 
-struct Data;
+#include "Data.hpp"
 
 class Serializer {
  private:
@@ -26,7 +26,7 @@ class Serializer {
 
  public:
   static uintptr_t serialize(Data* ptr);
-  static Data* deserailize(uintptr_t raw);
+  static Data* deserialize(uintptr_t raw);
 };
 
 #endif
