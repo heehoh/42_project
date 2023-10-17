@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/18 00:34:43 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/18 02:59:06 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ bool ScalarConverter::isInt(std::string &input) {
   return false;
 }
 
-void ScalarConverter::checkInput(std::string &input) {
-  cNonDisplayable_ = false;
-  cImpossible_ = false;
-  iImpossible_ = false;
+void ScalarConverter::checkType(std::string &input) {
   if (isNaN(input))
     t_ = NAN_T;
   else if (input.size() == 1 && !std::isdigit(input[0]))
@@ -161,16 +158,24 @@ void ScalarConverter::printDouble() {
     std::cout << std::fixed << std::setprecision(precision_) << d_ << std::endl;
 }
 
-void ScalarConverter::convert(std::string &input) {
+void ScalarConverter::init() {
+  t_ = NAN_T;
+  ss_.clear();
+  ss_.str("");
+  dot_ = 0;
+  precision_ = 1;
   cNonDisplayable_ = false;
   cImpossible_ = false;
   iImpossible_ = false;
-  dot_ = 0;
-  precision_ = 1;
-  ss_.clear();
-  ss_.str("");
-  ss_ << input;
-  checkInput(input);
+  c_ = 0;
+  i_ = 0;
+  f_ = 0;
+  d_ = 0;
+}
+
+void ScalarConverter::convert(std::string &input) {
+  init();
+  checkType(input);
   switch (t_) {
     case CHAR_T:
       convertFromChar();

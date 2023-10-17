@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/18 00:18:52 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/18 02:58:33 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <string>
 
-enum Tinput { CHAR_T, INT_T, FLOAT_T, DOUBLE_T, NAN_T };
+enum Tinput { CHAR_T, INT_T, DOUBLE_T, NAN_T };
 class ScalarConverter {
  private:
   static Tinput t_;
@@ -36,7 +36,10 @@ class ScalarConverter {
   ScalarConverter &operator=(const ScalarConverter &);
   ScalarConverter();
   ~ScalarConverter();
-  static void checkInput(std::string &input);
+
+  static void init();
+
+  static void checkType(std::string &input);
   static bool isNaN(std::string &input);
   static bool isInt(std::string &input);
 
