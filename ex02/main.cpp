@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 15:12:42 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/18 03:37:22 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/18 03:57:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ Base* generate() {
 }
 
 void identify(Base* p) {
+  std::cout << "포인터 다운캐스팅: ";
   if (dynamic_cast<A*>(p)) {
     std::cout << "A" << std::endl;
   } else if (dynamic_cast<B*>(p)) {
@@ -42,6 +43,7 @@ void identify(Base* p) {
 }
 
 void identify(Base& p) {
+  std::cout << "참조 다운캐스팅: ";
   try {
     (void)dynamic_cast<A&>(p);
     std::cout << "A" << std::endl;
