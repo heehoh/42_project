@@ -25,7 +25,6 @@ $(NAME) : $(OBJS_FILES)
 
 clean :
 	@rm -rf $(OBJ_DIR)
-	@rm -rf *_shrubbery
 	@echo "\033[33mremove obj\033[0m"
 .PHONY : clean
 
