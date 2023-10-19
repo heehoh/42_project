@@ -13,8 +13,7 @@
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 
-#include <cstdint>
-
+#define uintptr_t unsigned long long
 #include "Data.hpp"
 
 class Serializer {
