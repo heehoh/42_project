@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/20 00:10:01 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/20 00:18:32 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void ScalarConverter::convertChar(int i) {
 }
 
 void ScalarConverter::convertChar(double d) {
-  if (d != static_cast<int>(d)) cImpossible_ = true;
+  if (d != static_cast<char>(d)) cImpossible_ = true;
   convertChar(static_cast<int>(d));
 }
 
@@ -71,7 +71,7 @@ bool ScalarConverter::isNaN(std::string &input) {
       if (dot_ == 2) return true;
       precision_ = input.size() - i - 1;
       if (input[input.size() - 1] == 'f') --precision_;
-    } else if (!std::isdigit(input[i]) && input[input.size() - 1] != 'f')
+    } else if (!std::isdigit(input[i]) && !(i == input.size() - 1 && input[i] == 'f')) 
       return true;
   }
   return false;
