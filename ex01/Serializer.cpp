@@ -6,18 +6,15 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:53:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/18 03:14:41 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/19 14:02:06 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 
-#include <cstdint>
-#include "Serializer.hpp"
-
 Serializer::Serializer() {}
 Serializer::Serializer(const Serializer&) {}
-Serializer& Serializer::operator=(const Serializer&) { return *this;}
+Serializer& Serializer::operator=(const Serializer&) { return *this; }
 Serializer::~Serializer() {}
 
 uintptr_t Serializer::serialize(Data* ptr) {
