@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/18 02:59:06 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/19 13:55:39 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,11 @@ void ScalarConverter::printDouble() {
     std::cout << std::fixed << std::setprecision(precision_) << d_ << std::endl;
 }
 
-void ScalarConverter::init() {
+void ScalarConverter::init(std::string &input) {
   t_ = NAN_T;
   ss_.clear();
   ss_.str("");
+  ss_ << input;
   dot_ = 0;
   precision_ = 1;
   cNonDisplayable_ = false;
@@ -174,7 +175,7 @@ void ScalarConverter::init() {
 }
 
 void ScalarConverter::convert(std::string &input) {
-  init();
+  init(input);
   checkType(input);
   switch (t_) {
     case CHAR_T:

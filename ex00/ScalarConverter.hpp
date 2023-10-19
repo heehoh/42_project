@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/18 02:58:33 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/19 13:55:43 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class ScalarConverter {
   ScalarConverter();
   ~ScalarConverter();
 
-  static void init();
+  static void init(std::string &input);
 
   static void checkType(std::string &input);
   static bool isNaN(std::string &input);
