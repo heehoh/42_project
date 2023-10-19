@@ -6,12 +6,13 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/19 13:55:39 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/19 13:58:10 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
+#include <climits>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
