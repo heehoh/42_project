@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/19 13:58:10 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/20 00:10:01 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ bool ScalarConverter::isNaN(std::string &input) {
         continue;
     } else if (input[i] == '.') {
       ++dot_;
-      precision_ = input.size() - i - 1;
       if (dot_ == 2) return true;
-    } else if (!std::isdigit(input[i]))
+      precision_ = input.size() - i - 1;
+      if (input[input.size() - 1] == 'f') --precision_;
+    } else if (!std::isdigit(input[i]) && input[input.size() - 1] != 'f')
       return true;
   }
   return false;
@@ -93,12 +94,19 @@ bool ScalarConverter::isInt(std::string &input) {
 }
 
 void ScalarConverter::checkType(std::string &input) {
-  if (isNaN(input))
+ 
+  if (input == "inf" || input == "+inf" || input == "inff" || input == "+inff")
+    t_ = INF_T;
+  else if (input == "-inf" || input == "-inff")
+    t_ = MINF_T;
+  else if (isNaN(input))
     t_ = NAN_T;
   else if (input.size() == 1 && !std::isdigit(input[0]))
     t_ = CHAR_T;
   else if (isInt(input))
     t_ = INT_T;
+  else if (input[input.size() - 1] == 'f')
+    t_ = FLOAT_T;
   else
     t_ = DOUBLE_T;
 }
@@ -117,6 +125,18 @@ void ScalarConverter::convertFromInt() {
   d_ = static_cast<double>(i_);
 }
 
+void ScalarConverter::convertFromFloat() {
+  std::string input = ss_.str();
+  input.pop_back();
+  ss_.clear();
+  ss_.str("");
+  ss_ << input;
+  ss_ >> f_;
+  convertChar(f_);
+  convertInt(f_);
+  d_ = static_cast<double>(f_);
+}
+
 void ScalarConverter::convertFromDouble() {
   ss_ >> d_;
   convertChar(static_cast<float>(d_));
@@ -126,7 +146,7 @@ void ScalarConverter::convertFromDouble() {
 
 void ScalarConverter::printChar() {
   std::cout << "char: ";
-  if (t_ == NAN_T || cImpossible_)
+  if (t_ == NAN_T || t_ == INF_T || t_ == MINF_T || cImpossible_ )
     std::cout << "impossible" << std::endl;
   else if (cNonDisplayable_)
     std::cout << "Non displayable" << std::endl;
@@ -136,7 +156,7 @@ void ScalarConverter::printChar() {
 
 void ScalarConverter::printInt() {
   std::cout << "int: ";
-  if (t_ == NAN_T || iImpossible_)
+  if (t_ == NAN_T  || t_ == INF_T || t_ == MINF_T || iImpossible_)
     std::cout << "impossible" << std::endl;
   else
     std::cout << i_ << std::endl;
@@ -146,6 +166,10 @@ void ScalarConverter::printFloat() {
   std::cout << "float: ";
   if (t_ == NAN_T)
     std::cout << "nanf" << std::endl;
+  else if (t_ == INF_T)
+    std::cout << "inff" << std::endl;
+  else if (t_ == MINF_T)
+    std::cout << "-inff" << std::endl;
   else
     std::cout << std::fixed << std::setprecision(precision_) << f_ << "f"
               << std::endl;
@@ -155,6 +179,10 @@ void ScalarConverter::printDouble() {
   std::cout << "double: ";
   if (t_ == NAN_T)
     std::cout << "nan" << std::endl;
+  else if (t_ == INF_T)
+    std::cout << "inf" << std::endl;
+  else if (t_ == MINF_T)
+    std::cout << "-inf" << std::endl;
   else
     std::cout << std::fixed << std::setprecision(precision_) << d_ << std::endl;
 }
@@ -184,6 +212,9 @@ void ScalarConverter::convert(std::string &input) {
       break;
     case INT_T:
       convertFromInt();
+      break;
+    case FLOAT_T:
+      convertFromFloat();
       break;
     case DOUBLE_T:
       convertFromDouble();
