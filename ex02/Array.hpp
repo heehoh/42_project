@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:54:00 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/20 17:59:21 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/20 21:08:30 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ template <typename T>
 Array<T>::Array(unsigned int n) : arr_(new T[n]), size_(n) {}
 
 template <typename T>
-Array<T>::Array(const Array &other) : arr_(new T[other.size_]), size_(other.size_) {
+Array<T>::Array(const Array &other)
+    : arr_(new T[other.size_]), size_(other.size_) {
   for (unsigned int i = 0; i < size_; i++) {
     arr_[i] = other.arr_[i];
   }
@@ -53,7 +54,10 @@ Array<T> &Array<T>::operator=(const Array &other) {
   if (this == &other) {
     return *this;
   }
-  delete[] arr_;
+  if (size_ == 0)
+    delete arr_;
+  else
+    delete[] arr_;
   arr_ = new T[other.size_];
   size_ = other.size_;
   for (unsigned int i = 0; i < size_; i++) {
@@ -64,7 +68,10 @@ Array<T> &Array<T>::operator=(const Array &other) {
 
 template <typename T>
 Array<T>::~Array() {
-  delete[] arr_;
+  if (size_ == 0)
+    delete arr_;
+  else
+    delete[] arr_;
 }
 
 template <typename T>
