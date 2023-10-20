@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:54:00 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/20 13:46:04 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/20 17:59:21 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,50 @@ template <typename T>
 Array<T>::Array() : arr_(new T()), size_(0) {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : arr_(new T[]), _size(n) {}
+Array<T>::Array(unsigned int n) : arr_(new T[n]), size_(n) {}
 
 template <typename T>
+Array<T>::Array(const Array &other) : arr_(new T[other.size_]), size_(other.size_) {
+  for (unsigned int i = 0; i < size_; i++) {
+    arr_[i] = other.arr_[i];
+  }
+}
+
+template <typename T>
+Array<T> &Array<T>::operator=(const Array &other) {
+  if (this == &other) {
+    return *this;
+  }
+  delete[] arr_;
+  arr_ = new T[other.size_];
+  size_ = other.size_;
+  for (unsigned int i = 0; i < size_; i++) {
+    arr_[i] = other.arr_[i];
+  }
+  return *this;
+}
+
+template <typename T>
+Array<T>::~Array() {
+  delete[] arr_;
+}
+
+template <typename T>
+T &Array<T>::operator[](unsigned int i) {
+  if (i >= size_ || i < 0) {
+    throw OutOfBoundsException();
+  }
+  return arr_[i];
+}
+
+template <typename T>
+unsigned int Array<T>::size() const {
+  return size_;
+}
+
+template <typename T>
+const char *Array<T>::OutOfBoundsException::what() const throw() {
+  return "배열 범위를 벗어났습니다.";
+}
 
 #endif
