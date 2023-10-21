@@ -13,7 +13,7 @@
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
 
-#include <string>
+#include <cstring>
 
 template <typename T>
 T swap(T &a, T &b) {
