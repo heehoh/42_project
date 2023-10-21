@@ -33,5 +33,5 @@ fclean : clean
 .PHONY : fclean
 
 re : fclean
-.PHONY : re
 	@make all
+.PHONY : re

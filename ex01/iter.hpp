@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 07:51:21 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/19 07:54:56 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/21 22:56:56 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 #define ITER_HPP
 
 template <typename T>
-void iter(T *arr, int len, void (*f)(T const &))
-{
-  for (int i = 0; i < len; i++)
-    f(arr[i]);
+void iter(T *arr, int len, void (*f)(T const &)) {
+  for (int i = 0; i < len; i++) f(arr[i]);
+}
+
+template <typename T>
+void iter(T *arr, int len, void (*f)(T &)) {
+  for (int i = 0; i < len; ++i) f(arr[i]);
 }
 
 #endif
