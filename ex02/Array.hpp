@@ -36,14 +36,19 @@ class Array {
 };
 
 template <typename T>
-Array<T>::Array() : arr_(new T()), size_(0) {}
+Array<T>::Array() : arr_(NULL), size_(0) {}
 
 template <typename T>
 Array<T>::Array(unsigned int n) : arr_(new T[n]), size_(n) {}
 
 template <typename T>
 Array<T>::Array(const Array &other)
-    : arr_(new T[other.size_]), size_(other.size_) {
+    : size_(other.size_) {
+  if (other.size_ == 0) {
+    arr_ = NULL;
+    return ;
+  }
+  arr_ = new T[other.size_];
   for (unsigned int i = 0; i < size_; i++) {
     arr_[i] = other.arr_[i];
   }
@@ -54,10 +59,13 @@ Array<T> &Array<T>::operator=(const Array &other) {
   if (this == &other) {
     return *this;
   }
-  if (size_ == 0)
-    delete arr_;
-  else
+  if (size_ != 0)
     delete[] arr_;
+  if (other.size_ == 0) {
+    arr_ = NULL;
+    size_ = 0;
+    return *this;
+  }
   arr_ = new T[other.size_];
   size_ = other.size_;
   for (unsigned int i = 0; i < size_; i++) {
@@ -68,9 +76,7 @@ Array<T> &Array<T>::operator=(const Array &other) {
 
 template <typename T>
 Array<T>::~Array() {
-  if (size_ == 0)
-    delete arr_;
-  else
+  if (size_ != 0)
     delete[] arr_;
 }
 
