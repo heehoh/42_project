@@ -6,27 +6,30 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:54:37 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/23 22:23:01 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/23 22:47:51 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-// Span::Span() : size_(0) {}
+Span::Span() : size_(0) {}
 Span::Span(unsigned int N) : size_(N) {}
+Span::Span(const Span &other) : size_(other.size_) { s_ = other.s_; }
+
+Span &Span::operator=(const Span &other) {
+  if (this == &other) return *this;
+  s_ = other.s_;
+  size_ = other.size_;
+  return *this;
+}
+Span::~Span() {}
+
 void Span::addNumber(int num) {
   if (s_.size() == size_) throw OutOfRange();
   size_t size = s_.size();
   s_.insert(num);
   if (size == s_.size()) throw AlreadyElementExist();
 }
-// Span::Span(Span &other) : size_(other.size_) { s_ = other.s_; }
-// Span &Span::operator=(Span &other) {
-//   s_ = other.s_;
-//   size_ = other.size_;
-//   return *this;
-// }
-Span::~Span() {}
 
 unsigned int Span::shortestSpan() {
   if (s_.size() < 2) throw TooFewElements();

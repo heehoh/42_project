@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:54:29 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/23 22:23:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/23 22:46:24 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ class Span {
   };
 
  public:
-  // Span();
+  Span();
   Span(unsigned int N);
-  // Span(Span &other);
-  // Span &operator=(Span &other);
+  Span(const Span &other);
+  Span &operator=(const Span &other);
   ~Span();
   void addNumber(int num);
   unsigned int shortestSpan();
