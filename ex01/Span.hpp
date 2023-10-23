@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:54:29 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/23 22:46:24 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/24 00:54:05 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #define SPAN_HPP
 
 #include <set>
+#include <vector>
+#include <algorithm>
 
-typedef std::set<int> set_t;
+typedef std::vector<int> vector_t;
 
 class Span {
  private:
-  set_t s_;
+  vector_t v_;
   unsigned int size_;
   class OutOfRange : public std::exception {
    public:
@@ -51,7 +53,7 @@ class Span {
   unsigned int longestSpan();
   template <typename T>
   void easyAddNumber(typename T::iterator begin, typename T::iterator end) {
-    for (typename T::iterator it = begin; it != end; ++it) s_.insert(*it);
+    for (typename T::iterator it = begin; it != end; ++it) v_.push_back(*it);
   }
 };
 
