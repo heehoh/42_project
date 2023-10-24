@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:03:29 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/25 01:23:17 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/25 02:09:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class MutantStack : public std::stack<T> {
     }
     return *this;
   }
-  ~MutantStack() {}
+  ~MutantStack<T>() {}
 
   iterator begin() { return this->c.begin(); }
   iterator end() { return this->c.end(); }
