@@ -6,11 +6,13 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:54:37 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/25 01:37:32 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/25 01:57:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+
+#include <climits>
 
 Span::Span() : size_(0) {}
 Span::Span(unsigned int N) : size_(N) {}
