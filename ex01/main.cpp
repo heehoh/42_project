@@ -6,10 +6,11 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 21:13:54 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/23 22:26:06 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/25 01:39:28 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
 #include <iostream>
 #include <vector>
 
@@ -25,15 +26,30 @@ int main() {
   std::cout << sp.shortestSpan() << std::endl;
   std::cout << sp.longestSpan() << std::endl;
 
-  std::vector<int> v;
-  v.push_back(1);
-  v.push_back(2);
-  v.push_back(3);
-  v.push_back(4);
-  v.push_back(5);
-  Span easySp = Span(5);
-  easySp.easyAddNumber<std::vector<int> >(v.begin(), v.end());
-  std::cout << easySp.shortestSpan() << std::endl;
-  std::cout << easySp.longestSpan() << std::endl;
+  std::cout << "\n==========10000개 테스트============" << std::endl;
+  Span sp2(10000);
+  Span easySp(10000);
+  std::vector<int> v(10000);
+
+  srand(time(NULL));
+  for (int i = 0; i < 10000; ++i) {
+    v[i] = rand();
+    sp2.addNumber(v[i]);
+  }
+  try {
+    std::cout << sp2.shortestSpan() << std::endl;
+    std::cout << sp2.longestSpan() << std::endl;
+    sp2.addNumber(42);
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+  try {
+    easySp.easyAddNumber<std::vector<int> >(v.begin(), v.end());
+    std::cout << easySp.shortestSpan() << std::endl;
+    std::cout << easySp.longestSpan() << std::endl;
+    easySp.addNumber(42);
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
   return 0;
 }

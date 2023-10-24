@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:54:37 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/24 00:55:27 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/25 01:37:32 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ unsigned int Span::shortestSpan() {
   if (v_.size() < 2) throw TooFewElements();
   int min = INT_MAX;
   std::sort(v_.begin(), v_.end());
-  for (vector_t::iterator it = v_.begin(); it != v_.end() - 1; ++it) 
+  for (std::vector<int>::iterator it = v_.begin(); it != v_.end() - 1; ++it)
     if (*(it + 1) - *it < min) min = *(it + 1) - *it;
   return min;
 }

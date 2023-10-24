@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:54:29 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/24 20:08:43 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/25 01:34:33 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 #include <set>
 #include <vector>
 
-typedef std::vector<int> vector_t;
-
 class Span {
  private:
-  vector_t v_;
+  std::vector<int> v_;
   unsigned int size_;
   class OutOfRange : public std::exception {
    public:
@@ -36,10 +34,9 @@ class Span {
     }
   };
 
+ public:
   Span();
   Span(const Span &other);
-
- public:
   Span(unsigned int N);
   Span &operator=(const Span &other);
   ~Span();
