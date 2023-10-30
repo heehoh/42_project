@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:19:02 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/20 00:21:27 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/10/30 20:56:09 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convertChar(int i) {
   if (std::isgraph(i)) {
-    c_ = static_cast<char>(i_);
+    c_ = static_cast<char>(i);
   } else
     cNonDisplayable_ = true;
 }
@@ -68,10 +68,12 @@ bool ScalarConverter::isNaN(std::string &input) {
         continue;
     } else if (input[i] == '.') {
       ++dot_;
-      if (dot_ == 2) return true;
+      if (dot_ == 2 || input.size() == i + 1 || input[i + 1] == 'f')
+        return true;
       precision_ = input.size() - i - 1;
       if (input[input.size() - 1] == 'f') --precision_;
-    } else if (!std::isdigit(input[i]) && !(i == input.size() - 1 && input[i] == 'f')) 
+    } else if (!std::isdigit(input[i]) &&
+               !(i == input.size() - 1 && input[i] == 'f'))
       return true;
   }
   return false;
@@ -94,7 +96,6 @@ bool ScalarConverter::isInt(std::string &input) {
 }
 
 void ScalarConverter::checkType(std::string &input) {
- 
   if (input == "inf" || input == "+inf" || input == "inff" || input == "+inff")
     t_ = INF_T;
   else if (input == "-inf" || input == "-inff")
@@ -139,14 +140,14 @@ void ScalarConverter::convertFromFloat() {
 
 void ScalarConverter::convertFromDouble() {
   ss_ >> d_;
-  convertChar(static_cast<float>(d_));
-  convertInt(static_cast<float>(d_));
+  convertChar(d_);
+  convertInt(d_);
   f_ = static_cast<float>(d_);
 }
 
 void ScalarConverter::printChar() {
   std::cout << "char: ";
-  if (t_ == NAN_T || t_ == INF_T || t_ == MINF_T || cImpossible_ )
+  if (t_ == NAN_T || t_ == INF_T || t_ == MINF_T || cImpossible_)
     std::cout << "impossible" << std::endl;
   else if (cNonDisplayable_)
     std::cout << "Non displayable" << std::endl;
@@ -156,7 +157,7 @@ void ScalarConverter::printChar() {
 
 void ScalarConverter::printInt() {
   std::cout << "int: ";
-  if (t_ == NAN_T  || t_ == INF_T || t_ == MINF_T || iImpossible_)
+  if (t_ == NAN_T || t_ == INF_T || t_ == MINF_T || iImpossible_)
     std::cout << "impossible" << std::endl;
   else
     std::cout << i_ << std::endl;
