@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 15:37:06 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/27 23:30:39 by hujeong          ###   ########.fr       */
+/*   Created: 2023/10/27 10:11:29 by hujeong           #+#    #+#             */
+/*   Updated: 2023/10/28 00:45:40 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
-int main() {
-  BitcoinExchange exchange("data.csv");
+#include <map>
+#include <string>
 
-  exchange.printExchange();
-  return 0;
-}
+class BitcoinExchange {
+ private:
+  std::map<std::string, double> exchange_;
+  BitcoinExchange();
+  BitcoinExchange(const BitcoinExchange&);
+  BitcoinExchange& operator=(const BitcoinExchange&);
+
+ public:
+  BitcoinExchange(std::string database);
+  void printExchange();
+  ~BitcoinExchange();
+};
+
+#endif

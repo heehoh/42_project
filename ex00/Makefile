@@ -1,5 +1,6 @@
-NAME = a.out
-SRCS = main.cpp 
+NAME = btc
+SRCS = main.cpp \
+			 BitcoinExchange.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
 
