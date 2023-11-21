@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = RPN
 SRCS = main.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
