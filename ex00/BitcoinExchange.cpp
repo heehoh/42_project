@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:11:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/10/31 14:10:34 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/21 21:22:42 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void checkPrice(std::string &exchangeRate) {
   }
 }
 
-void checkInput(std::string &input) {}
+void checkFormat(std::string &input) {}
 
 BitcoinExchange::BitcoinExchange(std::string database) {
   std::ifstream ifs(database);
@@ -65,10 +65,9 @@ BitcoinExchange::BitcoinExchange(std::string database) {
     throw std::runtime_error("Error: 데이터 베이스 파일을 열 수 없습니다.");
   std::getline(ifs, line);
   while (std::getline(ifs, line)) {
-    std::stringstream ss(line);
-    std::getline(ss, key, ',');
-    ss >> value;
-    exchange_[key] = value;
+    checkFormat(line);
+    std::istringstream ss(line);
+    std::getline(ss, key) key = checkDate() exchange_[key] = value;
   }
 }
 
