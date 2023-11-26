@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:44:07 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/25 20:28:06 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/26 15:22:13 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ Date::Date(int year, int month, int day)
     throw std::runtime_error(
         std::string("Error: 연도가 유효하지 않습니다. => ") + ss.str());
   if (month_ < 1 || month_ > 12)
-    throw std::runtime_error(std::string("Error: 월이 유효하지 않습니다.") +
+    throw std::runtime_error(std::string("Error: 월이 유효하지 않습니다. => ") +
                              ss.str());
   int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
   if (month == 2 && isLeapYear(year_)) daysInMonth[2] = 29;
   if (day_ < 1 && day_ > daysInMonth[month_])
-    throw std::runtime_error(std::string("Error: 일이 유효하지 않습니다.") +
+    throw std::runtime_error(std::string("Error: 일이 유효하지 않습니다. => ") +
                              ss.str());
 };
 

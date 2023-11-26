@@ -6,15 +6,15 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:11:19 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/26 15:12:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/26 16:39:12 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
 std::string trim(const std::string& str) {
-  std::size_t first = str.find_first_not_of(" \t\n\r");
-  std::size_t last = str.find_last_not_of(" \t\n\r");
+  std::size_t first = str.find_first_not_of(" ");
+  std::size_t last = str.find_last_not_of(" ");
   if (first == std::string::npos || last == std::string::npos) return "";
   return str.substr(first, last - first + 1);
 }
@@ -76,14 +76,21 @@ Date parseDate(const std::string& date) {
 float parseVal(const std::string& val) {
   std::stringstream ss;
   float value;
+  int dot = 0;
 
+  if (val == "") throw std::runtime_error("Error: 값이 들어오지 않았습니다.");
+  if (val[0] == '-') throw std::runtime_error("Error: 값은 양수여야 합니다.");
+
+  for (size_t i = 0; i < val.length(); ++i) {
+    if (val[i] == '.') {
+      ++dot;
+      if (dot == 2)
+        throw std::runtime_error("Error: 값 형식이 올바르지 않습니다.");
+    } else if (val[i] < '0' || val[i] > '9')
+      throw std::runtime_error("Error: 값은 숫자여야 합니다.");
+  }
   ss << val;
   ss >> value;
-
-  ss << value;
-  if (val != ss.str())
-    throw std::runtime_error("Error: 값 형식이 올바르지 않습니다");
-  if (value < 0) throw std::runtime_error("Error: 값은 양수여야 합니다.");
   return value;
 }
 
@@ -129,11 +136,18 @@ void BitcoinExchange::parseInputLine(const std::string& line,
 
   if (value > 1000)
     throw std::runtime_error("Error: 너무 큰 숫자가 들어왔습니다.");
-  std::map<Date, float>::iterator it = exchange_.lower_bound(date);
-  if (it == exchange_.end())
-    throw std::runtime_error(
-        "Error: 데이터베이스 안에 해당하는 날짜의 비트코인 환율정보가 존재하지 "
-        "않습니다.");
+
+  std::map<Date, float>::iterator it = exchange_.find(date);
+  if (it == exchange_.end()) {
+    it = exchange_.lower_bound(date);
+    if (it == exchange_.begin())
+      throw std::runtime_error(
+          "Error: 해당하는 날짜 이전의 비트코인 환율정보가 "
+          "존재하지 "
+          "않습니다.");
+    --it;
+  }
+
   std::cout << date << " => " << value << " = " << value * it->second
             << std::endl;
 }
