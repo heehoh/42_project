@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 21:24:56 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/21 22:12:00 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/26 18:25:48 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@
 
 class RPN {
  private:
-  std::stack<int> _s;
+  std::stack<double> stack_;
   RPN(const RPN &);
   const RPN &operator=(const RPN &);
 
  public:
   RPN();
   ~RPN();
-  void parseParam(std::string param);
-  void addParam(const std::string &param);
+  void calculate(const std::string &input);
   void showResult();
 };
 

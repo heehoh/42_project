@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 22:06:21 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/21 22:12:24 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/26 18:16:45 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int ac, char **argv) {
   } else {
     try {
       RPN r;
-
+      r.calculate(argv[1]);
     } catch (std::exception &e) {
       std::cout << e.what() << std::endl;
     }
