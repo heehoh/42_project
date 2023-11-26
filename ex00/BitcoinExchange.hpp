@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:11:29 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/22 18:56:51 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/25 19:44:24 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,30 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <fstream>
-#include <iostream>
 #include <map>
-#include <sstream>
+
+#include "Date.hpp"
 
 #define DATA_BASE "data.csv"
+#define DATE "date"
+#define EXCHANGE "exchange_rate"
+#define VALUE "value"
 class BitcoinExchange {
  private:
-  std::map<std::string, float> exchange_;
-  std::map<std::string, float> value_;
+  std::map<Date, float> exchange_;
+  std::ifstream dataBase_;
+  std::ifstream input_;
+  BitcoinExchange();
   BitcoinExchange(const BitcoinExchange&);
   BitcoinExchange& operator=(const BitcoinExchange&);
-
-  void checkDate(std::string date);  // 데이터베이스와 인풋 파일 둘다 검증
-  void checkValue(float value);  // 인풋파일만 검증하면 됨
-
-  void parseDB();
-  void parseInput();
+  void parseDBLine(const std::string& line, const std::string& del);
+  void parseInputLine(const std::string& line, const std::string& del);
 
  public:
-  BitcoinExchange();
-  void printExchange();
+  BitcoinExchange(const std::string& input);
   ~BitcoinExchange();
+  void parseDB();
+  void parseInput();
 };
 
 #endif
