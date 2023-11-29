@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:34:36 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/27 13:55:02 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/29 16:58:50 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int main(int argc, char **argv) {
   std::vector<std::string> arguments(&argv[1], &argv[argc]);
   try {
     PmergeMe pm(arguments);
-    pm.printDeque();
+    pm.printVector();
+    pm.sortVector();
     pm.printVector();
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;

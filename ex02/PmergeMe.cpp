@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/29 14:44:09 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:21:17 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ void numberCheck(const std::string &str) {
   }
 }
 
+void PmergeMe::setJacobsthalNum() {
+  std::fill(jacobsthalNum_, jacobsthalNum_ + 30, 0);
+  jacobsthalNum_[0] = 1;
+  jacobsthalNum_[1] = 3;
+  for (int i = 2; i < 30; ++i) {
+    jacobsthalNum_[i] = jacobsthalNum_[i - 1] + 2 * jacobsthalNum_[i - 2];
+  }
+}
+
 PmergeMe::PmergeMe(std::vector<std::string> &arguments) {
   size_t size = arguments.size();
   int value;
@@ -37,10 +46,10 @@ PmergeMe::PmergeMe(std::vector<std::string> &arguments) {
     vector_.push_back(value);
     deque_.push_back(value);
   }
-  std::fill(jacobsthalNum_, jacobsthalNum_ + 30, 0);
+  setJacobsthalNum();
 }
 
-void PmergeMe::comparePairwise(int pairCount, int pairElementSize) {
+void PmergeMe::comparePairwise(int pairElementSize) {
   std::vector<int>::iterator it = vector_.begin();
   int size = vector_.size();
 
@@ -52,10 +61,13 @@ void PmergeMe::comparePairwise(int pairCount, int pairElementSize) {
 }
 
 void PmergeMe::recursive(int pairCount, int pairElementSize) {
-  // compare pairwise
-  // recursive
-  // insertion
+  if (pairCount > 1) {
+    comparePairwise(pairElementSize);
+    recursive(pairCount / 2, pairElementSize * 2);
+  }
 }
+
+void PmergeMe::sortVector() { recursive(vector_.size(), 1); }
 
 void PmergeMe::sortDeque() {}
 

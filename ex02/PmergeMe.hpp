@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/11/29 14:44:52 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:21:32 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ class PmergeMe {
   PmergeMe();
   PmergeMe(const PmergeMe &);
   const PmergeMe &operator=(const PmergeMe &);
+  void setJacobsthalNum();
 
  public:
   PmergeMe(std::vector<std::string> &arguments);
   ~PmergeMe();
   void recursive(int pairCount, int pairSize);
-  void comparePairwise(int pairCount, int pairSize);
-  void insertion();
+  void comparePairwise(int pairSize);
+  // void insertion();
+  void sortVector();
   void sortDeque();
   void printVector();
   void printDeque();
