@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/03 21:57:32 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/03 22:16:09 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ class PmergeMe {
   void sortVector();
   void printVector();
   void mergeInsertion(int numOfElement, int sizeOfElement);
+  void isSort();
 };
 
 #endif

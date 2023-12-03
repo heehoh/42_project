@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/03 22:03:27 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/03 22:17:08 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void PmergeMe::binarySearchInsert(vector &mainChain, vector &subChain,
 
   while (left <= right) {
     int mid = left + (right - left) / 2;
-    if (mainChain[left * size] < *subIt) {
+    if (mainChain[mid * size] < *subIt) {
       left = mid + 1;
     } else {
       right = mid - 1;
@@ -100,9 +100,6 @@ void PmergeMe::setChains(int num, int size, vector &main, vector &sub) {
     else if (i % 2 == 0)
       main.insert(main.end(), it + i * size, it + (i + 1) * size);
   }
-  // std::cout << "서브 체인: ";
-  // for (size_t i = 0; i < sub.size(); ++i) std::cout << sub[i] << " ";
-  // std::cout << std::endl;
 }
 
 void PmergeMe::insertion(int num, int size, vector &main, vector &sub) {
@@ -128,10 +125,6 @@ void PmergeMe::mergeInsertion(int numOfElement, int sizeOfElement) {
   comparePair(numOfElement, sizeOfElement);
   mergeInsertion(numOfElement / 2, sizeOfElement * 2);
   insertion(numOfElement, sizeOfElement, mainChain, subChain);
-  for (size_t i = 0; i < vector_.size(); ++i) {
-    std::cout << vector_[i] << " ";
-  }
-  std::cout << std::endl;
 }
 
 void PmergeMe::sortVector() { mergeInsertion(vector_.size(), 1); }
@@ -142,4 +135,14 @@ void PmergeMe::printVector() {
     std::cout << *it << " ";
   }
   std::cout << std::endl;
+}
+
+void PmergeMe::isSort() {
+  for (size_t i = 0; i < vector_.size() - 1; ++i) {
+    if (vector_[i] > vector_[i + 1]) {
+      std::cout << "정렬되지 않음 !!" << std::endl;
+      return;
+    }
+  }
+  std::cout << "정렬 완료 !" << std::endl;
 }
