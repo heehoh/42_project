@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/01 22:17:16 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/03 22:03:27 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,81 @@ void PmergeMe::comparePair(int num, int size) {
   }
 }
 
-// void PmergeMe::insertion(int num, int size) {
-//   vector mainChain;
-//   vector subChain;
+int PmergeMe::getNextIndex(int index) {
+  if (index == 0) return 1;
+  if (index == 1) return 3;
+  if (index - 1 == jacobsthalNum_[jacobsthalIndex_]) {
+    ++jacobsthalIndex_;
+    return jacobsthalNum_[jacobsthalIndex_ + 1];
+  }
+  return index - 1;
+}
 
-// }
+void PmergeMe::binarySearchInsert(vector &mainChain, vector &subChain,
+                                  size_t idx, size_t size) {
+  int left = 0;
+  int right = idx + numOfInsert_;
+  vIterator subIt = subChain.begin() + idx * size;
+  vIterator mainIt = mainChain.begin();
+  if (idx == 0) {
+    mainChain.insert(mainIt, subIt, subIt + size);
+    return;
+  }
+
+  while (left <= right) {
+    int mid = left + (right - left) / 2;
+    if (mainChain[left * size] < *subIt) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  mainChain.insert(mainIt + left * size, subIt, subIt + size);
+  ++numOfInsert_;
+}
+
+void PmergeMe::setChains(int num, int size, vector &main, vector &sub) {
+  vIterator it = vector_.begin();
+
+  for (int i = 0; i < num; ++i) {
+    if (i == num - 1 || i % 2 == 1)
+      sub.insert(sub.end(), it + i * size, it + (i + 1) * size);
+    else if (i % 2 == 0)
+      main.insert(main.end(), it + i * size, it + (i + 1) * size);
+  }
+  // std::cout << "서브 체인: ";
+  // for (size_t i = 0; i < sub.size(); ++i) std::cout << sub[i] << " ";
+  // std::cout << std::endl;
+}
+
+void PmergeMe::insertion(int num, int size, vector &main, vector &sub) {
+  int idx = 0;
+  jacobsthalIndex_ = 0;
+  numOfInsert_ = 0;
+  int subChainNum = num / 2 + num % 2;
+  setChains(num, size, main, sub);
+  for (int i = 0; i < subChainNum; ++i) {
+    idx = getNextIndex(idx);
+    if (idx >= subChainNum) idx = subChainNum;
+    binarySearchInsert(main, sub, idx - 1, size);
+  }
+  for (size_t i = 0; i < main.size(); ++i) {
+    vector_[i] = main[i];
+  }
+}
 
 void PmergeMe::mergeInsertion(int numOfElement, int sizeOfElement) {
-  if (numOfElement > 1) {
-    comparePair(numOfElement, sizeOfElement);
-    mergeInsertion(numOfElement / 2, sizeOfElement * 2);
-    insertion(numOfElement, sizeOfElement);
+  if (numOfElement == 1) return;
+  vector mainChain;
+  vector subChain;
+  comparePair(numOfElement, sizeOfElement);
+  mergeInsertion(numOfElement / 2, sizeOfElement * 2);
+  insertion(numOfElement, sizeOfElement, mainChain, subChain);
+  for (size_t i = 0; i < vector_.size(); ++i) {
+    std::cout << vector_[i] << " ";
   }
+  std::cout << std::endl;
 }
 
 void PmergeMe::sortVector() { mergeInsertion(vector_.size(), 1); }
