@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/03 22:16:09 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/04 01:55:18 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 
 typedef std::vector<int> vector;
 typedef vector::iterator vIterator;
+typedef std::deque<int> deque;
+typedef deque::iterator dIterator;
 
 class PmergeMe {
  private:
   vector vector_;
+  deque deque_;
   int jacobsthalIndex_;
   int jacobsthalNum_[30];
   int numOfInsert_;
@@ -46,13 +49,27 @@ class PmergeMe {
   // subChain을 mainChain에 insertion
   void insertion(int num, int size, vector &main, vector &sub);
 
+  void dequeComparePair(int num, int size);
+  void dequeSetChains(int num, int size, deque &main, deque &sub);
+  void dequeInsertion(int num, int size, deque &main, deque &sub);
+  void dequeBinarySearchInsert(deque &mainChain, deque &subChain, size_t idx,
+                               size_t size);
+
+
+
  public:
   PmergeMe(std::vector<std::string> &arguments);
   ~PmergeMe();
   void sortVector();
+  void sortDeque();
+
   void printVector();
+  void printDeque();
+  
   void mergeInsertion(int numOfElement, int sizeOfElement);
+  void dequeMergeInsertion(int numOfElement, int sizeOfElement);
   void isSort();
+  void isDequeSort();
 };
 
 #endif

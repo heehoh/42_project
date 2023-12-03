@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/03 22:17:08 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/04 01:55:27 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ PmergeMe::~PmergeMe() {}
 void numberCheck(const std::string &str) {
   size_t len = str.length();
   for (size_t i = 0; i < len; ++i) {
-    if (i == 0 && str[0] == '+') continue;
+    if (i == 0 && (str[0] == '+' || str[0] == '-')) continue;
     if (str[i] < '0' || str[i] > '9')
       throw std::runtime_error("Error: 인자가 숫자가 아닙니다.");
   }
@@ -42,7 +42,10 @@ PmergeMe::PmergeMe(std::vector<std::string> &arguments) {
     std::stringstream ss;
     ss << arguments[i];
     ss >> value;
+    if (value <= 0)
+      throw std::runtime_error("Error: 인자는 양수여야 합니다.");
     vector_.push_back(value);
+    deque_.push_back(value);
   }
   setJacobsthalNum();
 }
@@ -140,6 +143,95 @@ void PmergeMe::printVector() {
 void PmergeMe::isSort() {
   for (size_t i = 0; i < vector_.size() - 1; ++i) {
     if (vector_[i] > vector_[i + 1]) {
+      std::cout << "정렬되지 않음 !!" << std::endl;
+      return;
+    }
+  }
+  std::cout << "정렬 완료 !" << std::endl;
+}
+
+void PmergeMe::dequeComparePair(int num, int size) {
+  dIterator it = deque_.begin();
+
+  for (int i = 0; i < num - 1; i += 2) {
+    dIterator first = it + i * size;
+    dIterator second = it + (i + 1) * size;
+    if (*first < *second) std::swap_ranges(first, second, second);
+  }
+}
+
+void PmergeMe::dequeSetChains(int num, int size, deque &main, deque &sub) {
+  dIterator it = deque_.begin();
+
+  for (int i = 0; i < num; ++i) {
+    if (i == num - 1 || i % 2 == 1)
+      sub.insert(sub.end(), it + i * size, it + (i + 1) * size);
+    else if (i % 2 == 0)
+      main.insert(main.end(), it + i * size, it + (i + 1) * size);
+  }
+}
+
+void PmergeMe::dequeBinarySearchInsert(deque &mainChain, deque &subChain,
+                                       size_t idx, size_t size) {
+  int left = 0;
+  int right = idx + numOfInsert_;
+  dIterator subIt = subChain.begin() + idx * size;
+  dIterator mainIt = mainChain.begin();
+  if (idx == 0) {
+    mainChain.insert(mainIt, subIt, subIt + size);
+    return;
+  }
+
+  while (left <= right) {
+    int mid = left + (right - left) / 2;
+    if (mainChain[mid * size] < *subIt) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  mainChain.insert(mainIt + left * size, subIt, subIt + size);
+  ++numOfInsert_;
+}
+
+void PmergeMe::dequeInsertion(int num, int size, deque &main, deque &sub) {
+  int idx = 0;
+  jacobsthalIndex_ = 0;
+  numOfInsert_ = 0;
+  int subChainNum = num / 2 + num % 2;
+  dequeSetChains(num, size, main, sub);
+  for (int i = 0; i < subChainNum; ++i) {
+    idx = getNextIndex(idx);
+    if (idx >= subChainNum) idx = subChainNum;
+    dequeBinarySearchInsert(main, sub, idx - 1, size);
+  }
+  for (size_t i = 0; i < main.size(); ++i) {
+    deque_[i] = main[i];
+  }
+}
+
+void PmergeMe::dequeMergeInsertion(int numOfElement, int sizeOfElement) {
+  if (numOfElement == 1) return;
+  deque mainChain;
+  deque subChain;
+  dequeComparePair(numOfElement, sizeOfElement);
+  dequeMergeInsertion(numOfElement / 2, sizeOfElement * 2);
+  dequeInsertion(numOfElement, sizeOfElement, mainChain, subChain);
+}
+
+void PmergeMe::sortDeque() { dequeMergeInsertion(deque_.size(), 1); }
+void PmergeMe::printDeque() {
+  for (std::deque<int>::iterator it = deque_.begin(); it != deque_.end();
+       ++it) {
+    std::cout << *it << " ";
+  }
+  std::cout << std::endl;
+}
+
+void PmergeMe::isDequeSort() {
+  for (size_t i = 0; i < deque_.size() - 1; ++i) {
+    if (deque_[i] > deque_[i + 1]) {
       std::cout << "정렬되지 않음 !!" << std::endl;
       return;
     }

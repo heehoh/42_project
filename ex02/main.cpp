@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:34:36 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/03 22:17:43 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/04 01:55:46 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int main(int argc, char **argv) {
     std::cout << "---- 정렬 후 ----" << std::endl;
     pm.printVector();
     pm.isSort();
+
+    std::cout << "---- 덱 정렬 전 ----" << std::endl;
+    pm.printDeque();
+    pm.isDequeSort();
+    pm.sortDeque();
+    std::cout << "---- 덱 정렬 후 ----" << std::endl;
+    pm.printDeque();
+    pm.isDequeSort();
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
