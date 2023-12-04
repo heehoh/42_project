@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/04 01:55:27 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/04 18:50:18 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ PmergeMe::PmergeMe(std::vector<std::string> &arguments) {
     std::stringstream ss;
     ss << arguments[i];
     ss >> value;
-    if (value <= 0)
-      throw std::runtime_error("Error: 인자는 양수여야 합니다.");
+    if (value <= 0) throw std::runtime_error("Error: 인자는 양수여야 합니다.");
     vector_.push_back(value);
     deque_.push_back(value);
   }
@@ -130,13 +129,15 @@ void PmergeMe::mergeInsertion(int numOfElement, int sizeOfElement) {
   insertion(numOfElement, sizeOfElement, mainChain, subChain);
 }
 
-void PmergeMe::sortVector() { mergeInsertion(vector_.size(), 1); }
+void PmergeMe::sortVector() {
+  clock_t start = clock();
+  mergeInsertion(vector_.size(), 1);
+  vectorSortTime_ = clock() - start;
+}
 
 void PmergeMe::printVector() {
-  for (std::vector<int>::iterator it = vector_.begin(); it != vector_.end();
-       ++it) {
+  for (vIterator it = vector_.begin(); it != vector_.end(); ++it)
     std::cout << *it << " ";
-  }
   std::cout << std::endl;
 }
 
@@ -160,7 +161,7 @@ void PmergeMe::dequeComparePair(int num, int size) {
   }
 }
 
-void PmergeMe::dequeSetChains(int num, int size, deque &main, deque &sub) {
+void PmergeMe::setChains(int num, int size, deque &main, deque &sub) {
   dIterator it = deque_.begin();
 
   for (int i = 0; i < num; ++i) {
@@ -171,8 +172,8 @@ void PmergeMe::dequeSetChains(int num, int size, deque &main, deque &sub) {
   }
 }
 
-void PmergeMe::dequeBinarySearchInsert(deque &mainChain, deque &subChain,
-                                       size_t idx, size_t size) {
+void PmergeMe::binarySearchInsert(deque &mainChain, deque &subChain, size_t idx,
+                                  size_t size) {
   int left = 0;
   int right = idx + numOfInsert_;
   dIterator subIt = subChain.begin() + idx * size;
@@ -195,16 +196,16 @@ void PmergeMe::dequeBinarySearchInsert(deque &mainChain, deque &subChain,
   ++numOfInsert_;
 }
 
-void PmergeMe::dequeInsertion(int num, int size, deque &main, deque &sub) {
+void PmergeMe::insertion(int num, int size, deque &main, deque &sub) {
   int idx = 0;
   jacobsthalIndex_ = 0;
   numOfInsert_ = 0;
   int subChainNum = num / 2 + num % 2;
-  dequeSetChains(num, size, main, sub);
+  setChains(num, size, main, sub);
   for (int i = 0; i < subChainNum; ++i) {
     idx = getNextIndex(idx);
     if (idx >= subChainNum) idx = subChainNum;
-    dequeBinarySearchInsert(main, sub, idx - 1, size);
+    binarySearchInsert(main, sub, idx - 1, size);
   }
   for (size_t i = 0; i < main.size(); ++i) {
     deque_[i] = main[i];
@@ -217,15 +218,18 @@ void PmergeMe::dequeMergeInsertion(int numOfElement, int sizeOfElement) {
   deque subChain;
   dequeComparePair(numOfElement, sizeOfElement);
   dequeMergeInsertion(numOfElement / 2, sizeOfElement * 2);
-  dequeInsertion(numOfElement, sizeOfElement, mainChain, subChain);
+  insertion(numOfElement, sizeOfElement, mainChain, subChain);
 }
 
-void PmergeMe::sortDeque() { dequeMergeInsertion(deque_.size(), 1); }
+void PmergeMe::sortDeque() {
+  clock_t start = clock();
+  dequeMergeInsertion(deque_.size(), 1);
+  dequeSortTime_ = clock() - start;
+}
+
 void PmergeMe::printDeque() {
-  for (std::deque<int>::iterator it = deque_.begin(); it != deque_.end();
-       ++it) {
+  for (dIterator it = deque_.begin(); it != deque_.end(); ++it)
     std::cout << *it << " ";
-  }
   std::cout << std::endl;
 }
 
@@ -237,4 +241,9 @@ void PmergeMe::isDequeSort() {
     }
   }
   std::cout << "정렬 완료 !" << std::endl;
+}
+
+void PmergeMe::printTime() {
+  std::cout << "벡터 정렬 시간: " << vectorSortTime_ << "ms" << std::endl;
+  std::cout << "덱 정렬 시간: " << dequeSortTime_ << "ms" << std::endl;
 }
