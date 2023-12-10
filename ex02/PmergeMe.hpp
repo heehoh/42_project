@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:04 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/04 18:49:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/10 19:47:31 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef deque::iterator dIterator;
 
 class PmergeMe {
  private:
+  vector argv_;
   vector vector_;
   deque deque_;
   clock_t vectorSortTime_;
@@ -64,8 +65,10 @@ class PmergeMe {
 
   void printVector();
   void printDeque();
+  void printArg();
 
   void isSort();
+  void isVectorSort();
   void isDequeSort();
 
   void printTime();

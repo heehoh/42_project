@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:35:01 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/04 18:50:18 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/10 19:51:54 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void PmergeMe::setJacobsthalNum() {
 
 PmergeMe::PmergeMe(std::vector<std::string> &arguments) {
   size_t size = arguments.size();
+  argv_.reserve(size);
   int value;
   for (size_t i = 0; i < size; ++i) {
     numberCheck(arguments[i]);
@@ -43,8 +44,7 @@ PmergeMe::PmergeMe(std::vector<std::string> &arguments) {
     ss << arguments[i];
     ss >> value;
     if (value <= 0) throw std::runtime_error("Error: 인자는 양수여야 합니다.");
-    vector_.push_back(value);
-    deque_.push_back(value);
+    argv_.push_back(value);
   }
   setJacobsthalNum();
 }
@@ -131,6 +131,11 @@ void PmergeMe::mergeInsertion(int numOfElement, int sizeOfElement) {
 
 void PmergeMe::sortVector() {
   clock_t start = clock();
+  int size = argv_.size();
+  vector_.reserve(size);
+  for (int i = 0; i < size; ++i) {
+    vector_.push_back(argv_[i]);
+  }
   mergeInsertion(vector_.size(), 1);
   vectorSortTime_ = clock() - start;
 }
@@ -142,8 +147,8 @@ void PmergeMe::printVector() {
 }
 
 void PmergeMe::isSort() {
-  for (size_t i = 0; i < vector_.size() - 1; ++i) {
-    if (vector_[i] > vector_[i + 1]) {
+  for (size_t i = 0; i < argv_.size() - 1; ++i) {
+    if (argv_[i] > argv_[i + 1]) {
       std::cout << "정렬되지 않음 !!" << std::endl;
       return;
     }
@@ -223,6 +228,10 @@ void PmergeMe::dequeMergeInsertion(int numOfElement, int sizeOfElement) {
 
 void PmergeMe::sortDeque() {
   clock_t start = clock();
+  int size = argv_.size();
+  for (int i = 0; i < size; ++i) {
+    deque_.push_back(argv_[i]);
+  }
   dequeMergeInsertion(deque_.size(), 1);
   dequeSortTime_ = clock() - start;
 }
@@ -244,6 +253,22 @@ void PmergeMe::isDequeSort() {
 }
 
 void PmergeMe::printTime() {
-  std::cout << "벡터 정렬 시간: " << vectorSortTime_ << "ms" << std::endl;
-  std::cout << "덱 정렬 시간: " << dequeSortTime_ << "ms" << std::endl;
+  std::cout << "벡터 정렬 시간: " << vectorSortTime_ << "us" << std::endl;
+  std::cout << "덱 정렬 시간: " << dequeSortTime_ << "us" << std::endl;
+}
+
+void PmergeMe::isVectorSort() {
+  for (size_t i = 0; i < vector_.size() - 1; ++i) {
+    if (vector_[i] > vector_[i + 1]) {
+      std::cout << "정렬되지 않음 !!" << std::endl;
+      return;
+    }
+  }
+  std::cout << "정렬 완료 !" << std::endl;
+}
+
+void PmergeMe::printArg() {
+  for (vIterator it = argv_.begin(); it != argv_.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
 }

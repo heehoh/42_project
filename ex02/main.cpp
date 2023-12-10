@@ -6,7 +6,7 @@
 /*   By: hujeong <hujeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:34:36 by hujeong           #+#    #+#             */
-/*   Updated: 2023/12/04 18:49:09 by hujeong          ###   ########.fr       */
+/*   Updated: 2023/12/10 19:48:13 by hujeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int main(int argc, char **argv) {
   try {
     PmergeMe pm(arguments);
     std::cout << "\n---- 정렬 전 ----" << std::endl;
-    pm.printVector();
+    pm.printArg();
     pm.isSort();
     pm.sortVector();
     std::cout << "\n---- 정렬 후 ----" << std::endl;
     pm.printVector();
-    pm.isSort();
+    pm.isVectorSort();
 
     std::cout << "\n---- 덱 정렬 전 ----" << std::endl;
-    pm.printDeque();
-    pm.isDequeSort();
+    pm.printArg();
+    pm.isSort();
     pm.sortDeque();
     std::cout << "\n---- 덱 정렬 후 ----" << std::endl;
     pm.printDeque();
