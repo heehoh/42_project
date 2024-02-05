@@ -3,9 +3,6 @@ FROM alpine:3.18
 RUN apk update && \
     apk add --no-cache dumb-init nginx openssl
 
-ENV CA_PASSWORD=1234 \
-    SERVER_PASSWORD=1234
-
 WORKDIR /certs
 
 # CA 인증서 생성
@@ -27,7 +24,6 @@ RUN openssl genrsa -aes256 -passout pass:${SERVER_PASSWORD} -out server_with_pas
 WORKDIR /
 
 COPY tools/default.conf /etc/nginx/http.d/default.conf
-COPY tools/index.html /var/www/index.html
 
 EXPOSE 80 443
 

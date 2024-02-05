@@ -1,0 +1,63 @@
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    networks:
+      - inception
+    volumes:
+      - wp:/var/www
+    environment:
+      CA_PASSWORD: "${CA_PASSWORD}"
+      SERVER_PASSWORD: "${SERVER_PASSWORD}"
+      DOMAIN: "${DOMAIN}"
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - wordpress
+    restart: always
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    networks:
+      - inception
+    volumes:
+      - wp:/var/www
+    environment:
+      - name=value
+    expose:
+      - 9000
+    depends_on:
+     - mariadb
+    restart: always
+  
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    networks:
+      - inception
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    restart: always
+
+volumes:
+  wp:
+    driver_opts:
+      type: none
+      device: /Users/hujeong/Desktop/Inception/srcs/data/wp
+      o: bind
+  db:
+    driver_opts:
+      type: none
+      device: /Users/hujeong/Desktop/Inception/srcs/data/db
+      o: bind
+
+networks:
+  inception:
+    driver: bridge

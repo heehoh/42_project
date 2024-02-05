@@ -14,7 +14,8 @@ RUN apk update && \
     php81-xml \
     php81-pecl-imagick
 
-COPY tools/www.conf /etc/php8/php-fpm.d/www.conf
+COPY tools/www.conf /etc/php81/php-fpm.d/www.conf
+COPY tools/conf.sh /
 
 WORKDIR /tmp
 
@@ -25,7 +26,9 @@ RUN mv wordpress /var/www/
 
 WORKDIR /var/www
 
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+
 EXPOSE 9000
 
-# ENTRYPOINT ["/usr/bin/dumb-init", "--", "tail", "-f"]
-ENTRYPOINT ["/usr/bin/dumb-init", "--", "/usr/sbin/php-fpm81", "-F"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--", "sh", "/conf.sh"]
