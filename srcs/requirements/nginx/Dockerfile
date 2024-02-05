@@ -24,6 +24,7 @@ RUN openssl genrsa -aes256 -passout pass:${SERVER_PASSWORD} -out server_with_pas
 WORKDIR /
 
 COPY tools/default.conf /etc/nginx/http.d/default.conf
+COPY tools/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80 443
 
