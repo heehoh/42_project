@@ -11,15 +11,15 @@ service mariadb start
 
 if [ ! -d "/var/lib/mysql/wordpress" ]; then
 	# mysql_installation 설정
-	mysql -e "CREATE USER IF NOT EXISTS ${MYSQL_USER}@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
+	mysql -e "CREATE USER IF NOT EXISTS $MYSQL_USER@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
 
 	# wordpress database 생성
-	mysql -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME};"
-	mysql -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO ${MYSQL_USER}@'%' ;"
+	mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+	mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO $MYSQL_USER@'%' ;"
 	mysql -e "FLUSH PRIVILEGES";
 
 	# mysql_root 설정
-	mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
+	mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
 fi
 
 service mariadb stop

@@ -12,22 +12,17 @@ RUN apk update && \
     php81-mbstring \
     php81-intl \
     php81-xml \
-    php81-pecl-imagick
+    php81-pecl-imagick \
+    php-phar
 
 COPY tools/www.conf /etc/php81/php-fpm.d/www.conf
 COPY tools/conf.sh /
 
-WORKDIR /tmp
-
-RUN wget https://ko.wordpress.org/latest-ko_KR.tar.gz && \
-    gzip -d latest-ko_KR.tar.gz && tar xvf latest-ko_KR.tar && rm -f latest-ko_KR.tar
-    
-RUN mv wordpress /var/www/
-
 WORKDIR /var/www
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+
+RUN adduser -u 82 -D -S -G www-data www-data
 
 EXPOSE 9000
 

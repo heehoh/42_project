@@ -6,10 +6,7 @@ services:
       - inception
     volumes:
       - wp:/var/www
-    environment:
-      CA_PASSWORD: "${CA_PASSWORD}"
-      SERVER_PASSWORD: "${SERVER_PASSWORD}"
-      DOMAIN: "${DOMAIN}"
+    env_file: .env
     ports:
       - 80:80
       - 443:443
@@ -24,14 +21,7 @@ services:
       - inception
     volumes:
       - wp:/var/www
-    environment:
-      WP_NAME: ${WP_NAME}
-      WP_ADMIN_USER: ${WP_ADMIN_USER}
-      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
-      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
-      WP_USER: ${WP_USER}
-      WP_USER_PASSWORD: ${WP_USER_PASSWORD}
-      WP_USER_EMAIL: ${WP_USER_EMAIL}
+    env_file: .env
     expose:
       - 9000
     depends_on:
@@ -45,11 +35,7 @@ services:
       - inception
     volumes:
       - db:/var/lib/mysql
-    environment:
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      DB_NAME: ${DB_NAME}
+    env_file: .env
     restart: always
 
 volumes:
