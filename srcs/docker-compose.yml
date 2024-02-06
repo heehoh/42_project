@@ -1,6 +1,8 @@
 services:
   nginx:
     container_name: nginx
+    image: nginx
+    pull_policy: never
     build: ./requirements/nginx
     networks:
       - inception
@@ -16,6 +18,8 @@ services:
 
   wordpress:
     container_name: wordpress
+    image: wordpress
+    pull_policy: never
     build: ./requirements/wordpress
     networks:
       - inception
@@ -30,6 +34,8 @@ services:
   
   mariadb:
     container_name: mariadb
+    image: mariadb
+    pull_policy: never
     build: ./requirements/mariadb
     networks:
       - inception
