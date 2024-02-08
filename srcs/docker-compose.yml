@@ -48,12 +48,12 @@ volumes:
   wp:
     driver_opts:
       type: none
-      device: /Users/hujeong/Desktop/Inception/srcs/data/wp
+      device: /home/hujeong/data/wp
       o: bind
   db:
     driver_opts:
       type: none
-      device: /Users/hujeong/Desktop/Inception/srcs/data/db
+      device: /home/hujeong/data/db
       o: bind
 
 networks:
