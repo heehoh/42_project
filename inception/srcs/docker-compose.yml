@@ -1,0 +1,61 @@
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    pull_policy: never
+    build: ./requirements/nginx
+    networks:
+      - inception
+    volumes:
+      - wp:/var/www
+    env_file: .env
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - wordpress
+    restart: always
+
+  wordpress:
+    container_name: wordpress
+    image: wordpress
+    pull_policy: never
+    build: ./requirements/wordpress
+    networks:
+      - inception
+    volumes:
+      - wp:/var/www
+    env_file: .env
+    expose:
+      - 9000
+    depends_on:
+     - mariadb
+    restart: always
+  
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    pull_policy: never
+    build: ./requirements/mariadb
+    networks:
+      - inception
+    volumes:
+      - db:/var/lib/mysql
+    env_file: .env
+    restart: always
+
+volumes:
+  wp:
+    driver_opts:
+      type: none
+      device: /home/hujeong/data/wp
+      o: bind
+  db:
+    driver_opts:
+      type: none
+      device: /home/hujeong/data/db
+      o: bind
+
+networks:
+  inception:
+    driver: bridge
