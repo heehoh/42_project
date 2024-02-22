@@ -1,0 +1,7 @@
+*.o
+obj
+a.out
+DS_Store
+*.swp
+.vscode
+*_shrubbery
