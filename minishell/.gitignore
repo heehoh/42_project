@@ -1,0 +1,7 @@
+.DS_Store
+obj
+minishell
+a.out
+*.o
+libft.a
+.vscode
