@@ -1,0 +1,6 @@
+a.out
+*.o
+obj
+DS_Store
+.vscode
+convert
