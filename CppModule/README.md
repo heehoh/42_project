@@ -1,1 +1,39 @@
 # CppModule
+### c++ 98로 객체지향 학습하기
+- module00
+  - c++의 기본 입출력
+  - namespace
+  - class와 public, private 접근지정자
+  - static 멤버
+  - 초기화리스트
+- module01
+  - c++의 할당과 해제(new, delete)
+  - 생성자와 소멸자
+  - 포인터와 레퍼런스
+- module02
+  - 연산자 오버로딩
+  - 부동 소수점과 고정 소수점
+- module03
+  - 상속과 오버로딩
+  - 다이아몬드 상속(virtual 상속)
+- module04
+  - 가상함수와 순수가상함수
+  - 깊은 복사와 얕은 복사
+  - 다형성
+  - 추상클래스
+- module05
+  - c++의 예외처리 try throw catch
+  - exception 객체(runtime_error, out_of_range 등)
+- module06
+  - c++의 casting
+  - static_cast
+  - dynamic_cast
+  - reinterpret_cast
+- module07
+  - template 함수와 template 클래스
+  - template 특수화 
+- module08
+  - c++의 컨테이너, 반복자, 알고리즘
+- module09
+  - c++ 컨테이너
+  - ford-johnson algorithm(최소 비교 수로 정렬)
