@@ -1,4 +1,4 @@
-ENV 파일 .env로 저장
+ENV 파일 srcs 디렉토리에 .env로 저장
 
 ```
 #nginx
