@@ -60,9 +60,8 @@ void PhoneBook::run(void)
             std::clearerr(stdin);
             std::cin.clear();
             std::cout << "\n";
-            std::cout << "잘못된 명령어 입니다. 다시 입력해주세요" << std::endl;
         }
-        else if (input == "ADD")
+        if (input == "ADD")
         {
             add();
         }
@@ -71,9 +70,13 @@ void PhoneBook::run(void)
             search();
         }
         else if (input == "EXIT")
+        {
             return;
+        }
         else
+        {
             std::cout << "잘못된 명령어 입니다. 다시 입력해주세요" << std::endl;
+        }
     }
 }
 
