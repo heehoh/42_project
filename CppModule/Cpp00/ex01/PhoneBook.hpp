@@ -15,18 +15,20 @@
 
 #include "Contact.hpp"
 
-class PhoneBook {
- public:
-  PhoneBook();
-  void add(void);
-  void search(void);
-  void showInfo(std::string tmp);
-  void showPhoneBook(int idx);
-  void showDetailInfo(void);
+class PhoneBook
+{
+  public:
+    PhoneBook();
+    void run(void);
 
- private:
-  Contact _contact[8];
-  int _contact_idx;
+  private:
+    void add(void);
+    void search(void);
+    void showInfo(std::string tmp);
+    void showPhoneBook(int idx);
+    void showDetailInfo(void);
+    Contact _contact[8];
+    int _contact_idx;
 };
 
 #endif
